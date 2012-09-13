@@ -11,7 +11,5 @@
         <file>ressources/list-remove.png</file>
         <file>ressources/player_play.png</file>
         <file>ressources/dynamind-icon.png</file>
-        <file>ressources/crc.png</file>
-        <file>ressources/crc2.png</file>
     </qresource>
 </RCC>
