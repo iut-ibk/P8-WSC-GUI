@@ -39,7 +39,7 @@
 #include <iostream>
 #include <cmath>
 #include "dmmainwindow.h"
-#include "viewer/dmviewerwindow.h"
+#include "dmviewerwindow.h"
 
 
 GroupNode::GroupNode()
