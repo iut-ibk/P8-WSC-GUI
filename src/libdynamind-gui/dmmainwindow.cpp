@@ -194,7 +194,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionUpdate, SIGNAL(activated()), this , SLOT(updateSimulation()), Qt::DirectConnection);
     currentDocument = "";
 
-    QSettings settings("IUT", "DYNAMIND");
+    QSettings settings;
     if(settings.value("pythonModules").toString().isEmpty()) {
         counter++;
         this->preferences();
@@ -301,7 +301,7 @@ void DMMainWindow::createModuleListView()
     //Add VIBe Modules
     QStringList filters;
     filters << "*.dyn";
-    QSettings settings("IUT", "DYNAMIND");
+    QSettings settings;
     QStringList moduleshome = settings.value("VIBeModules",QStringList()).toString().replace("\\","/").split(",");
     for (int index = 0; index < moduleshome.size(); index++) {
         QDir d = QDir(moduleshome[index]);
