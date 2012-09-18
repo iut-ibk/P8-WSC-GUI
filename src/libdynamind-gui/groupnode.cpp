@@ -36,6 +36,7 @@
 #include <guiport.h>
 #include <dmporttuple.h>
 #include <dmgroup.h>
+#include <dmmodulelink.h>
 #include <iostream>
 #include <cmath>
 #include "dmmainwindow.h"
@@ -64,9 +65,16 @@ void GroupNode::viewData()
 {
     DM::Group* g=(DM::Group*)this->getDMModel();
     DM::Port* p=g->getOutPortTuples().at(0)->getInPort();
+    std::vector<DM::ModuleLink*> links=p->getLinks();
+    DM::ModuleLink* link=links.at(0);
     cout << "port: "<< p->getLinkedDataName() << endl;
     cout << "g: "<< g << endl;
-    DM::System *system = g->getData(p->getLinkedDataName());
+
+    DM::Port *p2=link->getOutPort();
+    cout << "port2: "<< p2->getLinkedDataName() << endl;
+
+    DM::System *system = p2->getModule()->getData(p2->getLinkedDataName());
+
     cout << "system: "<< system << endl;
     DM::ViewerWindow *viewer_window = new DM::ViewerWindow(system);
     viewer_window->show();
