@@ -36,6 +36,10 @@
 int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
+    
+    QCoreApplication::setOrganizationName("CRC");
+    QCoreApplication::setApplicationName("P8-WSC");
+    
     QGLFormat glf = QGLFormat::defaultFormat();
     glf.setSampleBuffers(true);
     glf.setSamples(4);
@@ -50,7 +54,7 @@ int main(int argc, char *argv[]) {
     //splash1->showMessage("Loading Modules");
     app.processEvents();
 
-   QThreadPool::globalInstance()->setMaxThreadCount(0);
+    QThreadPool::globalInstance()->setMaxThreadCount(0);
 
     DMMainWindow * mw = new DMMainWindow();
 
