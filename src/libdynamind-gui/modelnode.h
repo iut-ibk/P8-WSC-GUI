@@ -135,7 +135,7 @@ public:
 
     virtual void updatePorts();
 
-    virtual void setMySelected ( bool selected );
+//    virtual void setMySelected ( bool selected );
 
     virtual void resetModel();
 

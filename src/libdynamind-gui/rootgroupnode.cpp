@@ -185,7 +185,7 @@ void RootGroupNode::RePosTuplePorts() {
         }
     }
 }
-
+/*
 void RootGroupNode::setMySelected(  bool selected ) {
     foreach(ModelNode * m, this->childnodes) {
         m->setMySelected(true);
@@ -200,9 +200,9 @@ void RootGroupNode::setMySelected(  bool selected ) {
 
 
 }
-
+*/
 void RootGroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-
+/*
     QString name;
     //DM::Group;
     this->setGroupZValue();
@@ -218,18 +218,18 @@ void RootGroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
     this->simpleTextItem->setText("Name:"+ QString::fromStdString(this->getDMModel()->getName()));
     if (simpleTextItem->boundingRect().width()+40 > l)
         l = simpleTextItem->boundingRect().width()+40;
-//    painter->drawRect(0, 0, l,h);
+    //    painter->drawRect(0, 0, l,h);
 
     this->setPos(x1-40, y1-20);
 
-//    painter->drawText(QPoint(5,15), "Name:"+ QString::fromStdString(this->getDMModel()->getName()));
+    //    painter->drawText(QPoint(5,15), "Name:"+ QString::fromStdString(this->getDMModel()->getName()));
 
 
     if((RePosFlag) != 0) {
         RePosTuplePorts();
         RePosFlag = false;
     }
-
+*/
 
 
 }
@@ -237,28 +237,31 @@ QRectF RootGroupNode::boundingRect() const {
     return QRect(-100, -100, l+200, h+200);
 
 }
+
 void RootGroupNode::addModelNode(ModelNode *m) {
     this->childnodes.push_back(m);
     //DM::Module * m1 = m->getDMModel();
     m->getDMModel()->setGroup((DM::Group *)this->getDMModel());
     m->setParentGroup(this);
-//    m->paint(0,0);
-    this->recalculateLandH();
-    this->update();
+    //    m->paint(0,0);
+    //this->recalculateLandH();
+    //this->update();
 }
-void RootGroupNode::mouseMoveEvent ( QGraphicsSceneMouseEvent * event )  {
-    this->setMySelected(true);
 
+void RootGroupNode::mouseMoveEvent ( QGraphicsSceneMouseEvent * event )  {
+    //this->setMySelected(true);
+    /*
     if (this->parentGroup != 0) {
         this->parentGroup->recalculateLandH();
         this->parentGroup->update();
     }
 
-    ModelNode::QGraphicsItem::mouseMoveEvent(event);
+    ModelNode::QGraphicsItem::mouseMoveEvent(event);*/
 }
 
 
 void  RootGroupNode::setGroupZValue() {
+    /*
     DM::Logger(DM::Debug) << "Set Z Level";
     if (this->parentGroup != 0) {
         DM::Logger(DM::Debug) << "ParentGroup Z Level" << this->parentGroup->zValue();
@@ -274,10 +277,11 @@ void  RootGroupNode::setGroupZValue() {
             if (m->zValue() != this->zValue()+1)
                 m->setZValue(this->zValue()+1);
         }
-    }
+    }*/
 }
 
 void RootGroupNode::recalculateLandH() {
+    /*
     float lold = l;
 
 
@@ -317,5 +321,5 @@ void RootGroupNode::recalculateLandH() {
     if (this->parentGroup != 0) {
         this->parentGroup->recalculateLandH();
     }
-
+*/
 }

@@ -231,7 +231,7 @@ GroupNode::GroupNode(  DM::Module *module, GUISimulation * s): ModelNode( module
     this->simpleTextItem = new QGraphicsSimpleTextItem (QString::number(id));
     double w = this->simpleTextItem->boundingRect().width()+40;
     w = w < 80 ? 80 : w;
-    l = w+4;
+    l = (w+4)*2.3;
     h =  this->simpleTextItem->boundingRect().height()+65;
 
 
@@ -250,6 +250,7 @@ void GroupNode::RePosTuplePorts() {
     }
 
 }
+/*
 void GroupNode::setMySelected(  bool selected ) {
     foreach(ModelNode * m, this->childnodes) {
         m->setMySelected(true);
@@ -261,7 +262,7 @@ void GroupNode::setMySelected(  bool selected ) {
 
     ModelNode::setMySelected(selected);
 }
-
+*/
 void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
 
     if (this->visible ) {

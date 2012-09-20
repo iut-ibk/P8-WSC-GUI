@@ -66,6 +66,7 @@ std::string ModelNode::getGroupUUID() {
     return this->getDMModel()->getGroup()->getUuid();
 }
 
+/*
 void ModelNode::setMySelected ( bool selected )
 {
     exit(0);
@@ -73,7 +74,7 @@ void ModelNode::setMySelected ( bool selected )
     QGraphicsItem::setSelected ( selected );
     this->ResultWidget->createModuleListView();
 }
-
+*/
 
 void ModelNode::updatePorts () {
 
@@ -347,10 +348,12 @@ void ModelNode::mouseDoubleClickEvent ( QGraphicsSceneMouseEvent * event ) {
     }
 }
 
+
 void ModelNode::mouseReleaseEvent ( QGraphicsSceneMouseEvent * event )
 {
     //cout << this->getDMModel()->getSimulation()->getResultWidget << endl;
     hwin->createModuleListView();
+    QGraphicsItem::mouseReleaseEvent (event);
 }
 
 
