@@ -217,8 +217,8 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     toolBar_3->addWidget(spacer);
 
     QLabel *label = new QLabel(this);
-    label->setPixmap(QPixmap(":/Icons/ressources/list-remove.png"));
-    label->setPixmap(QPixmap(":/Icons/ressources/list-add.png"));
+    //label->setPixmap(QPixmap(":/Icons/ressources/list-remove.png"));
+    //label->setPixmap(QPixmap(":/Icons/ressources/list-add.png"));
     label->setPixmap(QPixmap(":/Icons/ressources/crc.png"));
     this->toolBar_3->addWidget(label);
     this->setWindowTitle("P8-WSC");

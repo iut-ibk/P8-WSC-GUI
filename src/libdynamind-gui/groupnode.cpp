@@ -276,13 +276,22 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         if (h< 65)
             h = 65;
         //QString name=QString("Name:")+ QString::fromStdString(this->getDMModel()->getName())+" " +QString::number(this->zValue());
-//        QString name="Baseline";
-         QString name=this->getName();
+        //        QString name="Baseline";
+        QString name=this->getName();
         this->simpleTextItem->setText(name);
         float lold = l;
         if (simpleTextItem->boundingRect().width()+140 > l)
             l = simpleTextItem->boundingRect().width()+140;
- //        painter->drawRect(0, 0, l,h);
+        //        painter->drawRect(0, 0, l,h);
+
+        QRadialGradient gradient(50, 50, 50, 50, 50);
+        gradient.setColorAt(0, QColor::fromRgbF(0, 1, 0, 1));
+        gradient.setColorAt(1, QColor::fromRgbF(0, 0, 0, 0));
+
+        painter->setBrush(QBrush(gradient));
+
+        painter->setBrush( QBrush( QColor(242,252,245) ,Qt::SolidPattern));
+        painter->setPen( QPen(QColor(128,128,128)) );
         painter->drawEllipse(0, 0, l, h);
 
 
