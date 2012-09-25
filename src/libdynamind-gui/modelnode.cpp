@@ -246,6 +246,8 @@ ModelNode::ModelNode(QGraphicsItem * parent, QGraphicsScene * scene) :QGraphicsI
 
 
 void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    painter->setFont( QFont("Helvetica", 10));
+
     if(this->isSelected() == true) {
         Color = COLOR_MODULESELECTED;
     }

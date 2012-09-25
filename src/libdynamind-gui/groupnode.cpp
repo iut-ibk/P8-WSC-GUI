@@ -231,7 +231,7 @@ GroupNode::GroupNode(  DM::Module *module, GUISimulation * s): ModelNode( module
     this->simpleTextItem = new QGraphicsSimpleTextItem (QString::number(id));
     double w = this->simpleTextItem->boundingRect().width()+40;
     w = w < 80 ? 80 : w;
-    l = (w+4)*2.3;
+    l = (w+4)*2.5;
     h =  this->simpleTextItem->boundingRect().height()+65;
 
 
@@ -264,14 +264,49 @@ void GroupNode::setMySelected(  bool selected ) {
 }
 */
 void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    painter->setFont( QFont("Helvetica", 10));
 
     if (this->visible ) {
         recalculateLandH();
-        if(this->isSelected()== true) {
-            painter->setBrush(Qt::gray);
+        if(this->isSelected()== true)
+        {
+            if (this->getName()=="URBAN_FORM")
+            {//dark
 
-        } else {
-            painter->setBrush(Qt::white);
+                QRadialGradient gradient(0, 0, 200, 0, 50);
+                gradient.setColorAt(0, QColor(229,235,0));
+                gradient.setColorAt(1, QColor(235,235,150));
+                painter->setBrush(QBrush(gradient));
+
+            }
+            else
+            {
+                QRadialGradient gradient(0, 0, 200, 0, 50);
+                gradient.setColorAt(0, QColor(10,226,0));
+                gradient.setColorAt(1, QColor(127,215,120));
+                painter->setBrush(QBrush(gradient));
+
+            }
+
+        }
+        else
+        {//light
+            if (this->getName()=="URBAN_FORM")
+            {
+                QRadialGradient gradient(0, 0, 200, 0, 50);
+                gradient.setColorAt(0, QColor(247,255,18));
+                gradient.setColorAt(1, QColor(255,255,212));
+                painter->setBrush(QBrush(gradient));
+            }
+            else
+            {
+                QRadialGradient gradient(0, 0, 200, 0, 50);
+                gradient.setColorAt(0, QColor(28,242,0));
+                gradient.setColorAt(1, QColor(170,255,160));
+                painter->setBrush(QBrush(gradient));
+            }
+
+
         }
         if (h< 65)
             h = 65;
@@ -284,14 +319,9 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = simpleTextItem->boundingRect().width()+140;
         //        painter->drawRect(0, 0, l,h);
 
-        QRadialGradient gradient(50, 50, 50, 50, 50);
-        gradient.setColorAt(0, QColor::fromRgbF(0, 1, 0, 1));
-        gradient.setColorAt(1, QColor::fromRgbF(0, 0, 0, 0));
 
-        painter->setBrush(QBrush(gradient));
-
-        painter->setBrush( QBrush( QColor(242,252,245) ,Qt::SolidPattern));
-        painter->setPen( QPen(QColor(128,128,128)) );
+        //        painter->setBrush( QBrush( QColor(242,252,245) ,Qt::SolidPattern));
+        painter->setPen( QPen(QColor(0,0,0),2) );
         painter->drawEllipse(0, 0, l, h);
 
 
@@ -320,7 +350,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 }
 QRectF GroupNode::boundingRect() const {
-    return QRect(0, 0, l, h);
+    return QRect(-1, -1, l+1, h+1);
 
 }
 

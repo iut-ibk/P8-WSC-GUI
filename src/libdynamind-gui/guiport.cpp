@@ -32,6 +32,7 @@
 #include <dmsimulation.h>
 #include <dmmodulelink.h>
 #include <guisimulation.h>
+#include <dmporttuple.h>
 GUIPort::~GUIPort () {
 
     foreach(GUILink *l, this->links) {
@@ -83,10 +84,27 @@ bool GUIPort::isLinked() {
 }
 
 void GUIPort::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    if (this->getVIBePort()->isFullyLinked())
-        color = Qt::green;
-    if (!this->getVIBePort()->isFullyLinked())
-        color = Qt::red;
+
+    if(modelNode->getDMModel()->isGroup())
+    {
+        DM::Group* g=(DM::Group*)modelNode->getDMModel();
+        DM::Port* p=g->getOutPortTuples().at(0)->getInPort();
+        std::vector<DM::ModuleLink*> links=p->getLinks();
+        DM::ModuleLink* link=links.at(0);
+
+        if (link->getOutPort()->isFullyLinked())
+            color = Qt::green;
+        else
+            color = Qt::red;
+    }
+    else
+    {
+        if (this->getVIBePort()->isFullyLinked())
+            color = Qt::green;
+        if (!this->getVIBePort()->isFullyLinked())
+            color = Qt::red;
+    }
+
     painter->setBrush(color);
 
     if(isHover){
@@ -229,7 +247,7 @@ DM::Port * GUIPort::getVIBePort() {
     } else {
         p = this->modelNode->getDMModel()->getOutPort(this->getPortName().toStdString());
     }
-   return p;
+    return p;
 }
 
 void GUIPort::mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) {

@@ -50,12 +50,14 @@ void GUILink::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     QBrush brush(c);
 
+
+    QPen pen3(Qt::black,3);
     QPen pen(Qt::black);
     if (this->inPort != 0) {
         if (this->isBack())
             pen = QPen(Qt::red);
     }
-    painter->strokePath(connection_path, pen);
+    painter->strokePath(connection_path, pen3);
     painter->fillPath(handle_path, brush);
     painter->strokePath(handle_path, pen);
 }

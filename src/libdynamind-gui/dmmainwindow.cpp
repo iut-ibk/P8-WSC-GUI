@@ -245,11 +245,11 @@ void DMMainWindow::createModuleListView()
     {
         QString name=QString::fromStdString(selectedModule->getDMModel()->getClassName());
         cout << "Selected: " << name.toStdString() << endl;
-        if (name=="P8BaseLine") {
-            successors<<"Rain"<<"P8Scenario";
+        if (name=="URBAN_FORM") {
+            successors<<"Rain"<<"SCENARIO";
         }
         if (name=="Rain") {
-            successors<<"P8Scenario";
+            successors<<"SCENARIO";
         }
         if (name=="ImportShapeFile") {
             successors<<"ExportToShapeFile";
@@ -264,7 +264,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"P8BaseLine";
+            successors<<"URBAN_FORM";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
