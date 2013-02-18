@@ -38,12 +38,19 @@
 //#include "plot.h"
 
 
+//popup
+#include <QLineEdit>
+#include <QPushButton>
+//
+
+
 #include <QMap>
 #include <QVector>
 #include <moduledescription.h>
 #include <guiresultobserver.h>
 #include <ui_dmmainwindow.h>
 #include <simulationio.h>
+#include <cmath>
 class QTreeWidgetItem;
 
 
@@ -56,12 +63,13 @@ class GUISimulationObserver;
 class GUISimulation;
 class GUIHelpViewer;
 namespace DM {
-    class Group;
+class Group;
 }
- namespace Ui {
-    class MainWindow;
+namespace Ui {
+class MainWindow;
 }
 
+class SimulationPopup;
 
 
 class DM_HELPER_DLL_EXPORT DMMainWindow : public QMainWindow, public Ui::DMMainWindow
@@ -74,6 +82,8 @@ public:
     GuiLogSink *log_updater;
     GUISimulation * getSimulation() {return this->simulation;}
     void createModuleListView();
+    void setMusicFile(int no);
+    int getMusicRuns();
 
 private:
     GUISimulation * simulation;
@@ -92,7 +102,7 @@ private:
     void writeGUIInformation(QString FileName);
     void loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation,  QVector<LoadModule> posmodules);
     void loadGUILinks(std::map<std::string, std::string> UUID_Translation);
-
+    SimulationPopup* popup1;
 
 public slots:
     void runSimulation();
@@ -119,8 +129,14 @@ private slots:
     void on_actionZoomOut_activated();
     void on_actionZoomIn_activated();
     void on_actionExit_triggered();
-
     void on_actionShow_all_modules_changed();
+    void on_l_Scenario_linkHovered(const QString &link);
+
+    void on_l_simulation_linkHovered(const QString &link);
+
+    void on_actionHelp_triggered();
+
+    void on_l_simulation_linkActivated(const QString &link);
 
 signals:
     void updateSplashMessage(QString);
@@ -128,5 +144,92 @@ signals:
 };
 
 extern DMMainWindow *hwin;
+
+
+
+class SimulationPopup : public QFrame
+{
+    Q_OBJECT
+public:
+    SimulationPopup( QLabel *label, DMMainWindow* parent = 0, Qt::WindowFlags f = 0) : QFrame(NULL,f)
+    {
+        this->parent=parent;
+        this->label=label;
+        grid = new QGridLayout(this);
+        list= new QList<QPushButton*>;
+        count=0;
+    }
+
+    ~SimulationPopup()
+    {
+        disconnect(this,SLOT(hide()));
+        QWidget::~QWidget();
+    }
+
+    void leaveEvent ( QEvent * event )
+    {
+        this->hide();
+    }
+
+    void show()
+    {
+        int newcount=parent->getMusicRuns();
+        if (newcount!=count)
+        {
+            clear();
+            count=newcount;
+            int rows=1;         //sqrt(double(count));
+            int columns=count;  //count/rows+1;
+            for (int i=0;i<count;i++)
+            {
+                QPushButton *button=new QPushButton(this);
+                connect(button,SIGNAL(pressed()),this,SLOT(buttonReleased()));
+                button->setText(QString("%1").arg(i+1));
+                int row=1;
+                int column=i;
+                grid->addWidget(button,row,column);
+                list->append(button);
+            }
+
+        }
+        QWidget::show();
+    }
+
+    void clear()
+    {
+        int rows=1;         //sqrt(double(count));
+        int columns=count;  //count/rows+1;
+        foreach(QPushButton *button,*list)
+        {
+            grid->removeWidget(button);
+            disconnect(button,SLOT(buttonReleased()));
+            delete button;
+        }
+        list->clear();
+    }
+
+protected slots:
+    void buttonReleased()
+    {
+        foreach(QPushButton *button, *list)
+        {
+            if (button->isDown())
+            {
+                int active=button->text().toInt();
+                parent->setMusicFile(active);
+                cout << "huhu: "<< active << endl;
+                label->setText(QString("Simulation %1").arg(active));
+            }
+        }
+    }
+
+protected:
+    QGridLayout *grid;
+    QList<QPushButton*> *list;
+    QLabel *label;
+    DMMainWindow *parent;
+    int count;
+};
+
 
 #endif // MAINWINDOW_H

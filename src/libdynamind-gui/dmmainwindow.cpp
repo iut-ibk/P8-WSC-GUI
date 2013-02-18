@@ -52,6 +52,7 @@
 #include <groupnode.h>
 #include <QWidget>
 #include <QThreadPool>
+#include <QDesktopServices>
 #include <dmlog.h>
 #include <guilogsink.h>
 #include <dmpythonenv.h>
@@ -61,6 +62,7 @@
 #include "preferences.h"
 #include "projectviewer.h"
 #include "guihelpviewer.h"
+#include "startupdialog.h"
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
 {
@@ -161,8 +163,15 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
-
-    setupUi(this);    
+    setupUi(this);
+    QPalette pal;
+    pal.setColor(QPalette::Window, QColor(255,255,255));
+    //    pal.setColor(QPalette::WindowText, QColor(0,0,0));
+    pal.setColor(QPalette::Text, QColor(0,0,0));
+    log_widget->setPalette(pal);
+    //    l_Scenario->hide();
+    //    l_simulationno->setText("Simulation -");
+    popup1 = new SimulationPopup(l_simulationno, this, Qt::Popup | Qt::Window );
     firstrun=true;
     log_updater = new GuiLogSink();
     DM::Log::init(log_updater,DM::Debug);
@@ -222,6 +231,12 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     label->setPixmap(QPixmap(":/Icons/ressources/crc.png"));
     this->toolBar_3->addWidget(label);
     this->setWindowTitle("P8-WSC");
+    this->show();
+    StartupDialog startupdialog;
+    int startmode=startupdialog.exec();
+    if (startmode==1)
+        loadSimulation();
+
 }
 
 void DMMainWindow::createModuleListView()
@@ -335,6 +350,34 @@ void DMMainWindow::createModuleListView()
             }
         }
     }
+}
+
+void DMMainWindow::setMusicFile(int no)
+{
+    foreach(DM::Module *module,simulation->getModules())
+    {
+        //       cout << "-> " << module->getClassName()<<endl;
+        if (QString(module->getClassName())=="TreatmentPerformance")
+        {
+            module->setParameterValue("MusicFileNo",QString("%1").arg(no).toStdString());
+            //                 cout << "juhuuuu"<<endl;
+        }
+    }
+}
+
+int DMMainWindow::getMusicRuns()
+{
+    int retVal=0;
+    if (simulation!=NULL)
+        foreach(DM::Module *module,simulation->getModules())
+        {
+            if (QString(module->getClassName())=="TreatmentPerformance")
+            {
+                cout << "runs: " << 5/*module->getParameterAsString("Runs")*/ <<endl;
+                retVal=5;//QString::fromStdString(module->getParameterAsString("Runs")).toInt();
+            }
+        }
+    return retVal;
 }
 
 void DMMainWindow::runSimulation() {
@@ -675,4 +718,29 @@ DMMainWindow *hwin;
 void DMMainWindow::on_actionShow_all_modules_changed()
 {
     this->createModuleListView();
+}
+
+
+void DMMainWindow::on_l_Scenario_linkHovered(const QString &link)
+{
+
+}
+
+
+
+void DMMainWindow::on_l_simulation_linkHovered(const QString &link)
+{
+    popup1->resize(10,10);
+    popup1->move(QWidget::mapToGlobal(l_simulation->pos())+QPoint(20,20));
+    popup1->show();
+}
+
+void DMMainWindow::on_actionHelp_triggered()
+{
+    QDesktopServices::openUrl(QUrl("file:///C:/test.html"));
+}
+
+void DMMainWindow::on_l_simulation_linkActivated(const QString &link)
+{
+    on_l_simulation_linkHovered(link)  ;
 }

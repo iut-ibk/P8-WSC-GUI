@@ -11,5 +11,7 @@
         <file>ressources/list-remove.png</file>
         <file>ressources/player_play.png</file>
         <file>ressources/crc.png</file>
+        <file>ressources/default.png</file>
+        <file>ressources/URBAN_FORM.png</file>
     </qresource>
 </RCC>

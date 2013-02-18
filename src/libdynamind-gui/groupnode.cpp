@@ -221,7 +221,7 @@ GroupNode::GroupNode(  DM::Module *module, GUISimulation * s): ModelNode( module
     this->outputCounter = 1;
     this->inputCounter = 1;
     this->setZValue(-1);
-    this->setGraphicsEffect(new  QGraphicsDropShadowEffect(this));
+//    this->setGraphicsEffect(new  QGraphicsDropShadowEffect(this));
     //this->setVisible(false);
 
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -322,7 +322,11 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
         //        painter->setBrush( QBrush( QColor(242,252,245) ,Qt::SolidPattern));
         painter->setPen( QPen(QColor(0,0,0),2) );
-        painter->drawEllipse(0, 0, l, h);
+//        painter->drawEllipse(0, 0, l, h);
+//        QImage img=QImage (":/Icons/ressources/crc.png");;
+        QImage img=QImage (":/Icons/ressources/URBAN_FORM.png");
+//        painter->drawImage(QRectF(0,0,100,100),img);
+        painter->drawImage(0,0,img);
 
 
         // New connections
@@ -334,10 +338,10 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawEllipse(dx,dy,10,10);
         }
 */
-        if (this->childnodes.size() > 0)
-            this->setPos(x1-40, y1-20);
+//        if (this->childnodes.size() > 0)
+//            this->setPos(x1-40, y1-20);
 
-        painter->drawText(QPoint(55,20), name);
+//        painter->drawText(QPoint(55,20), name);
 
         if (lold != l)
             RePosFlag = true;

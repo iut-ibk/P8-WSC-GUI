@@ -125,12 +125,13 @@ void GUIPort::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     }
     portname_graphics.setText(this->getPortName());
-
+/*
     if (this->getPortType() > DM::OUTPORTS)
         painter->drawText(QPoint(10,portname_graphics.boundingRect().height()/2+10), this->getPortName());
     if (this->getPortType() < DM::OUTPORTS)
         painter->drawText(QPoint(-portname_graphics.boundingRect().width()-10,portname_graphics.boundingRect().height()/2+10), this->getPortName());
-    painter->setBrush(Qt::NoBrush);
+  */
+  painter->setBrush(Qt::NoBrush);
 }
 
 QRectF GUIPort::boundingRect() const {
