@@ -163,7 +163,7 @@ public:
     ~SimulationPopup()
     {
         disconnect(this,SLOT(hide()));
-        QWidget::~QWidget();
+//        QWidget::~QWidget();		Clemens Heiko
     }
 
     void leaveEvent ( QEvent * event )
