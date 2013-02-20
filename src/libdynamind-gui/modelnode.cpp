@@ -247,9 +247,14 @@ ModelNode::ModelNode(QGraphicsItem * parent, QGraphicsScene * scene) :QGraphicsI
 
 void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->setFont( QFont("Helvetica", 10));
-
+    QImage img;
     if(this->isSelected() == true) {
         Color = COLOR_MODULESELECTED;
+        //painter->setPen(QColor(255,255,255));
+        //painter->setBrush(QBrush(QColor(220,220,220)));
+        painter->setPen(QColor(0,0,0));
+        //painter->setBrush(QBrush(QColor(255,255,255)));
+        painter->drawRect(0, 0, l, h);
     }
     else if (this->getDMModel()->isExecuted()) {
         Color = COLOR_EXECUTED;
@@ -257,30 +262,60 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     else {
         Color = COLOR_MODULE;
     }
-
     if(this->visible){
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+        painter->setBrush(QBrush(QColor(220,220,180)));
+        painter->setPen(QPen(QColor(220,220,220),2));
+        if(this->getName()=="Rain")
+        {
+            img = QImage(":/Icons/ressources/Rainfall.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+        }
+        else if(this->getName()=="TreatmentPerformanceResults")
+        {
+            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");//MircorClimateHeatIslandEffect.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+        }
+        else if(this->getName()=="TreatmentPerformance")
+        {
+            img = QImage(":/Icons/ressources/Realisation.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults")
+        {
+            img = QImage(":/Icons/ressources/StreamHealth-EcologyFish.png");//EconomicValuation.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+        }
+        else
+        {
+            QLinearGradient linearGrad(QPointF(0, h), QPointF(0, 0));
+            QColor c1 = Color;
+            QColor c2 = Color;
+            linearGrad.setColorAt(0, c1);
+            linearGrad.setColorAt(.4, c2);
+            QBrush brush(linearGrad);
 
+            painter->setBrush(Qt::white);
+            painter->setPen(pen);
+            QPainterPath path;
+            path.addRect(0, 0,l,h);
+            painter->fillPath(path, brush);
+            painter->strokePath(path, pen);
 
-        QLinearGradient linearGrad(QPointF(0, h), QPointF(0, 0));
-        QColor c1 = Color;
-        QColor c2 = Color;
-        linearGrad.setColorAt(0, c1);
-        linearGrad.setColorAt(.4, c2);
-        QBrush brush(linearGrad);
+            if (!this->getDMModel()->getName().empty())
+                painter->drawText(QPoint(22,35), "Name: " + QString::fromStdString(this->getDMModel()->getName()));
 
-        painter->setBrush(Qt::white);
-        painter->setPen(pen);
-        QPainterPath path;
-        path.addRect(0, 0,l,h);
-        painter->fillPath(path, brush);
-        painter->strokePath(path, pen);
-
-        if (!this->getDMModel()->getName().empty())
-            painter->drawText(QPoint(22,35), "Name: " + QString::fromStdString(this->getDMModel()->getName()));
-
-        painter->drawText(QPoint(22,15), "Module: " + QString::fromStdString(this->getDMModel()->getClassName()));
-/*
+            painter->drawText(QPoint(22,15), "Module: " + QString::fromStdString(this->getDMModel()->getClassName()));
+        }
+            /*
         if (this->parentGroup)
             painter->drawText(QPoint(22,55), "GRP Group: "+ QString::fromStdString(this->parentGroup->getDMModel()->getName()));*/
     }
