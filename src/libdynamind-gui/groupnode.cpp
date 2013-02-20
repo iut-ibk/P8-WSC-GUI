@@ -265,30 +265,42 @@ void GroupNode::setMySelected(  bool selected ) {
 */
 void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->setFont( QFont("Helvetica", 10));
-
+    QImage img;
     if (this->visible ) {
         recalculateLandH();
+
+
         if(this->isSelected()== true)
         {
-            if (this->getName()=="URBAN_FORM")
-            {//dark
 
-                QRadialGradient gradient(0, 0, 200, 0, 50);
-                gradient.setColorAt(0, QColor(229,235,0));
-                gradient.setColorAt(1, QColor(235,235,150));
-                painter->setBrush(QBrush(gradient));
+//                painter->setPen(QColor(255,255,255));
+//                painter->setBrush(QBrush(QColor(220,220,220)));
+//                painter->drawRect(0, 0, l, h);
+            painter->setPen(QColor(0,0,0));
+            //painter->setBrush(QBrush(QColor(255,255,255)));
+            painter->drawRect(0, 0, l, h);
 
-            }
-            else
-            {
-                QRadialGradient gradient(0, 0, 200, 0, 50);
-                gradient.setColorAt(0, QColor(10,226,0));
-                gradient.setColorAt(1, QColor(127,215,120));
-                painter->setBrush(QBrush(gradient));
 
-            }
 
         }
+        if(this->getName()=="URBAN_FORM")
+        {
+            img = QImage(":/Icons/ressources/Urban-Form.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+
+        }
+        if(this->getName()=="SCENARIO")
+        {
+            img = QImage(":/Icons/ressources/Scenario.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+
+
+        }
+        /*
         else
         {//light
             if (this->getName()=="URBAN_FORM")
@@ -308,6 +320,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 
         }
+        */
         if (h< 65)
             h = 65;
         //QString name=QString("Name:")+ QString::fromStdString(this->getDMModel()->getName())+" " +QString::number(this->zValue());
@@ -321,12 +334,10 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 
         //        painter->setBrush( QBrush( QColor(242,252,245) ,Qt::SolidPattern));
-        painter->setPen( QPen(QColor(0,0,0),2) );
-//        painter->drawEllipse(0, 0, l, h);
-//        QImage img=QImage (":/Icons/ressources/crc.png");;
-        QImage img=QImage (":/Icons/ressources/URBAN_FORM.png");
+
+        //        QImage img=QImage (":/Icons/ressources/crc.png");;
 //        painter->drawImage(QRectF(0,0,100,100),img);
-        painter->drawImage(0,0,img);
+
 
 
         // New connections
