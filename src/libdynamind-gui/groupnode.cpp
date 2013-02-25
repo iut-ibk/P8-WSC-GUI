@@ -161,7 +161,14 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         ExistingInPorts << QString::fromStdString(p->getName());
         GUIPort * gui_p = new  GUIPort(this, p->getInPort());
         this->ports.append(gui_p);
-        gui_p->setPos(0,gui_p->boundingRect().height()*this->inputCounter++);
+        if (this->getName()== "SCENARIO")
+        {
+            gui_p->setPos(80,155);//15,105); coords für ecken
+        }
+        else
+        {
+            gui_p->setPos(0,gui_p->boundingRect().height()*this->inputCounter++);
+        }
 
     } else {//Outport
         foreach (QString pname, ExistingOutPorts) {
@@ -173,8 +180,18 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
 
         GUIPort * gui_p = new  GUIPort(this,p->getOutPort());
         this->ports.append(gui_p);
-        gui_p->setPos( this->boundingRect().width(),gui_p->boundingRect().height()*this->outputCounter++);
-
+        if (this->getName() == "URBAN_FORM")
+        {
+            gui_p->setPos(325,45);//395,90); coords für ecken
+        }
+        else if(this->getName() == "SCENARIO")
+        {
+            gui_p->setPos(230,155);//340,110);
+        }
+        else
+        {
+            gui_p->setPos(-this->boundingRect().width(),gui_p->boundingRect().height()*this->outputCounter++);
+        }
     }
 
 
@@ -245,7 +262,7 @@ GroupNode::GroupNode(  DM::Module *module, GUISimulation * s): ModelNode( module
 void GroupNode::RePosTuplePorts() {
     foreach(GUIPort * gui_p, this->ports) {
         if (gui_p->getPortType()  < DM::OUTPORTS) {
-            gui_p->setPos(this->boundingRect().width(), gui_p->pos().y());
+            gui_p->setPos(gui_p->pos().x(), gui_p->pos().y());//this->boundingRect().width()
         }
     }
 
@@ -268,7 +285,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QImage img;
     if (this->visible ) {
         recalculateLandH();
-
+        std::cout << this->name << std::endl;
 
         if(this->isSelected()== true)
         {
