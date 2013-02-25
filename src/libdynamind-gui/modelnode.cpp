@@ -178,15 +178,53 @@ void ModelNode::addPort(DM::Port * p) {
 
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
-    if  (p->getPortType() < DM::OUTPORTS) {
-        gui_p->setPos(this->boundingRect().width(),70+gui_p->boundingRect().height()*this->outputCounter++);
-        if (outputCounter > inputCounter)
-            this->h = h+20;
-    }else {
-        gui_p->setPos(0,70+gui_p->boundingRect().height()*this->inputCounter++);
-        if (outputCounter < inputCounter)
-            this->h = h+20;
+    if  (p->getPortType() < DM::OUTPORTS) { //out
+        if(this->getName()=="TreatmentPerformance")
+        {
+            gui_p->setPos(250,40);//335,110); coords für ecken
+        }
+        else if(this->getName()=="Rain")
+        {
+            gui_p->setPos(185,40);
+        }
+        else if(this->getName()=="TreatmentPerformanceResults")
+        {
+            gui_p->setPos(155,120);
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults")
+        {
+            gui_p->setPos(200,100);
+        }
+        else
+        {
+            gui_p->setPos(this->boundingRect().width(),70+gui_p->boundingRect().height()*this->outputCounter++);
+            if (outputCounter > inputCounter)
+                this->h = h+20;
+        }
 
+    }else {//in
+        if(this->getName()=="TreatmentPerformance")
+        {
+            gui_p->setPos(75,160);//10,110); coords für ecken
+        }
+        else if(this->getName()=="Rain")
+        {
+            gui_p->setPos(10,55);
+        }
+        else if(this->getName()=="TreatmentPerformanceResults")
+        {
+            gui_p->setPos(35,120);
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults")
+        {
+            gui_p->setPos(0,100);
+        }
+        else
+        {
+            gui_p->setPos(0,70+gui_p->boundingRect().height()*this->inputCounter++);
+            if (outputCounter < inputCounter)
+               this->h = h+20;
+        }
     }
 }
 
@@ -276,7 +314,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         else if(this->getName()=="TreatmentPerformanceResults")
         {
             img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");//MircorClimateHeatIslandEffect.png");
-            h = img.height();
+            h = img.height()-50;
             l = img.width();
             painter->drawImage(0,0,img);
         }
