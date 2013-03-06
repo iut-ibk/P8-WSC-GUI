@@ -179,7 +179,7 @@ void ModelNode::addPort(DM::Port * p) {
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
     if  (p->getPortType() < DM::OUTPORTS) { //out
-        if(this->getName()=="TreatmentPerformance")
+        if(this->getName()=="realisations")
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
@@ -203,7 +203,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
 
     }else {//in
-        if(this->getName()=="TreatmentPerformance")
+        if(this->getName()=="realisations")
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
@@ -311,14 +311,14 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = img.width();
             painter->drawImage(0,0,img);
         }
-        else if(this->getName()=="TreatmentPerformanceResults")
-        {
-            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");//MircorClimateHeatIslandEffect.png");
-            h = img.height()-50;
-            l = img.width();
-            painter->drawImage(0,0,img);
-        }
-        else if(this->getName()=="TreatmentPerformance")
+//        else if(this->getName()=="TreatmentPerformanceResults")
+//        {
+//            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");//MircorClimateHeatIslandEffect.png");
+//            h = img.height()-50;
+//            l = img.width();
+//            painter->drawImage(0,0,img);
+//        }
+        else if(this->getName()=="realisations")
         {
             img = QImage(":/Icons/ressources/Realisation.png");
             h = img.height();

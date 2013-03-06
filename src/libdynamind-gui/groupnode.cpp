@@ -165,6 +165,10 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         {
             gui_p->setPos(80,155);//15,105); coords für ecken
         }
+        else if (this->getName()=="Treatment_Performance")
+        {
+            gui_p->setPos(35,120);
+        }
         else
         {
             gui_p->setPos(0,gui_p->boundingRect().height()*this->inputCounter++);
@@ -187,6 +191,10 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         else if(this->getName() == "SCENARIO")
         {
             gui_p->setPos(230,155);//340,110);
+        }
+        else if(this->getName() == "Treatment_Performance")
+        {
+            gui_p->setPos(155,120);
         }
         else
         {
@@ -314,8 +322,13 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-
-
+        }
+        if(this->getName()=="Treatment_Performance")
+        {
+            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
         }
         /*
         else
