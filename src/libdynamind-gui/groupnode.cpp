@@ -169,6 +169,10 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         {
             gui_p->setPos(35,120);
         }
+        else if (this->getName()=="Enviromental_Benefits")
+        {
+            gui_p->setPos(0,100);
+        }
         else
         {
             gui_p->setPos(0,gui_p->boundingRect().height()*this->inputCounter++);
@@ -195,6 +199,10 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         else if(this->getName() == "Treatment_Performance")
         {
             gui_p->setPos(155,120);
+        }
+        else if(this->getName() == "Enviromental_Benefits")
+        {
+            gui_p->setPos(200,100);
         }
         else
         {
@@ -314,6 +322,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-30,h-10,QString("Urban Form"));
 
         }
         if(this->getName()=="SCENARIO")
@@ -322,6 +331,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-30,h-10,QString("Scenario"));
         }
         if(this->getName()=="Treatment_Performance")
         {
@@ -329,6 +339,15 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-50,h-10,QString("Treatment Performance"));
+        }
+        if(this->getName()=="Enviromental_Benefits")
+        {
+            img = QImage(":/Icons/ressources/StreamHealth-EcologyFish.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-50,h-10,QString("Enviromental Benefits"));
         }
         /*
         else
