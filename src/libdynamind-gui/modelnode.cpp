@@ -195,6 +195,14 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(200,100);
         }
+        else if(this->getName()=="Economic")
+        {
+            gui_p->setPos(230,110);
+        }
+        else if(this->getName()=="Microclimate")
+        {
+            gui_p->setPos(280,137);
+        }
         else
         {
             gui_p->setPos(this->boundingRect().width(),70+gui_p->boundingRect().height()*this->outputCounter++);
@@ -218,6 +226,14 @@ void ModelNode::addPort(DM::Port * p) {
         else if(this->getName()=="EnviromentalBenefitsResults")
         {
             gui_p->setPos(0,100);
+        }
+        else if(this->getName()=="Economic")
+        {
+            gui_p->setPos(13,110);
+        }
+        else if(this->getName()=="Microclimate")
+        {
+            gui_p->setPos(20,137);
         }
         else
         {
@@ -302,14 +318,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
     if(this->visible){
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-        painter->setBrush(QBrush(QColor(220,220,180)));
-        painter->setPen(QPen(QColor(220,220,220),2));
+        //painter->setBrush(QBrush(QColor(220,220,180)));
+        //painter->setPen(QPen(QColor(220,220,220),2));
         if(this->getName()=="Rain")
         {
             img = QImage(":/Icons/ressources/Rainfall.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-20,h-10,QString("Rain"));
         }
 //        else if(this->getName()=="TreatmentPerformanceResults")
 //        {
@@ -324,13 +341,26 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-30,h-10,QString("Realisations"));
+
         }
-        else if(this->getName()=="EnviromentalBenefitsResults")
+        else if(this->getName()=="Economic")
         {
-            img = QImage(":/Icons/ressources/StreamHealth-EcologyFish.png");//EconomicValuation.png");
+            img = QImage(":/Icons/ressources/EconomicValuation.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-20,h-10,QString("Economic"));
+
+        }
+        else if(this->getName()=="Microclimate")
+        {
+            img = QImage(":/Icons/ressources/MircorClimateHeatIslandEffect.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-20,h-10,QString("Microclimate"));
+
         }
         else
         {
