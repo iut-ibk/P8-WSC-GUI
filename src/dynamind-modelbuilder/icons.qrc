@@ -13,14 +13,14 @@
         <file>ressources/crc.png</file>
         <file>ressources/default.png</file>
         <file>ressources/URBAN_FORM.png</file>
-        <file>ressources/Urban-Form.png</file>
         <file>ressources/TreatmentPerformanceWaterDrop.png</file>
-        <file>ressources/Rainfall.png</file>
-        <file>ressources/Scenario.png</file>
-        <file>ressources/Realisation.png</file>
-        <file>ressources/StreamHealth-EcologyFish.png</file>
-        <file>ressources/MircorClimateHeatIslandEffect.png</file>
+        <file>ressources/Urban-Form.png</file>
         <file>ressources/EconomicValuation.png</file>
+        <file>ressources/MircorClimateHeatIslandEffect.png</file>
+        <file>ressources/Rainfall.png</file>
+        <file>ressources/Realisation.png</file>
+        <file>ressources/Scenario.png</file>
+        <file>ressources/StreamHealth-EcologyFish.png</file>
         <file>ressources/TreatmentPerformanceWaterDrop2.png</file>
     </qresource>
 </RCC>
