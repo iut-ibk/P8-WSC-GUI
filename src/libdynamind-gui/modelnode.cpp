@@ -300,7 +300,7 @@ ModelNode::ModelNode(QGraphicsItem * parent, QGraphicsScene * scene) :QGraphicsI
 
 
 void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    painter->setFont( QFont("Helvetica", 10));
+    painter->setFont( QFont("Helvetica", 16));
     QImage img;
     if(this->isSelected() == true) {
         Color = COLOR_MODULESELECTED;
@@ -341,7 +341,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-30,h-10,QString("Realisations"));
+            painter->drawText(l/2-40,h-10,QString("Realisations"));
 
         }
         else if(this->getName()=="Economic")
@@ -350,7 +350,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-20,h-10,QString("Economic"));
+            painter->drawText(l/2-30,h-10,QString("Economic"));
 
         }
         else if(this->getName()=="Microclimate")
@@ -359,7 +359,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-20,h-10,QString("Microclimate"));
+            painter->drawText(l/2-40,h-10,QString("Microclimate"));
 
         }
         else
