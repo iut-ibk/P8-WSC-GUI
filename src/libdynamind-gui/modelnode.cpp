@@ -179,7 +179,7 @@ void ModelNode::addPort(DM::Port * p) {
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
     if  (p->getPortType() < DM::OUTPORTS) { //out
-        if(this->getName()=="realisations")
+        if(this->getName()=="Realisations")
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
@@ -211,7 +211,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
 
     }else {//in
-        if(this->getName()=="realisations")
+        if(this->getName()=="Realisations")
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
@@ -335,7 +335,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 //            l = img.width();
 //            painter->drawImage(0,0,img);
 //        }
-        else if(this->getName()=="realisations")
+        else if(this->getName()=="Realisations")
         {
             img = QImage(":/Icons/ressources/Realisation.png");
             h = img.height();
