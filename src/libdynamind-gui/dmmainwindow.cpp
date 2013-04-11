@@ -261,18 +261,22 @@ void DMMainWindow::createModuleListView()
         QString name=QString::fromStdString(selectedModule->getDMModel()->getClassName());
         cout << "Selected: " << name.toStdString() << endl;
         if (name=="URBAN_FORM") {
-            successors<<"Realisations";
+            successors<<"RealisationsSettings";
         }
-        else if (name == "Realisations")
+        else if (name == "RealisationsSettings")
         {
             successors<<"SCENARIO";
         }
         else if (name=="ImportShapeFile") {
             successors<<"ExportToShapeFile";
         }
+        /*else if (name == "SCENARIO")
+        {
+            successors<<"Realisations";
+        }*/
         else
         {
-            successors<<"URBAN_FORM"<<"Realisations"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile";
+            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser";//<<"Realisations";
         }
 
     }
