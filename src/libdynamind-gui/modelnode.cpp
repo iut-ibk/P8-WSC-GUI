@@ -179,7 +179,7 @@ void ModelNode::addPort(DM::Port * p) {
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
     if  (p->getPortType() < DM::OUTPORTS) { //out
-        if(this->getName()=="Realisations")
+        if(this->getName()=="RealisationsSettings")
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
@@ -211,7 +211,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
 
     }else {//in
-        if(this->getName()=="Realisations")
+        if(this->getName()=="RealisationsSettings")
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
@@ -300,7 +300,7 @@ ModelNode::ModelNode(QGraphicsItem * parent, QGraphicsScene * scene) :QGraphicsI
 
 
 void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    painter->setFont( QFont("Helvetica", 16));
+    painter->setFont( QFont("Helvetica", 20));
     QImage img;
     if(this->isSelected() == true) {
         Color = COLOR_MODULESELECTED;
@@ -335,13 +335,13 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 //            l = img.width();
 //            painter->drawImage(0,0,img);
 //        }
-        else if(this->getName()=="Realisations")
+        else if(this->getName()=="RealisationsSettings")
         {
             img = QImage(":/Icons/ressources/Realisation.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-40,h-10,QString("Realisations"));
+            painter->drawText(l/2-120,h-10,QString("Realisations Settings"));
 
         }
         else if(this->getName()=="Economic")
