@@ -297,7 +297,7 @@ void GroupNode::setMySelected(  bool selected ) {
 }
 */
 void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    painter->setFont( QFont("Helvetica", 16));
+    painter->setFont( QFont("Helvetica", 20));
     QImage img;
     if (this->visible ) {
         recalculateLandH();
@@ -339,7 +339,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-60,h-10,QString("Treatment Performance"));
+            painter->drawText(l/2-90,h-10,QString("Treatment Performance"));
         }
         if(this->getName()=="Enviromental_Benefits")
         {
@@ -347,7 +347,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-50,h-10,QString("Enviromental Benefits"));
+            painter->drawText(l/2-90,h-10,QString("Enviromental Benefits"));
         }
         /*
         else
