@@ -270,13 +270,13 @@ void DMMainWindow::createModuleListView()
         else if (name=="ImportShapeFile") {
             successors<<"ExportToShapeFile";
         }
-        /*else if (name == "SCENARIO")
+        else if (name == "SCENARIO")
         {
             successors<<"Realisations";
-        }*/
+        }
         else
         {
-            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser";//<<"Realisations";
+            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Realisations";
         }
 
     }
