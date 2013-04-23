@@ -272,11 +272,11 @@ void DMMainWindow::createModuleListView()
         }
         else if (name == "SCENARIO")
         {
-            successors<<"Realisations";
+            successors<<"Current_Realisation";
         }
         else
         {
-            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Realisations";
+            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
         }
 
     }
