@@ -199,9 +199,17 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(230,110);
         }
-        else if(this->getName()=="Microclimate")
+        else if(this->getName()=="Analyser")
         {
             gui_p->setPos(280,137);
+        }
+        else if(this->getName()=="RealisationsSettings")
+        {
+            gui_p->setPos(285,137);
+        }
+        else if(this->getName()=="Microclimate")
+        {
+            gui_p->setPos(285,152);
         }
         else
         {
@@ -219,6 +227,14 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(10,55);
         }
+        else if(this->getName()=="RealisationsSettings")
+        {
+            gui_p->setPos(15,137);
+        }
+        else if(this->getName()=="Analyser")
+        {
+            gui_p->setPos(15,137);
+        }
         else if(this->getName()=="TreatmentPerformanceResults")
         {
             gui_p->setPos(35,120);
@@ -233,7 +249,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="Microclimate")
         {
-            gui_p->setPos(20,137);
+            gui_p->setPos(13,152);
         }
         else
         {
@@ -357,11 +373,29 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         else if(this->getName()=="Microclimate")
         {
-            img = QImage(":/Icons/ressources/MircorClimateHeatIslandEffect.png");
+            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect-V2.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-40,h-10,QString("Microclimate"));
+            painter->drawText(l/2-120,h-10,QString("Microclimate Benefits"));
+
+        }
+        else if(this->getName()=="Analyser")
+        {
+            img = QImage(":/Icons/ressources/Analyser.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-40,h-10,QString("Analyser"));
+
+        }
+        else if(this->getName()=="RealisationsSettings")
+        {
+            img = QImage(":/Icons/ressources/RealisationsSettings.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-130,h-10,QString("Number of realisations"));
 
         }
         else

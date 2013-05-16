@@ -167,11 +167,11 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         }
         else if (this->getName()=="Treatment_Performance")
         {
-            gui_p->setPos(35,120);
+            gui_p->setPos(15,145);
         }
         else if (this->getName()=="Enviromental_Benefits")
         {
-            gui_p->setPos(0,100);
+            gui_p->setPos(15,160);
         }
         else
         {
@@ -190,7 +190,7 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         this->ports.append(gui_p);
         if (this->getName() == "URBAN_FORM")
         {
-            gui_p->setPos(325,45);//395,90); coords für ecken
+            gui_p->setPos(325,45);//395,90); coords für ecken1
         }
         else if(this->getName() == "SCENARIO")
         {
@@ -198,11 +198,11 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         }
         else if(this->getName() == "Treatment_Performance")
         {
-            gui_p->setPos(155,120);
+            gui_p->setPos(285,150);
         }
         else if(this->getName() == "Enviromental_Benefits")
         {
-            gui_p->setPos(200,100);
+            gui_p->setPos(285,160);
         }
         else
         {
@@ -335,19 +335,19 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         if(this->getName()=="Treatment_Performance")
         {
-            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");
+            img = QImage(":/Icons/ressources/TreatmentPerformance.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-90,h-10,QString("Treatment Performance"));
+            painter->drawText(l/2-140,h-10,QString("Treatment Performance"));
         }
         if(this->getName()=="Enviromental_Benefits")
         {
-            img = QImage(":/Icons/ressources/StreamHealth-EcologyFish.png");
+            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-90,h-10,QString("Enviromental Benefits"));
+            painter->drawText(l/2-120,h-10,QString("Enviromental Benefits"));
         }
         /*
         else
