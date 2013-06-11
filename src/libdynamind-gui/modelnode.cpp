@@ -195,6 +195,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(200,100);
         }
+        else if(this->getName()=="EnviromentalBenefitsResults2")
+        {
+            gui_p->setPos(285,160);
+        }
         else if(this->getName()=="Economic")
         {
             gui_p->setPos(230,110);
@@ -396,6 +400,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-130,h-10,QString("Number of realisations"));
+
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults2")
+        {
+            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
 
         }
         else
