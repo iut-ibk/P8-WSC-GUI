@@ -289,7 +289,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"URBAN_FORM";
+            successors<<"URBAN_FORM"<<"Current_Realisation2"<<"EnviromentalBenefitsResults2";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());

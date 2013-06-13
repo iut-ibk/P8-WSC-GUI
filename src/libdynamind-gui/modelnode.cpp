@@ -183,6 +183,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
+        if(this->getName()=="Current_Realisation2")
+        {
+            gui_p->setPos(250,40);
+        }
         else if(this->getName()=="Rain")
         {
             gui_p->setPos(185,40);
@@ -190,6 +194,10 @@ void ModelNode::addPort(DM::Port * p) {
         else if(this->getName()=="TreatmentPerformanceResults")
         {
             gui_p->setPos(155,120);
+        }
+        else if(this->getName()=="TreatmentPerformanceResults2")
+        {
+            gui_p->setPos(285,150);
         }
         else if(this->getName()=="EnviromentalBenefitsResults")
         {
@@ -199,11 +207,19 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,160);
         }
+        else if(this->getName()=="EnviromentalBenefitsResults3")
+        {
+            gui_p->setPos(285,160);
+        }
         else if(this->getName()=="Economic")
         {
             gui_p->setPos(230,110);
         }
         else if(this->getName()=="Analyser")
+        {
+            gui_p->setPos(280,137);
+        }
+        else if(this->getName()=="Analyser2")
         {
             gui_p->setPos(280,137);
         }
@@ -239,13 +255,25 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(15,137);
         }
+        else if(this->getName()=="Analyser2")
+        {
+            gui_p->setPos(15,137);
+        }
         else if(this->getName()=="TreatmentPerformanceResults")
         {
             gui_p->setPos(35,120);
         }
+        else if(this->getName()=="TreatmentPerformanceResults2")
+        {
+            gui_p->setPos(15,145);
+        }
         else if(this->getName()=="EnviromentalBenefitsResults")
         {
             gui_p->setPos(0,100);
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults3")
+        {
+            gui_p->setPos(15,160);
         }
         else if(this->getName()=="Economic")
         {
@@ -348,14 +376,25 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawImage(0,0,img);
             painter->drawText(l/2-20,h-10,QString("Rain"));
         }
-//        else if(this->getName()=="TreatmentPerformanceResults")
-//        {
-//            img = QImage(":/Icons/ressources/TreatmentPerformanceWaterDrop2.png");//MircorClimateHeatIslandEffect.png");
-//            h = img.height()-50;
-//            l = img.width();
-//            painter->drawImage(0,0,img);
-//        }
+        else if(this->getName()=="TreatmentPerformanceResults2")
+        {
+            img = QImage(":/Icons/ressources/TreatmentPerformance.png");//MircorClimateHeatIslandEffect.png");
+            h = img.height()-50;
+            l = img.width();
+            painter->drawImage(0,0,img);
+        }
         else if(this->getName()=="Current_Realisation")
+        {
+
+            img = QImage(":/Icons/ressources/Realisation.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            QString zwei = QString::fromStdString(this->getDMModel()->getParameterAsString("RealisationNr"));
+            painter->drawText(l/2-120,h-10,QString("Current Realisation ") + zwei);
+
+        }
+        else if(this->getName()=="Current_Realisation2")
         {
 
             img = QImage(":/Icons/ressources/Realisation.png");
@@ -393,6 +432,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-40,h-10,QString("Analyser"));
 
         }
+        else if(this->getName()=="Analyser2")
+        {
+            img = QImage(":/Icons/ressources/Analyser.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-40,h-10,QString("Analyser"));
+
+        }
         else if(this->getName()=="RealisationsSettings")
         {
             img = QImage(":/Icons/ressources/RealisationsSettings.png");
@@ -403,6 +451,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
         }
         else if(this->getName()=="EnviromentalBenefitsResults2")
+        {
+            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
+
+        }
+        else if(this->getName()=="EnviromentalBenefitsResults3")
         {
             img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
             h = img.height();
