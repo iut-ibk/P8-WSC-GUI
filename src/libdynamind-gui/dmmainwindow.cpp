@@ -276,7 +276,8 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"EnviromentalBenefitsResultsModule"<<"TreatmentPerformanceResultsModule";
+            //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
         }
 
     }
@@ -289,7 +290,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"URBAN_FORM"<<"Current_Realisation2"<<"EnviromentalBenefitsResults2";
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"EnviromentalBenefitsResultsModule"<<"TreatmentPerformanceResultsModule";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());

@@ -183,11 +183,11 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
-        if(this->getName()=="Current_Realisation2")
+        if(this->getName()=="Current_RealisationModule")
         {
             gui_p->setPos(250,40);
         }
-        else if(this->getName()=="Rain")
+        else if(this->getName()=="RainModule")
         {
             gui_p->setPos(185,40);
         }
@@ -195,7 +195,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(155,120);
         }
-        else if(this->getName()=="TreatmentPerformanceResults2")
+        else if(this->getName()=="TreatmentPerformanceResultsModule")
         {
             gui_p->setPos(285,150);
         }
@@ -207,7 +207,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,160);
         }
-        else if(this->getName()=="EnviromentalBenefitsResults3")
+        else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
             gui_p->setPos(285,160);
         }
@@ -219,7 +219,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(280,137);
         }
-        else if(this->getName()=="Analyser2")
+        else if(this->getName()=="AnalyserModule")
         {
             gui_p->setPos(280,137);
         }
@@ -243,7 +243,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
-        else if(this->getName()=="Rain")
+        else if(this->getName()=="RainModule")
         {
             gui_p->setPos(10,55);
         }
@@ -255,7 +255,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(15,137);
         }
-        else if(this->getName()=="Analyser2")
+        else if(this->getName()=="AnalyserModule")
         {
             gui_p->setPos(15,137);
         }
@@ -263,7 +263,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(35,120);
         }
-        else if(this->getName()=="TreatmentPerformanceResults2")
+        else if(this->getName()=="TreatmentPerformanceResultsModule")
         {
             gui_p->setPos(15,145);
         }
@@ -271,7 +271,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(0,100);
         }
-        else if(this->getName()=="EnviromentalBenefitsResults3")
+        else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
             gui_p->setPos(15,160);
         }
@@ -368,7 +368,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         //painter->setBrush(QBrush(QColor(220,220,180)));
         //painter->setPen(QPen(QColor(220,220,220),2));
-        if(this->getName()=="Rain")
+        if(this->getName()=="RainModule")
         {
             img = QImage(":/Icons/ressources/Rainfall.png");
             h = img.height();
@@ -376,7 +376,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawImage(0,0,img);
             painter->drawText(l/2-20,h-10,QString("Rain"));
         }
-        else if(this->getName()=="TreatmentPerformanceResults2")
+        else if(this->getName()=="TreatmentPerformanceResultsModule")
         {
             img = QImage(":/Icons/ressources/TreatmentPerformance.png");//MircorClimateHeatIslandEffect.png");
             h = img.height()-50;
@@ -394,7 +394,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-120,h-10,QString("Current Realisation ") + zwei);
 
         }
-        else if(this->getName()=="Current_Realisation2")
+        else if(this->getName()=="Current_RealisationModule")
         {
 
             img = QImage(":/Icons/ressources/Realisation.png");
@@ -432,7 +432,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-40,h-10,QString("Analyser"));
 
         }
-        else if(this->getName()=="Analyser2")
+        else if(this->getName()=="AnalyserModule")
         {
             img = QImage(":/Icons/ressources/Analyser.png");
             h = img.height();
@@ -459,7 +459,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
 
         }
-        else if(this->getName()=="EnviromentalBenefitsResults3")
+        else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
             img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
             h = img.height();
