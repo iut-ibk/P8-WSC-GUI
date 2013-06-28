@@ -379,9 +379,10 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         else if(this->getName()=="TreatmentPerformanceResultsModule")
         {
             img = QImage(":/Icons/ressources/TreatmentPerformance.png");//MircorClimateHeatIslandEffect.png");
-            h = img.height()-50;
+            h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
+            painter->drawText(l/2-140,h-10,QString("Treatment Performance"));
         }
         else if(this->getName()=="Current_Realisation")
         {
