@@ -343,7 +343,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         if(this->getName()=="Enviromental_Benefits")
         {
-            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
+            img = QImage(":/Icons/EnviromentalBenefits.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
