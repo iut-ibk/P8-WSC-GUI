@@ -209,7 +209,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
-            gui_p->setPos(285,160);
+            gui_p->setPos(298,175);
         }
         else if(this->getName()=="Economic")
         {
@@ -230,6 +230,14 @@ void ModelNode::addPort(DM::Port * p) {
         else if(this->getName()=="Microclimate")
         {
             gui_p->setPos(285,152);
+        }
+        else if(this->getName()=="ImportMSF")
+        {
+            gui_p->setPos(200,100);
+        }
+        else if(this->getName()=="StreamErosionIndex")
+        {
+            gui_p->setPos(300,170);
         }
         else
         {
@@ -273,7 +281,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
-            gui_p->setPos(15,160);
+            gui_p->setPos(20,175);
         }
         else if(this->getName()=="Economic")
         {
@@ -281,7 +289,11 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="Microclimate")
         {
-            gui_p->setPos(13,152);
+            gui_p->setPos(20,152);
+        }
+        else if(this->getName()=="StreamErosionIndex")
+        {
+            gui_p->setPos(20,170);
         }
         else
         {
@@ -417,7 +429,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         else if(this->getName()=="Microclimate")
         {
-            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect-V2.png");
+            img = QImage(":/Icons/ressources/MicroClimateCool.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
@@ -462,11 +474,29 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         else if(this->getName()=="EnviromentalBenefitsResultsModule")
         {
-            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
+            img = QImage(":/Icons/ressources/EnvironmentalBenefits.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
+
+        }
+        else if(this->getName()=="ImportMSF")
+        {
+            img = QImage(":/Icons/ressources/FileUpload.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-60,h-10,QString("ImportMSF"));
+
+        }
+        else if(this->getName()=="StreamErosionIndex")
+        {
+            img = QImage(":/Icons/ressources/StreamErosion.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-130,h-10,QString("Stream Erosion Index"));
 
         }
         else
