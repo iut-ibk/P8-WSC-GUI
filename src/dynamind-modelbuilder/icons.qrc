@@ -23,9 +23,9 @@
         <file>ressources/TreatmentPerformance.png</file>
         <file>ressources/7-MircorClimate---HeatIslandEffect-V2.png</file>
         <file>ressources/EnviromentalBenefits.png</file>
-        <file>ressources/StreamErosion.png</file>
         <file>ressources/EnvironmentalBenefits.png</file>
         <file>ressources/MicroClimateCool.png</file>
         <file>ressources/FileUpload.png</file>
+        <file>ressources/StreamErosion.png</file>
     </qresource>
 </RCC>
