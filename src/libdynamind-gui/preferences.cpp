@@ -48,6 +48,7 @@ Preferences::Preferences(QWidget *parent)
     connect(pushButton_urbansim, SIGNAL(clicked()),this, SLOT( openFileDialog() ), Qt::DirectConnection );
     connect(pushButton_swmm, SIGNAL(clicked()),this, SLOT( openFileDialog() ), Qt::DirectConnection );
     connect(pushButton_Editra, SIGNAL(clicked()),this, SLOT( openFileDialog() ), Qt::DirectConnection );
+    connect(pushButton_Music, SIGNAL(clicked()),this, SLOT( openFileDialog() ), Qt::DirectConnection );
 
 
 
@@ -77,6 +78,9 @@ Preferences::Preferences(QWidget *parent)
     text = settings.value("Editra").toString();
     this->lineEdit_Editra->setText(text);
 
+    text = settings.value("Music").toString();
+    this->lineEdit_Music->setText(text);
+
 }
 
 
@@ -99,6 +103,7 @@ void Preferences::writePreference() {
     settings.setValue("UrbanSim", this->lineEdit_urbansim->text());
     settings.setValue("SWMM", this->lineEdit_swmm->text());
     settings.setValue("Editra", this->lineEdit_Editra->text());
+    settings.setValue("Music", this->lineEdit_Music->text());
 
 }
 void Preferences::openFileDialog() {
@@ -118,6 +123,8 @@ void Preferences::openFileDialog() {
             this->lineEdit_Editra->setText(s);
         else if (sender.compare("pushButton_VIBePath") == 0)
             this->lineEdit_VIBePath->setText(s);
+        else if (sender.compare("pushButton_Music") == 0)
+            this->lineEdit_Music->setText(s);
         else
             this->lineEdit->setText(s);
     }
