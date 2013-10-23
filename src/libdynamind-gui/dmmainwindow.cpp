@@ -63,6 +63,7 @@
 #include "projectviewer.h"
 #include "guihelpviewer.h"
 #include "startupdialog.h"
+#include <iostream>
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
 {
@@ -177,6 +178,16 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     DM::Log::init(log_updater,DM::Debug);
     running =  false;
     this->setParent(parent);
+    workPath=QDir::tempPath()+"/P8Tool";
+    if (!QFile::exists(workPath))
+    {
+        QDir dir;
+        dir.mkpath(workPath);
+    }
+    QSettings settings;
+    settings.setValue("workPath",workPath);
+    // std::cout<<workPath.toStdString()+"\n"<<settings.applicationName().toStdString()<<settings.organizationName().toStdString();
+
     DM::PythonEnv *env = DM::PythonEnv::getInstance();
     env->addPythonPath(QApplication::applicationDirPath().toStdString());
     env->addOverWriteStdCout();
@@ -203,7 +214,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionUpdate, SIGNAL(activated()), this , SLOT(updateSimulation()), Qt::DirectConnection);
     currentDocument = "";
 
-    QSettings settings;
+
     if(settings.value("pythonModules").toString().isEmpty()) {
         counter++;
         this->preferences();
@@ -426,6 +437,9 @@ void DMMainWindow::saveAsSimulation() {
         this->simulation->writeSimulation(fileName.toStdString());
         this->writeGUIInformation(fileName);
         this->currentDocument = fileName;
+        QSettings settings;
+        QFileInfo info(this->currentDocument);
+        settings.setValue("workPath",info.absolutePath());
     }
 
 }
@@ -433,6 +447,9 @@ void DMMainWindow::saveSimulation() {
     if (!this->currentDocument.isEmpty()) {
         this->simulation->writeSimulation(this->currentDocument.toStdString());
         this->writeGUIInformation(currentDocument);
+        QSettings settings;
+        QFileInfo info(currentDocument);
+        settings.setValue("workPath",info.absolutePath());
     } else {
         this->saveAsSimulation();
     }
@@ -505,6 +522,15 @@ void DMMainWindow::writeGUIInformation(QString FileName) {
 void DMMainWindow::clearSimulation() {
     this->simulation->clearSimulation();
     this->currentDocument = "";
+
+    workPath=QDir::tempPath()+"/P8Tool";
+    if (!QFile::exists(workPath))
+    {
+        QDir dir;
+        dir.mkpath(workPath);
+    }
+    QSettings settings;
+    settings.setValue("workPath",workPath);
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
@@ -587,6 +613,9 @@ void DMMainWindow::loadSimulation(int id) {
         UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
         this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
         this->loadGUILinks(UUID_Translation);
+        QSettings settings;
+        QFileInfo info(this->currentDocument);
+        settings.setValue("workPath",info.absolutePath());
     }
 }
 void DMMainWindow::loadGUILinks(std::map<std::string, std::string> UUID_Translation) {

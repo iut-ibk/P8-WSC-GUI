@@ -95,6 +95,7 @@ private:
     QMap<ProjectViewer *, QWidget *> tabmap;
     QMap<int, ProjectViewer * >  groupscenes;
     QString currentDocument;
+    QString workPath;
     int counter;
     bool running;
     bool firstrun;
