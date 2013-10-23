@@ -207,7 +207,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,160);
         }
-        else if(this->getName()=="EnviromentalBenefitsResultsModule")
+        else if(this->getName()=="StreamHydrologyandWaterquality")
         {
             gui_p->setPos(298,175);
         }
@@ -283,7 +283,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(0,100);
         }
-        else if(this->getName()=="EnviromentalBenefitsResultsModule")
+        else if(this->getName()=="StreamHydrologyandWaterquality")
         {
             gui_p->setPos(20,175);
         }
@@ -476,13 +476,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
 
         }
-        else if(this->getName()=="EnviromentalBenefitsResultsModule")
+        else if(this->getName()=="StreamHydrologyandWaterquality")
         {
             img = QImage(":/Icons/ressources/EnvironmentalBenefits.png");
             h = img.height();
             l = img.width();
+            painter->setFont( QFont("Helvetica", 14));
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
+            painter->drawText(l/2-150,h-10,QString("Stream Hydrology and Water quality"));
+            painter->setFont( QFont("Helvetica", 20));
 
         }
         else if(this->getName()=="ImportMSF")

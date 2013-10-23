@@ -287,7 +287,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"EnviromentalBenefitsResultsModule"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate";
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate";
             //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
         }
 
@@ -301,7 +301,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"EnviromentalBenefitsResultsModule"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate";
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
