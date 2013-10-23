@@ -239,6 +239,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(300,170);
         }
+        else if(this->getName()=="ImportRasterData")
+        {
+            gui_p->setPos(275,155);
+        }
         else
         {
             gui_p->setPos(this->boundingRect().width(),70+gui_p->boundingRect().height()*this->outputCounter++);
@@ -497,6 +501,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-130,h-10,QString("Stream Erosion Index"));
+
+        }
+        else if(this->getName()=="ImportRasterData")
+        {
+            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-130,h-10,QString("Import Imperviousness"));
 
         }
         else
