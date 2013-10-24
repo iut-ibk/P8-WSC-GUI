@@ -428,6 +428,25 @@ void DMMainWindow::sceneChanged() {
 
 
 }
+
+void cpall(QString src, QString dest)
+{
+    QDir dir(src);
+    foreach (QString entry,dir.entryList())
+    {
+        QFileInfo fi(entry);
+        if (fi.isFile())
+        {
+/*            QString filename=fi.fileName();
+            if (QFile::exists(dest+"/"+filename))
+            {
+                QFile::remove(dest+"/"+filename);
+            }*/
+            QFile::copy(entry, dest);
+        }
+    }
+}
+
 void DMMainWindow::saveAsSimulation() {
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Save DynaMind File"), "", tr("DynaMind Files (*.dyn)"));
@@ -438,18 +457,22 @@ void DMMainWindow::saveAsSimulation() {
         this->writeGUIInformation(fileName);
         this->currentDocument = fileName;
         QSettings settings;
+        QString oldWorkPath=settings.value("workPath").toString();
         QFileInfo info(this->currentDocument);
         settings.setValue("workPath",info.absolutePath());
+        cpall(oldWorkPath,info.absolutePath());
     }
-
 }
+
 void DMMainWindow::saveSimulation() {
     if (!this->currentDocument.isEmpty()) {
         this->simulation->writeSimulation(this->currentDocument.toStdString());
         this->writeGUIInformation(currentDocument);
         QSettings settings;
         QFileInfo info(currentDocument);
+        QString oldWorkPath=settings.value("workPath").toString();
         settings.setValue("workPath",info.absolutePath());
+        cpall(oldWorkPath,info.absolutePath());
     } else {
         this->saveAsSimulation();
     }
