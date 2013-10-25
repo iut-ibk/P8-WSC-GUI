@@ -20,8 +20,8 @@
    <string>DynaMind</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
-    <normaloff>:/Icons/ressources/dynamind-icon.png</normaloff>:/Icons/ressources/dynamind-icon.png</iconset>
+   <iconset resource="../dynamind-modelbuilder/icons.qrc">
+    <normaloff>:/Icons/ressources/P8-Tool-Logo_small.png</normaloff>:/Icons/ressources/P8-Tool-Logo_small.png</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
@@ -126,7 +126,7 @@
      <x>0</x>
      <y>0</y>
      <width>932</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -804,7 +804,6 @@
  </widget>
  <resources>
   <include location="../dynamind-modelbuilder/icons.qrc"/>
-  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -431,18 +431,25 @@ void DMMainWindow::sceneChanged() {
 
 void cpall(QString src, QString dest)
 {
+    cout << "dir: "<<src.toStdString()<<endl;
     QDir dir(src);
+    cout << "size: "<<dir.entryList().size()<<endl;
+
     foreach (QString entry,dir.entryList())
     {
-        QFileInfo fi(entry);
-        if (fi.isFile())
+        QString srcFilePlusPath=src+"/"+entry;
+        cout <<"srcFilePlusPath: "<<srcFilePlusPath.toStdString()<<endl;
+        QFileInfo fi(srcFilePlusPath);
+        cout << "fi.abs path: "<<fi.absoluteFilePath().toStdString()<<"\n";
+        if (!fi.isDir())
         {
-/*            QString filename=fi.fileName();
-            if (QFile::exists(dest+"/"+filename))
+            QString destFilePlusPath=dest+"/"+entry;
+            cout << "destFilePlusPath: " << destFilePlusPath.toStdString() << endl;
+            if (QFile::exists(destFilePlusPath))
             {
-                QFile::remove(dest+"/"+filename);
-            }*/
-            QFile::copy(entry, dest);
+                QFile::remove(destFilePlusPath);
+            }
+            QFile::copy(srcFilePlusPath, destFilePlusPath);
         }
     }
 }
@@ -554,6 +561,8 @@ void DMMainWindow::clearSimulation() {
     }
     QSettings settings;
     settings.setValue("workPath",workPath);
+    QFile::remove(workPath+"/WSUDtech.mcd");
+    QFile::remove(workPath+"/Reduction in LST.mcd");
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
