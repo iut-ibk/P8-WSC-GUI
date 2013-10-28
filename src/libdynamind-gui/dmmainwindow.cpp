@@ -434,43 +434,24 @@ void cpall(QString src, QString dest)
     cout << "dir: "<<src.toStdString()<<endl;
     QDir dir(src);
     cout << "size: "<<dir.entryList().size()<<endl;
-
+    QDir dir2;
     foreach (QString entry,dir.entryList(QDir::Files|QDir::NoDotAndDotDot))
     {
         QString srcFilePlusPath=src+"/"+entry;
         QString destFilePlusPath=dest+"/"+entry;
-        cout << srcFilePlusPath.toStdString()<< " -> "<<destFilePlusPath.toStdString()<<"\n";
-
-        if (!QFile::exists(destFilePlusPath) || QFile::remove(destFilePlusPath) )
-        {
-            if (!QFile::copy(srcFilePlusPath,destFilePlusPath))
+        cout << dir2.absoluteFilePath(srcFilePlusPath).toStdString()<< " -> "<<dir2.absoluteFilePath(destFilePlusPath).toStdString()<<"\n";
+        if (dir2.absoluteFilePath(srcFilePlusPath) != dir2.absoluteFilePath(destFilePlusPath))
+            if (!QFile::exists(destFilePlusPath) || QFile::remove(destFilePlusPath) )
             {
-                DM::Logger(DM::Debug) << "Could not copy file.\n";
+                if (!QFile::copy(srcFilePlusPath,destFilePlusPath))
+                {
+                    DM::Logger(DM::Debug) << "Could not copy file.\n";
+                }
             }
-        }
-        else
-        {
-            DM::Logger(DM::Debug) << "Could not remove file.\n";
-        }
-        DM::Logger(DM::Debug) << "huhu\n";
-
-        //        QFile::copy(srcFilePlusPath, destFilePlusPath);
-
-
-
-        /*        cout <<"srcFilePlusPath: "<<srcFilePlusPath.toStdString()<<endl;
-        QFileInfo fi(srcFilePlusPath);
-        cout << "fi.abs path: "<<fi.absoluteFilePath().toStdString()<<"\n";
-        if (!fi.isDir())
-        {
-            QString destFilePlusPath=dest+"/"+entry;
-            cout << "destFilePlusPath: " << destFilePlusPath.toStdString() << endl;
-            if (QFile::exists(destFilePlusPath))
+            else
             {
-                QFile::remove(destFilePlusPath);
+                DM::Logger(DM::Debug) << "Could not remove file.\n";
             }
-            QFile::copy(srcFilePlusPath, destFilePlusPath);
-        }*/
     }
 }
 
