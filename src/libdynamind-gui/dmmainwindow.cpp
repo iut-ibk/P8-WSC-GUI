@@ -435,10 +435,30 @@ void cpall(QString src, QString dest)
     QDir dir(src);
     cout << "size: "<<dir.entryList().size()<<endl;
 
-    foreach (QString entry,dir.entryList())
+    foreach (QString entry,dir.entryList(QDir::Files|QDir::NoDotAndDotDot))
     {
         QString srcFilePlusPath=src+"/"+entry;
-        cout <<"srcFilePlusPath: "<<srcFilePlusPath.toStdString()<<endl;
+        QString destFilePlusPath=dest+"/"+entry;
+        cout << srcFilePlusPath.toStdString()<< " -> "<<destFilePlusPath.toStdString()<<"\n";
+
+        if (!QFile::exists(destFilePlusPath) || QFile::remove(destFilePlusPath) )
+        {
+            if (!QFile::copy(srcFilePlusPath,destFilePlusPath))
+            {
+                DM::Logger(DM::Debug) << "Could not copy file.\n";
+            }
+        }
+        else
+        {
+            DM::Logger(DM::Debug) << "Could not remove file.\n";
+        }
+        DM::Logger(DM::Debug) << "huhu\n";
+
+        //        QFile::copy(srcFilePlusPath, destFilePlusPath);
+
+
+
+        /*        cout <<"srcFilePlusPath: "<<srcFilePlusPath.toStdString()<<endl;
         QFileInfo fi(srcFilePlusPath);
         cout << "fi.abs path: "<<fi.absoluteFilePath().toStdString()<<"\n";
         if (!fi.isDir())
@@ -450,7 +470,7 @@ void cpall(QString src, QString dest)
                 QFile::remove(destFilePlusPath);
             }
             QFile::copy(srcFilePlusPath, destFilePlusPath);
-        }
+        }*/
     }
 }
 
