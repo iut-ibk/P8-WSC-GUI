@@ -303,7 +303,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(0,70+gui_p->boundingRect().height()*this->inputCounter++);
             if (outputCounter < inputCounter)
-               this->h = h+20;
+                this->h = h+20;
         }
     }
 }
@@ -535,7 +535,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
             painter->drawText(QPoint(22,15), "Module: " + QString::fromStdString(this->getDMModel()->getClassName()));
         }
-            /*
+        /*
         if (this->parentGroup)
             painter->drawText(QPoint(22,55), "GRP Group: "+ QString::fromStdString(this->parentGroup->getDMModel()->getName()));*/
     }
@@ -593,16 +593,15 @@ void ModelNode::mouseMoveEvent ( QGraphicsSceneMouseEvent * event )  {
 }
 
 void ModelNode::mouseDoubleClickEvent ( QGraphicsSceneMouseEvent * event ) {
-
-    if(this->visible){
-        this->simulation->updateSimulation();
-        if (this->getDMModel()->createInputDialog() == false )
-        {
-
-            QWidget * gui  = new GUIModelNode(this->getDMModel(), this);
-            gui->show();
+    if (!this->simulation->getRunning())
+        if(this->visible){
+            this->simulation->updateSimulation();
+            if (this->getDMModel()->createInputDialog() == false )
+            {
+                QWidget * gui  = new GUIModelNode(this->getDMModel(), this);
+                gui->show();
+            }
         }
-    }
 }
 
 
@@ -635,7 +634,7 @@ void ModelNode::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
     QAction * a_showHelp = menu.addAction("showHelp");
     QMenu * GroupMenu =     menu.addMenu("Groups");
 
-//    a_viewData->setEnabled(this->getDMModel()->getOutPorts().size() > 0);
+    //    a_viewData->setEnabled(this->getDMModel()->getOutPorts().size() > 0);
     a_viewData->setEnabled(true);
 
     GroupMenu->setTitle("Group");
