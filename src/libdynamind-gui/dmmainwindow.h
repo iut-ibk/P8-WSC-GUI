@@ -104,6 +104,7 @@ private:
     void loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation,  QVector<LoadModule> posmodules);
     void loadGUILinks(std::map<std::string, std::string> UUID_Translation);
     SimulationPopup* popup1;
+    void save(QString projectname);
 
 public slots:
     void runSimulation();
@@ -132,11 +133,8 @@ private slots:
     void on_actionExit_triggered();
     void on_actionShow_all_modules_changed();
     void on_l_Scenario_linkHovered(const QString &link);
-
     void on_l_simulation_linkHovered(const QString &link);
-
     void on_actionHelp_triggered();
-
     void on_l_simulation_linkActivated(const QString &link);
 
 signals:

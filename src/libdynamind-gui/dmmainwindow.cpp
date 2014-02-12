@@ -247,7 +247,8 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     int startmode=startupdialog.exec();
     if (startmode==1)
         loadSimulation();
-
+    if (startmode==2)
+        clearSimulation();
 }
 
 void DMMainWindow::createModuleListView()
@@ -429,63 +430,83 @@ void DMMainWindow::sceneChanged() {
 
 }
 
-void cpall(QString src, QString dest)
+
+void DMMainWindow::saveAsSimulation()
 {
-    cout << "dir: "<<src.toStdString()<<endl;
-    QDir dir(src);
-    cout << "size: "<<dir.entryList().size()<<endl;
-    QDir dir2;
-    foreach (QString entry,dir.entryList(QDir::Files|QDir::NoDotAndDotDot))
-    {
-        QString srcFilePlusPath=src+"/"+entry;
-        QString destFilePlusPath=dest+"/"+entry;
-        cout << dir2.absoluteFilePath(srcFilePlusPath).toStdString()<< " -> "<<dir2.absoluteFilePath(destFilePlusPath).toStdString()<<"\n";
-        if (dir2.absoluteFilePath(srcFilePlusPath) != dir2.absoluteFilePath(destFilePlusPath))
-            if (!QFile::exists(destFilePlusPath) || QFile::remove(destFilePlusPath) )
-            {
-                if (!QFile::copy(srcFilePlusPath,destFilePlusPath))
-                {
-                    DM::Logger(DM::Debug) << "Could not copy file.\n";
-                }
-            }
-            else
-            {
-                DM::Logger(DM::Debug) << "Could not remove file.\n";
-            }
-    }
+    QSettings settings;
+
+    QString filename=QFileDialog::getSaveFileName(this,"Save project as",settings.value("dataPath").toString()+"/untitled.p8t","*.p8t");
+    if (filename.isEmpty())
+        return;
+
+    QFileInfo fileinfo(filename);
+    settings.setValue("dataPath",fileinfo.absolutePath());
+
+    save(filename);
 }
 
-void DMMainWindow::saveAsSimulation() {
-    QString fileName = QFileDialog::getSaveFileName(this,
-                                                    tr("Save DynaMind File"), "", tr("DynaMind Files (*.dyn)"));
-    if (!fileName.isEmpty()) {
-        if (!fileName.contains(".dyn"))
-            fileName+=".dyn";
-        this->simulation->writeSimulation(fileName.toStdString());
-        this->writeGUIInformation(fileName);
-        this->currentDocument = fileName;
-        QSettings settings;
-        QString oldWorkPath=settings.value("workPath").toString();
-        QFileInfo info(this->currentDocument);
-        settings.setValue("workPath",info.absolutePath());
-        cpall(oldWorkPath,info.absolutePath());
-    }
-}
 
-void DMMainWindow::saveSimulation() {
-    if (!this->currentDocument.isEmpty()) {
-        this->simulation->writeSimulation(this->currentDocument.toStdString());
-        this->writeGUIInformation(currentDocument);
-        QSettings settings;
-        QFileInfo info(currentDocument);
-        QString oldWorkPath=settings.value("workPath").toString();
-        settings.setValue("workPath",info.absolutePath());
-        cpall(oldWorkPath,info.absolutePath());
-    } else {
+void DMMainWindow::saveSimulation()
+{
+    if (!this->currentDocument.isEmpty())
+        save(this->currentDocument);
+    else
         this->saveAsSimulation();
-    }
-
 }
+
+
+void DMMainWindow::save(QString projectname)
+{
+    QSettings settings;
+    QString fileName=settings.value("workPath").toString()+"/simulation.dyn";
+    this->simulation->writeSimulation(fileName.toStdString());
+    this->writeGUIInformation(fileName);
+    this->currentDocument = projectname;
+
+    QString foldername=settings.value("workPath").toString();
+    QDir dir(foldername);
+
+    dir.setFilter(QDir::Dirs|QDir::NoDotAndDotDot);
+    if (!dir.entryInfoList().isEmpty())
+        QMessageBox::warning(NULL,"Warning",QString("Work folder contains subfolders. Subfolders will not be saved in project file."));
+
+    dir.setFilter(QDir::Files);
+    QFileInfoList list = dir.entryInfoList();
+
+    QFile projectfile(projectname);
+    projectfile.open(QIODevice::WriteOnly);
+    QDataStream out(&projectfile);
+    out << (quint32)0x50385420;
+    out.setVersion(QDataStream::Qt_4_0);
+    out << dir.dirName();
+    // cout << "dirname: "<<dir.dirName().toStdString() << endl;
+    out << (quint64)list.size();
+    // cout <<"file// cout: "<<list.size()<<endl;
+
+    for (int i = 0; i < list.size(); ++i)
+    {
+        QFileInfo fileInfo = list.at(i);
+        quint64 size=fileInfo.size();
+        out << size;
+        // cout <<"filesize: "<<size<<endl;
+        out << fileInfo.fileName();
+        QFile savefile(fileInfo.absoluteFilePath());
+        savefile.open(QIODevice::ReadOnly);
+        QDataStream in(&savefile);
+
+        int blocksize=4096;
+        char *buffer=new char[blocksize];
+        for (int j=0;j<size/blocksize+1;j++)
+        {
+            int readsize=in.readRawData(buffer,blocksize);
+            out.writeRawData(buffer,readsize);
+        }
+        savefile.close();
+    }
+    projectfile.close();
+}
+
+
 void DMMainWindow::writeGUIInformation(QString FileName) {
 
     //Find upper left corner;
@@ -554,16 +575,29 @@ void DMMainWindow::clearSimulation() {
     this->simulation->clearSimulation();
     this->currentDocument = "";
 
-    workPath=QDir::tempPath()+"/P8Tool";
-    if (!QFile::exists(workPath))
-    {
-        QDir dir;
-        dir.mkpath(workPath);
-    }
     QSettings settings;
+
+    bool selected=false;
+    do
+    {
+        workPath=QFileDialog::getExistingDirectory(this,"Select work folder",settings.value("workPath").toString());
+        QDir dir(workPath);
+        if (!dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).isEmpty())
+        {
+            QMessageBox msgBox;
+            msgBox.setText(QString("Project folder %1 is not empty.").arg(dir.absolutePath()));
+            msgBox.setInformativeText("Do you want to continue anyway?");
+            msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+            msgBox.setDefaultButton(QMessageBox::Cancel);
+            if (msgBox.exec()==QMessageBox::Ok)
+                selected=true;
+        }
+        else
+            selected=true;
+
+    } while (selected==false);
+
     settings.setValue("workPath",workPath);
-    QFile::remove(workPath+"/WSUDtech.mcd");
-    QFile::remove(workPath+"/Reduction in LST.mcd");
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
@@ -628,29 +662,89 @@ void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::stri
 
 }
 
-void DMMainWindow::loadSimulation(int id) {
+void DMMainWindow::loadSimulation(int id)
+{
+    QSettings settings;
+    QString filename=QFileDialog::getOpenFileName(this,"Load project",settings.value("dataPath").toString(),"*.p8t");
 
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open DynaMind File"), "", tr("DynaMind Files (*.dyn)"));
+    if (filename.isEmpty())
+        return;
 
-    if (!fileName.isEmpty()){
-        this->clearSimulation();
-        this->currentDocument = fileName;
-        std::map<std::string, std::string> UUID_Translation = this->simulation->loadSimulation(fileName.toStdString());
-        SimulationIO simio;
-        simio.loadSimluation(fileName, this->simulation, UUID_Translation);
-        if (this->simulation->getSimulationStatus() == DM::SIM_FAILED_LOAD)  {
-            this->simulation->clearSimulation();
-            return;
-        }
-        UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
-        this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
-        this->loadGUILinks(UUID_Translation);
-        QSettings settings;
-        QFileInfo info(this->currentDocument);
-        settings.setValue("workPath",info.absolutePath());
+    QFileInfo fileinfo(filename);
+    settings.setValue("dataPath",fileinfo.absolutePath());
+
+    this->clearSimulation();
+    this->currentDocument = filename;
+
+    QString foldername=settings.value("workPath").toString();
+    QDir dir(foldername);
+
+    QFile projectfile(filename);
+    projectfile.open(QIODevice::ReadOnly);
+    QDataStream in(&projectfile);
+    quint32 magic;
+    in >> magic;
+    // cout << "magic:"<<magic<<endl;
+    if (magic!=0x50385420) //1345868832
+    {
+        QMessageBox::warning(NULL,"Error",QString("%1 is not a valid project file.").arg(filename));
+        projectfile.close();
+        return;
     }
+    in.setVersion(QDataStream::Qt_4_0);
+    QString dirname;
+    in >> dirname;
+    // cout << "dirname: "<<dirname.toStdString() << endl;
+
+
+    quint64 size;
+    in >> size;
+    // cout << "filecount: " << size << endl;
+
+    for (int i=0;i<size;i++)
+    {
+        quint64 filesize;
+        in >> filesize;
+        QString name;
+        in >> name;
+
+
+        QFile file(dir.absolutePath()+"/"+name);
+        file.open(QIODevice::WriteOnly);
+        QDataStream out(&file);
+
+        int blocksize=4096;
+        char *buffer=new char[blocksize];
+        for (int j=0;j<filesize/blocksize;j++)
+        {
+            int readsize=in.readRawData(buffer,blocksize);
+            out.writeRawData(buffer,readsize);
+        }
+        int rem=filesize%blocksize;
+        int readsize=in.readRawData(buffer,rem);
+        out.writeRawData(buffer,readsize);
+
+        // cout << "file: "<<name.toStdString()<<" ("<<filesize<<")"<<endl;
+        file.close();
+    }
+    projectfile.close();
+
+    QString fileName=dir.absolutePath()+"/simulation.dyn";
+
+    std::map<std::string, std::string> UUID_Translation = this->simulation->loadSimulation(fileName.toStdString());
+    SimulationIO simio;
+    simio.loadSimluation(fileName, this->simulation, UUID_Translation);
+    if (this->simulation->getSimulationStatus() == DM::SIM_FAILED_LOAD)  {
+        this->simulation->clearSimulation();
+        return;
+    }
+    UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
+    this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
+    this->loadGUILinks(UUID_Translation);
+
 }
+
+
 void DMMainWindow::loadGUILinks(std::map<std::string, std::string> UUID_Translation) {
 
     std::map<std::string, std::string> reveredUUID_Translation;
@@ -745,6 +839,7 @@ void DMMainWindow::loadGUILinks(std::map<std::string, std::string> UUID_Translat
     }
 
 }
+
 
 DMMainWindow::~DMMainWindow() {
     delete this->simulation;
