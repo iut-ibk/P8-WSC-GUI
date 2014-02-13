@@ -696,7 +696,6 @@ void DMMainWindow::loadSimulation(int id)
     in >> dirname;
     // cout << "dirname: "<<dirname.toStdString() << endl;
 
-
     quint64 size;
     in >> size;
     // cout << "filecount: " << size << endl;
@@ -707,7 +706,6 @@ void DMMainWindow::loadSimulation(int id)
         in >> filesize;
         QString name;
         in >> name;
-
 
         QFile file(dir.absolutePath()+"/"+name);
         file.open(QIODevice::WriteOnly);
@@ -741,7 +739,6 @@ void DMMainWindow::loadSimulation(int id)
     UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
     this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
     this->loadGUILinks(UUID_Translation);
-
 }
 
 
