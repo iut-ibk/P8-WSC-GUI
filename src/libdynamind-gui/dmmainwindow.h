@@ -86,6 +86,7 @@ public:
     int getMusicRuns();
 
 private:
+    Ui::DMMainWindow *ui;
     GUISimulation * simulation;
     SimulationManagment * simmanagment;
     GUISimulationObserver * simobserver;
@@ -106,6 +107,7 @@ private:
     SimulationPopup* popup1;
     void save(QString projectname);
 
+
 public slots:
     void runSimulation();
     void sceneChanged();
@@ -116,6 +118,7 @@ public slots:
     void setRunning();
     void saveAsSimulation();
     void importSimulation(QString fileName = "", QPointF = QPointF(0,0));
+    void exportFiles();
     void SimulationFinished();
     void startEditor();
     void ReloadSimulation();
@@ -124,6 +127,7 @@ public slots:
     void removeGroupWindows(QString uuid);
     void updateSimulation();
     void showHelp(std::string classname);
+    void updateStatus(double status);
 
 
 private slots:

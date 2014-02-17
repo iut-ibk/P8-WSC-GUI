@@ -64,6 +64,8 @@
 #include "guihelpviewer.h"
 #include "startupdialog.h"
 #include <iostream>
+#include "checkboxlist/exportfiles.h"
+
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
 {
@@ -209,6 +211,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionOpen, SIGNAL(activated()), this , SLOT(loadSimulation()), Qt::DirectConnection);
     connect(actionNew, SIGNAL(activated()), this , SLOT(clearSimulation()), Qt::DirectConnection);
     connect(actionImport, SIGNAL(activated()), this , SLOT(importSimulation()), Qt::DirectConnection);
+    connect(actionExport_Files, SIGNAL(activated()),this,SLOT(exportFiles()),Qt::DirectConnection);
     connect(actionEditor, SIGNAL(activated()), this , SLOT(startEditor()), Qt::DirectConnection);
     connect(actionReload_Modules, SIGNAL(activated()), this , SLOT(ReloadSimulation()), Qt::DirectConnection);
     connect(actionUpdate, SIGNAL(activated()), this , SLOT(updateSimulation()), Qt::DirectConnection);
@@ -619,6 +622,12 @@ void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
 
 }
 
+void DMMainWindow::exportFiles()
+{
+    ExportFiles *exportfiles=new ExportFiles;
+    exportfiles->show();
+}
+
 void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation, QVector<LoadModule> posmodules) {
 
     std::map<std::string, std::string> reveredUUID_Translation;
@@ -874,6 +883,12 @@ void DMMainWindow::on_actionZoomReset_activated()
 void DMMainWindow::showHelp(string classname) {
     this->helpviewer->show();
     this->helpviewer->showHelpForModule(classname);
+}
+
+void DMMainWindow::updateStatus(double status)
+{
+    this->
+    ui->progressBar->setValue((int)status);
 }
 
 void DMMainWindow::on_actionExit_triggered()
