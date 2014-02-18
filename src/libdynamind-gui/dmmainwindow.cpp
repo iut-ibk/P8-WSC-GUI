@@ -438,12 +438,12 @@ void DMMainWindow::saveAsSimulation()
 {
     QSettings settings;
 
-    QString filename=QFileDialog::getSaveFileName(this,"Save project as",settings.value("dataPath").toString()+"/untitled.p8t","*.p8t");
+    QString filename=QFileDialog::getSaveFileName(this,"Save project as",settings.value("savePath").toString()+"/untitled.p8t","*.p8t");
     if (filename.isEmpty())
         return;
 
     QFileInfo fileinfo(filename);
-    settings.setValue("dataPath",fileinfo.absolutePath());
+    settings.setValue("savePath",fileinfo.absolutePath());
 
     save(filename);
 }
@@ -484,14 +484,14 @@ void DMMainWindow::save(QString projectname)
     out << dir.dirName();
     // cout << "dirname: "<<dir.dirName().toStdString() << endl;
     out << (quint64)list.size();
-    // cout <<"file// cout: "<<list.size()<<endl;
+    // cout <<"files: "<<list.size()<<endl;
 
     for (int i = 0; i < list.size(); ++i)
     {
         QFileInfo fileInfo = list.at(i);
         quint64 size=fileInfo.size();
         out << size;
-        // cout <<"filesize: "<<size<<endl;
+        // cout << fileInfo.fileName().toStdString()<<" filesize: "<<size<<endl;
         out << fileInfo.fileName();
         QFile savefile(fileInfo.absoluteFilePath());
         savefile.open(QIODevice::ReadOnly);
@@ -579,28 +579,12 @@ void DMMainWindow::clearSimulation() {
     this->currentDocument = "";
 
     QSettings settings;
-
-    bool selected=false;
-    do
+    workPath=settings.value("workPath").toString();
+    QDir dir(workPath);
+    foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
     {
-        workPath=QFileDialog::getExistingDirectory(this,"Select work folder",settings.value("workPath").toString());
-        QDir dir(workPath);
-        if (!dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).isEmpty())
-        {
-            QMessageBox msgBox;
-            msgBox.setText(QString("Project folder %1 is not empty.").arg(dir.absolutePath()));
-            msgBox.setInformativeText("Do you want to continue anyway?");
-            msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-            msgBox.setDefaultButton(QMessageBox::Cancel);
-            if (msgBox.exec()==QMessageBox::Ok)
-                selected=true;
-        }
-        else
-            selected=true;
-
-    } while (selected==false);
-
-    settings.setValue("workPath",workPath);
+        QFile::remove(i.absoluteFilePath());
+    }
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
@@ -674,13 +658,13 @@ void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::stri
 void DMMainWindow::loadSimulation(int id)
 {
     QSettings settings;
-    QString filename=QFileDialog::getOpenFileName(this,"Load project",settings.value("dataPath").toString(),"*.p8t");
+    QString filename=QFileDialog::getOpenFileName(this,"Load project",settings.value("savePath").toString(),"*.p8t");
 
     if (filename.isEmpty())
         return;
 
     QFileInfo fileinfo(filename);
-    settings.setValue("dataPath",fileinfo.absolutePath());
+    settings.setValue("savePath",fileinfo.absolutePath());
 
     this->clearSimulation();
     this->currentDocument = filename;
@@ -717,20 +701,24 @@ void DMMainWindow::loadSimulation(int id)
         in >> name;
 
         QFile file(dir.absolutePath()+"/"+name);
-        file.open(QIODevice::WriteOnly);
+        if (!file.open(QIODevice::WriteOnly))
+        {
+            QMessageBox::warning(NULL,"Error",QString("Could not extract %1.").arg(name));
+        }
         QDataStream out(&file);
 
         int blocksize=4096;
         char *buffer=new char[blocksize];
         for (int j=0;j<filesize/blocksize;j++)
         {
+            // cout <<".";
             int readsize=in.readRawData(buffer,blocksize);
             out.writeRawData(buffer,readsize);
         }
         int rem=filesize%blocksize;
         int readsize=in.readRawData(buffer,rem);
         out.writeRawData(buffer,readsize);
-
+        // cout << rem << endl;
         // cout << "file: "<<name.toStdString()<<" ("<<filesize<<")"<<endl;
         file.close();
     }
