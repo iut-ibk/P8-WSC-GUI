@@ -3,7 +3,9 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
+#include <iostream>
 
+using namespace std;
 
 CheckboxList::CheckboxList()
 {
@@ -19,12 +21,22 @@ void CheckboxList::load(QString listfilename, QString statefilename, QString wor
         return;
     }
     QTextStream liststream(&listfile);
-    QStringList titlesstrings=liststream.readAll().split("\n");
-    listfile.close();
+    QStringList titlesstrings=liststream.readAll().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+    listfile.close();    
+    size=titlesstrings.size();
 
     QFile statefile(statefilename);
-    if (!statefile.open(QIODevice::ReadOnly|QIODevice::Text))
+    int statesize=-1;
+    QStringList statestrings;
+    if (statefile.open(QIODevice::ReadOnly|QIODevice::Text))
     {
+        QTextStream statestream(&statefile);
+        statestrings=statestream.readAll().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+        statefile.close();
+        statesize=statestrings.size();
+    }
+
+    if (size!=statesize)
         if(statefile.open(QIODevice::WriteOnly))    // if statefile doesnt exist write one with only zeros
         {                                           // happense when new project is made in new folder
             QTextStream outstream (&statefile);
@@ -38,20 +50,14 @@ void CheckboxList::load(QString listfilename, QString statefilename, QString wor
                 {
                     outstream << "0" << endl;
                 }
+                statestrings<<"0";
             }
         }
-    }
-    QTextStream statestream(&statefile);
-    QStringList statestrings=statestream.readAll().split("\n");
-    statefile.close();
 
     QStringList presentstrings;
     QDir dir(workfolder);
     foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
         presentstrings<<i.fileName();
-
-
-    size=titlesstrings.size();
 
     emit beginResetModel();
     checkedStatus.resize(size);

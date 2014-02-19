@@ -3,11 +3,14 @@
 #include "QSettings"
 #include <iostream>
 
+using namespace std;
+
 ExportFiles::ExportFiles(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ExportFiles)
 {
     ui->setupUi(this);
+    cout << "hh"<<endl;
     QSettings settings;
     ui->le_folder->setText(settings.value("dataPath").toString());
     workfolder=settings.value("workPath").toString();
