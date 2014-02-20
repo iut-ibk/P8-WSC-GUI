@@ -41,6 +41,7 @@
 //popup
 #include <QLineEdit>
 #include <QPushButton>
+#include <QProgressDialog>
 //
 
 
@@ -84,6 +85,7 @@ public:
     void createModuleListView();
     void setMusicFile(int no);
     int getMusicRuns();
+    void SimChanged();
 
 private:
     Ui::DMMainWindow *ui;
@@ -106,6 +108,8 @@ private:
     void loadGUILinks(std::map<std::string, std::string> UUID_Translation);
     SimulationPopup* popup1;
     void save(QString projectname);
+    QProgressDialog *pgDia;
+
 
 
 public slots:
@@ -127,7 +131,6 @@ public slots:
     void removeGroupWindows(QString uuid);
     void updateSimulation();
     void showHelp(std::string classname);
-    void updateStatus(double status);
 
 
 private slots:
@@ -140,9 +143,11 @@ private slots:
     void on_l_simulation_linkHovered(const QString &link);
     void on_actionHelp_triggered();
     void on_l_simulation_linkActivated(const QString &link);
+    void updateStatus(double status);
 
 signals:
     void updateSplashMessage(QString);
+    void statusChanged(double percent);
 
 };
 

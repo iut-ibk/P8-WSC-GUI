@@ -29,6 +29,7 @@
 
 #include <dmsimulationobserver.h>
 #include <projectviewer.h>
+#include <dmmainwindow.h>
 
 class GUISimulationObserver : public DM::SimulationObserver
 {
@@ -39,6 +40,22 @@ public:
 
     virtual void SimulationCounter(){}
     virtual void VirtualRunDone();
+    virtual void SimulationStatusChanged(){}
+
+
+
+};
+
+class GUIStatusBarObserver : public DM::SimulationObserver
+{
+private:
+    DMMainWindow * pv;
+public:
+    GUIStatusBarObserver(DMMainWindow * pv);
+
+    virtual void SimulationCounter(){}
+    virtual void VirtualRunDone(){}
+    virtual void SimulationStatusChanged();
 
 
 

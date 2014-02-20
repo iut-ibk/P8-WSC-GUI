@@ -39,6 +39,7 @@ public:
     void SimulationCounter();
     void resetSimcounter(){this->simcounter = 0;}
     void VirtualRunDone(){}
+    void SimulationStatusChanged(){}
 
 private:
     int simcounter;

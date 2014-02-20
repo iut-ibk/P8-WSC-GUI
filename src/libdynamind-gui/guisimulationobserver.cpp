@@ -33,4 +33,15 @@ GUISimulationObserver::GUISimulationObserver(ProjectViewer * pv)
 
 void GUISimulationObserver::VirtualRunDone() {
     pv->update();
+    DM::Logger(DM::Debug) << "Observer update called";
+}
+
+GUIStatusBarObserver::GUIStatusBarObserver(DMMainWindow *pv)
+{
+    this->pv = pv;
+}
+
+void GUIStatusBarObserver::SimulationStatusChanged()
+{
+    this->pv->SimChanged();
 }

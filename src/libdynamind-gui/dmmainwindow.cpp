@@ -129,11 +129,14 @@ void DMMainWindow::addNewGroupWindows(GroupNode * g) {
     if (g->getDMModel()->getUuid().compare(simulation->getRootGroup()->getUuid()) == 0)
         this->simulation->addSimulationObserver(new GUISimulationObserver(newgroup));
 
+    this->simulation->addSimulationObserver(new GUIStatusBarObserver(this));
+
     connect(simulation, SIGNAL(addedGroup(GroupNode*)), newgroup, SLOT(addGroup(GroupNode*)));
     connect(simulation, SIGNAL(GroupNameChanged(GroupNode*)), this, SLOT(renameGroupWindow(GroupNode*)));
     connect(simulation, SIGNAL(addedModule(ModelNode*)), newgroup, SLOT(addModule(ModelNode*)));
     connect(newgroup, SIGNAL(NewModule(QString,QPointF, DM::Module *)), simulation, SLOT(GUIaddModule(QString,QPointF, DM::Module  *)));
     connect(simulation, SIGNAL(showHelpForModule(std::string)), this, SLOT(showHelp(std::string)));
+    connect(this,SIGNAL(statusChanged(double)), this,SLOT(updateStatus(double)));
     newgroup->setResultViewer(this);
 
 
@@ -199,6 +202,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(this->simulation, SIGNAL(addedGroup(GroupNode*)), this, SLOT(addNewGroupWindows(GroupNode*)));
     this->simulation->registerRootNode();
     this->simulation->addModulesFromSettings();
+    //this->simulation->registerStatusBar(this);
     this->helpviewer = new GUIHelpViewer();
     //this->verticalLayout->addWidget(helpviewer);
 
@@ -252,6 +256,12 @@ DMMainWindow::DMMainWindow(QWidget * parent)
         loadSimulation();
     if (startmode==2)
         clearSimulation();
+    this->pgDia = new QProgressDialog(this);
+    pgDia->setMinimum(0);
+    pgDia->setMaximum(0);
+    pgDia->setLabelText("Calculating");
+    pgDia->setCancelButton(0);
+    pgDia->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
 }
 
 void DMMainWindow::createModuleListView()
@@ -408,6 +418,7 @@ int DMMainWindow::getMusicRuns()
 
 void DMMainWindow::runSimulation() {
     simulation->start();
+    pgDia->show();
     return;
 
 }
@@ -507,6 +518,11 @@ void DMMainWindow::save(QString projectname)
         savefile.close();
     }
     projectfile.close();
+}
+
+void DMMainWindow::SimChanged()
+{
+    emit statusChanged(49.097);
 }
 
 
@@ -837,6 +853,7 @@ void DMMainWindow::loadGUILinks(std::map<std::string, std::string> UUID_Translat
 
 DMMainWindow::~DMMainWindow() {
     delete this->simulation;
+    delete this->pgDia;
 }
 
 void DMMainWindow::on_actionZoomIn_activated(){
@@ -872,8 +889,8 @@ void DMMainWindow::showHelp(string classname) {
 
 void DMMainWindow::updateStatus(double status)
 {
-    this->
-    ui->progressBar->setValue((int)status);
+    //ui->progressBar->setValue((int)status);
+    pgDia->hide();
 }
 
 void DMMainWindow::on_actionExit_triggered()
