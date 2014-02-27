@@ -14,6 +14,9 @@ CheckboxList::CheckboxList()
 
 void CheckboxList::load(QString listfilename, QString statefilename, QString workfolder)
 {
+    QDir workdir = QDir(workfolder);
+    workdir.setFilter(QDir::Files);
+    QStringList files = workdir.entryList(); // get files in workdir
     statefilestring = statefilename;
     QFile listfile(listfilename);
     if (!listfile.open(QIODevice::ReadOnly|QIODevice::Text))
@@ -21,57 +24,64 @@ void CheckboxList::load(QString listfilename, QString statefilename, QString wor
         return;
     }
     QTextStream liststream(&listfile);
-    QStringList titlesstrings=liststream.readAll().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+    QStringList titlesstrings=liststream.readAll().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);    // get "excluding" file names
     listfile.close();    
-    size=titlesstrings.size();
 
     QFile statefile(statefilename);
     int statesize=-1;
     QStringList statestrings;
-    if (statefile.open(QIODevice::ReadOnly|QIODevice::Text))
+    if (statefile.open(QIODevice::ReadOnly|QIODevice::Text))    // get state list
     {
         QTextStream statestream(&statefile);
         statestrings=statestream.readAll().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
         statefile.close();
         statesize=statestrings.size();
     }
+    for(int i = 0; i<files.length(); i++)
+    {
+        if(files[i] == "states.txt")
+            continue;
+        if(titlesstrings.contains(files[i]))
+            continue;
+        if(statestrings.contains(files[i]+"*0") || statestrings.contains(files[i]+"*2"))
+        {
+            continue;
+        }
+        else
+        {
+            statestrings.append(files[i] + "*0");
+        }
+    }
+    size = statestrings.size();
 
-    if (size!=statesize)
-        if(statefile.open(QIODevice::WriteOnly))    // if statefile doesnt exist write one with only zeros
-        {                                           // happense when new project is made in new folder
-            QTextStream outstream (&statefile);
-            for(int i = 0; i<titlesstrings.length();i++)
+    if(statefile.open(QIODevice::WriteOnly))    // if statefile doesnt exist write one with only zeros
+    {                                           // happense when new project is made in new folder
+        QTextStream outstream (&statefile);
+        for(int i = 0; i<statestrings.length();i++)
+        {
+            if(i == statestrings.length()-1)
             {
-                if(i == titlesstrings.length()-1)
-                {
-                    outstream << "0";
-                }
-                else
-                {
-                    outstream << "0" << endl;
-                }
-                statestrings<<"0";
+                outstream << statestrings.at(i);
+            }
+            else
+            {
+                outstream << statestrings.at(i) << endl;
             }
         }
-
-    QStringList presentstrings;
-    QDir dir(workfolder);
-    foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
-        presentstrings<<i.fileName();
-
+    }
+    titels.clear();
     emit beginResetModel();
     checkedStatus.resize(size);
     enabledStatus.resize(size);
-    titels.clear();
     for(int i = 0; i < size; ++i)
     {
-        if (statestrings[i].toInt())
+        if (statestrings.at(i).split("*").at(1).toInt())
             checkedStatus[i] = Qt::Checked;
         else
             checkedStatus[i] = Qt::Unchecked;
 
-        enabledStatus[i]=presentstrings.contains(titlesstrings[i]);
-        titels.append(titlesstrings[i]);
+        enabledStatus[i]=true;//presentstrings.contains(titlesstrings[i]);
+        titels.append(statestrings.at(i).split("*").at(0));
     }
 
     setStringList(titels);
@@ -89,11 +99,11 @@ QStringList CheckboxList::getFiles()
         {
             if(i == size-1)
             {
-                outstream << checkedStatus[i];
+                outstream << titels[i] << "*" << checkedStatus[i];
             }
             else
             {
-                outstream << checkedStatus[i] << endl;
+                outstream << titels[i] << "*" << checkedStatus[i] << endl;
             }
         }
     }
