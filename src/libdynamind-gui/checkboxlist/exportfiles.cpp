@@ -41,7 +41,10 @@ void ExportFiles::on_pb_export_clicked()
     QSettings settings;
     workfolder = settings.value("workPath").toString();
     QStringList files=checkboxlist.getFiles();
-    QString exportfolder=ui->le_folder->text();
+
+    QString exportfolder=ui->le_folder->text()+"/"+ui->le_szenario->text();
+    QDir dir;
+    dir.mkdir(exportfolder);
     for (int i = 0; i<files.length(); i++)
     {
         if(QFile::exists(exportfolder + "/" + files[i]))
@@ -62,4 +65,16 @@ void ExportFiles::on_pb_export_clicked()
         }
     }
     this->close();
+}
+
+void ExportFiles::on_lineEdit_editingFinished()
+{
+}
+
+void ExportFiles::on_le_szenario_textChanged(const QString &arg1)
+{
+    if (ui->le_szenario->text().isEmpty())
+        ui->pb_export->setEnabled(false);
+    else
+        ui->pb_export->setEnabled(true);
 }

@@ -65,6 +65,7 @@
 #include "startupdialog.h"
 #include <iostream>
 #include "checkboxlist/exportfiles.h"
+#include <QProgressDialog>
 
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
@@ -183,6 +184,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     DM::Log::init(log_updater,DM::Debug);
     running =  false;
     this->setParent(parent);
+
     workPath=QDir::tempPath()+"/P8Tool";
     if (!QFile::exists(workPath))
     {
@@ -221,7 +223,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionUpdate, SIGNAL(activated()), this , SLOT(updateSimulation()), Qt::DirectConnection);
     currentDocument = "";
 
-
+    //QSettings settings;
     if(settings.value("pythonModules").toString().isEmpty()) {
         counter++;
         this->preferences();
@@ -248,7 +250,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     //label->setPixmap(QPixmap(":/Icons/ressources/list-add.png"));
     label->setPixmap(QPixmap(":/Icons/ressources/crc.png"));
     this->toolBar_3->addWidget(label);
-    this->setWindowTitle("P8-WSC");
+    this->setWindowTitle("WSC Modelling Toolkit");
     this->show();
     StartupDialog startupdialog;
     int startmode=startupdialog.exec();
@@ -257,9 +259,10 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     if (startmode==2)
         clearSimulation();
     this->pgDia = new QProgressDialog(this);
+    pgDia->setWindowTitle("Simulation running");
     pgDia->setMinimum(0);
     pgDia->setMaximum(0);
-    pgDia->setLabelText("Calculating");
+    pgDia->setLabelText("Please wait...");
     pgDia->setCancelButton(0);
     pgDia->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
 }

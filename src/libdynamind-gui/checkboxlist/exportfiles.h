@@ -24,6 +24,10 @@ private slots:
 
     void on_pb_export_clicked();
 
+    void on_lineEdit_editingFinished();
+
+    void on_le_szenario_textChanged(const QString &arg1);
+
 private:
     Ui::ExportFiles *ui;
     QString workfolder;
