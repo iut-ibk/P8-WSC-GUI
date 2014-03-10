@@ -255,6 +255,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
+        else if(this->getName()=="Current_RealisationModule")
+        {
+            gui_p->setPos(75,160);//10,110); coords für ecken
+        }
         else if(this->getName()=="RainModule")
         {
             gui_p->setPos(10,55);
