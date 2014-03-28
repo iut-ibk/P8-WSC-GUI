@@ -288,25 +288,28 @@ void DMMainWindow::createModuleListView()
     {
         QString name=QString::fromStdString(selectedModule->getDMModel()->getClassName());
         cout << "Selected: " << name.toStdString() << endl;
-        if (name=="URBAN_FORM") {
-            successors<<"RealisationsSettings";
+        /*if (name=="URBAN_FORM") {
+            //successors<<"RealisationsSettings";
         }
         else if (name == "RealisationsSettings")
         {
-            successors<<"SCENARIO";
+            //successors<<"SCENARIO";
         }
         else if (name=="ImportShapeFile") {
-            successors<<"ExportToShapeFile";
+            //successors<<"ExportToShapeFile";
         }
         else if (name == "SCENARIO")
         {
-            successors<<"Current_Realisation";
+            //successors<<"Current_Realisation";
         }
         else
-        {
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<"GetPreviousBlocks"<<"GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC";
+        {*/
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<
+                        "TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<
+                        "Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<"GetPreviousBlocks"<<
+                        "GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC"<<"URBAN_FORM"<<"SCENARIO";
             //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
-        }
+        //}
 
     }
     else
@@ -318,7 +321,10 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<"TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<"Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<"GetPreviousBlocks"<<"GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC";
+            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<
+                        "TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<
+                        "ImportRasterData"<<"Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<
+                        "GetPreviousBlocks"<<"GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC"<<"URBAN_FORM"<<"SCENARIO";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
