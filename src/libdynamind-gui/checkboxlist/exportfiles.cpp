@@ -78,3 +78,13 @@ void ExportFiles::on_le_szenario_textChanged(const QString &arg1)
     else
         ui->pb_export->setEnabled(true);
 }
+
+void ExportFiles::on_chkbox_all_toggled(bool checked)
+{
+    //set all items in checkboxlist to toggled value
+    for(int i = 0; i<this->checkboxlist.getSize();i++)
+    {
+        this->checkboxlist.setCheckedStatus(i,checked);
+    }
+
+}

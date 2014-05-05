@@ -72,6 +72,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QCheckBox" name="chkbox_all">
+     <property name="text">
+      <string>all</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QListView" name="lv_list"/>
    </item>
    <item>
