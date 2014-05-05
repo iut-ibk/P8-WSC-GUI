@@ -82,9 +82,8 @@ void ExportFiles::on_le_szenario_textChanged(const QString &arg1)
 void ExportFiles::on_chkbox_all_toggled(bool checked)
 {
     //set all items in checkboxlist to toggled value
-    for(int i = 0; i<this->checkboxlist.getSize();i++)
-    {
-        this->checkboxlist.setCheckedStatus(i,checked);
-    }
-
+    if(checked)
+        this->checkboxlist.setChecked();
+    else
+        this->checkboxlist.setUnchecked();
 }
