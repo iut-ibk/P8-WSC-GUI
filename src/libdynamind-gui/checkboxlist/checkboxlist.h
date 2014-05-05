@@ -16,6 +16,8 @@ public:
     void set(const QStringList &strings);
     void load(QString listfilename, QString statefilename, QString workfolder);
     QStringList getFiles();
+    void setCheckedStatus(int pos, bool status);
+    int getSize();
 
 private:
     QStringList titels;

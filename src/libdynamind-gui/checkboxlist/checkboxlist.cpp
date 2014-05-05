@@ -117,6 +117,21 @@ QStringList CheckboxList::getFiles()
     return retVal;
 }
 
+void CheckboxList::setChecked()
+{
+    emit beginResetModel();
+    for(int i = 0;i<this->checkedStatus.size();i++)
+        this->checkedStatus[i] = Qt::Checked;
+    emit endResetModel();
+
+}
+void CheckboxList::setUnchecked()
+{
+    emit beginResetModel();
+    for(int i = 0;i<this->checkedStatus.size();i++)
+        this->checkedStatus[i] = Qt::Unchecked;
+    emit endResetModel();
+}
 
 void CheckboxList::set(const QStringList &strings)
 {
@@ -175,3 +190,5 @@ bool CheckboxList::setData (const QModelIndex &index, const QVariant &value, int
     emit dataChanged(index, index);
     return true;
 }
+
+
