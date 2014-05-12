@@ -52,6 +52,7 @@
 #include <ui_dmmainwindow.h>
 #include <simulationio.h>
 #include <cmath>
+#include <fstream>
 class QTreeWidgetItem;
 
 
@@ -109,7 +110,7 @@ private:
     SimulationPopup* popup1;
     void save(QString projectname);
     QProgressDialog *pgDia;
-
+    std::ofstream* outputFile;
 
 
 public slots:

@@ -195,6 +195,15 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     settings.setValue("workPath",workPath);
     // std::cout<<workPath.toStdString()+"\n"<<settings.applicationName().toStdString()<<settings.organizationName().toStdString();
 
+    // add log export to file
+    QString logfilepath = QDir::temp().tempPath() + "/WSC-Modelling-Toolkit" + QDateTime::currentDateTime().toString("_yyMMdd_hhmmss_zzz")+".log";
+    if(QFile::exists(logfilepath))
+        QFile::remove(logfilepath);
+
+    outputFile = new ofstream(logfilepath.toStdString().c_str());
+    DM::Log::addLogSink(new DM::OStreamLogSink(*outputFile));
+
+
     DM::PythonEnv *env = DM::PythonEnv::getInstance();
     env->addPythonPath(QApplication::applicationDirPath().toStdString());
     env->addOverWriteStdCout();
