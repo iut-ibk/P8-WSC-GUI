@@ -131,7 +131,12 @@ public slots:
     void renameGroupWindow(GroupNode *);
     void removeGroupWindows(QString uuid);
     void updateSimulation();
+    void showDebug();
     void showHelp(std::string classname);
+    void showTutorial();
+    void showTempFolder();
+    void showSupport();
+    void showAbout();
 
 
 private slots:

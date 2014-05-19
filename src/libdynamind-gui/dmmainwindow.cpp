@@ -152,7 +152,7 @@ void DMMainWindow::addNewGroupWindows(GroupNode * g) {
     }
     if (firstrun)
     {
-        this->groupscenes[this->tabWidget_4->addTab(gv,name)] = newgroup;
+        this->groupscenes[this->tabWidget_4->addTab(gv,"new project")] = newgroup;
         firstrun=false;
     }
     tabmap[newgroup] = gv;
@@ -230,6 +230,12 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionEditor, SIGNAL(activated()), this , SLOT(startEditor()), Qt::DirectConnection);
     connect(actionReload_Modules, SIGNAL(activated()), this , SLOT(ReloadSimulation()), Qt::DirectConnection);
     connect(actionUpdate, SIGNAL(activated()), this , SLOT(updateSimulation()), Qt::DirectConnection);
+    connect(actionShow_debug_window, SIGNAL(activated()),this,SLOT(showDebug()),Qt::DirectConnection);
+    connect(actionGetting_started_Tutorial, SIGNAL(activated()),this,SLOT(showTutorial()),Qt::DirectConnection);
+    connect(actionShow_Temp_Folder, SIGNAL(activated()),this,SLOT(showTempFolder()),Qt::DirectConnection);
+    connect(actionSupport, SIGNAL(activated()),this,SLOT(showSupport()),Qt::DirectConnection);
+    connect(actionAbout, SIGNAL(activated()),this,SLOT(showAbout()),Qt::DirectConnection);
+
     currentDocument = "";
 
     //QSettings settings;
@@ -444,6 +450,11 @@ void DMMainWindow::updateSimulation() {
     this->simulation->updateSimulation();
 }
 
+void DMMainWindow::showDebug()
+{
+    this->dockWidget_2->setVisible(!this->dockWidget_2->isVisible());
+}
+
 void DMMainWindow::SimulationFinished() {
 
 }
@@ -605,7 +616,6 @@ void DMMainWindow::writeGUIInformation(QString FileName) {
     out << "</DynaMind>"<< "\n";
 
     file.close();
-
 }
 
 void DMMainWindow::clearSimulation() {
@@ -619,6 +629,7 @@ void DMMainWindow::clearSimulation() {
     {
         QFile::remove(i.absoluteFilePath());
     }
+    this->tabWidget_4->setTabText(0,"new project");
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
@@ -770,6 +781,7 @@ void DMMainWindow::loadSimulation(int id)
     UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
     this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
     this->loadGUILinks(UUID_Translation);
+    this->tabWidget_4->setTabText(0,fileinfo.fileName());
 }
 
 
@@ -905,6 +917,31 @@ void DMMainWindow::showHelp(string classname) {
     this->helpviewer->showHelpForModule(classname);
 }
 
+void DMMainWindow::showTutorial()
+{
+    QDesktopServices::openUrl(QUrl("/home/clemens/Downloads/2010 06 28 - MMS klausur.pdf"));
+}
+void DMMainWindow::showTempFolder()
+{
+    QDesktopServices::openUrl(QDir::tempPath());
+}
+
+void DMMainWindow::showSupport()
+{
+    QDesktopServices::openUrl(QUrl("/home/clemens/Downloads/2010 06 28 - MMS klausur.pdf"));
+}
+
+void DMMainWindow::showAbout()
+{
+    QMessageBox msgBox;
+    msgBox.setTextFormat(Qt::RichText);
+    msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
+               "Version: 19.05.2014\n"
+               /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
+    msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
+    msgBox.exec();
+}
+
 void DMMainWindow::updateStatus(double status)
 {
     //ui->progressBar->setValue((int)status);
@@ -947,3 +984,4 @@ void DMMainWindow::on_l_simulation_linkActivated(const QString &link)
 {
     on_l_simulation_linkHovered(link)  ;
 }
+

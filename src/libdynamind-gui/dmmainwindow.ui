@@ -126,7 +126,7 @@
      <x>0</x>
      <y>0</y>
      <width>932</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -156,6 +156,7 @@
     <addaction name="actionZoomOut"/>
     <addaction name="actionZoomReset"/>
     <addaction name="actionShow_all_modules"/>
+    <addaction name="actionShow_debug_window"/>
    </widget>
    <widget class="QMenu" name="menuModuleDevelopment">
     <property name="title">
@@ -165,10 +166,20 @@
     <addaction name="separator"/>
     <addaction name="actionReload_Modules"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionGetting_started_Tutorial"/>
+    <addaction name="actionShow_Temp_Folder"/>
+    <addaction name="actionSupport"/>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuSimulation"/>
    <addaction name="menuTools"/>
    <addaction name="menuView"/>
    <addaction name="menuModuleDevelopment"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockWidget_2">
@@ -664,7 +675,6 @@
    </attribute>
    <addaction name="actionRun"/>
    <addaction name="actionUpdate"/>
-   <addaction name="actionHelp"/>
   </widget>
   <action name="actionRun">
    <property name="icon">
@@ -804,6 +814,31 @@
   <action name="actionExport_Files">
    <property name="text">
     <string>Export Files</string>
+   </property>
+  </action>
+  <action name="actionShow_debug_window">
+   <property name="text">
+    <string>show/hide debug window</string>
+   </property>
+  </action>
+  <action name="actionGetting_started_Tutorial">
+   <property name="text">
+    <string>Getting started Tutorial</string>
+   </property>
+  </action>
+  <action name="actionShow_Temp_Folder">
+   <property name="text">
+    <string>show Temp Folder</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionSupport">
+   <property name="text">
+    <string>Support</string>
    </property>
   </action>
  </widget>
