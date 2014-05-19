@@ -547,6 +547,8 @@ void DMMainWindow::save(QString projectname)
         savefile.close();
     }
     projectfile.close();
+    this->tabWidget_4->setTabText(0,QFileInfo(projectfile).fileName());
+
 }
 
 void DMMainWindow::SimChanged()
