@@ -12,5 +12,6 @@
         <file>ressources/player_play.png</file>
         <file>ressources/dynamind-icon.png</file>
         <file>ressources/P8-Tool-Logo_small.png</file>
+        <file>ressources/Support.png</file>
     </qresource>
 </RCC>
