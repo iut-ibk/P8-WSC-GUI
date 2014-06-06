@@ -235,6 +235,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionShow_Temp_Folder, SIGNAL(activated()),this,SLOT(showTempFolder()),Qt::DirectConnection);
     connect(actionSupport, SIGNAL(activated()),this,SLOT(showSupport()),Qt::DirectConnection);
     connect(actionAbout, SIGNAL(activated()),this,SLOT(showAbout()),Qt::DirectConnection);
+    connect(actionShow_Temporary_File_Folder,SIGNAL(activated()),this,SLOT(showP8ToolFolder()),Qt::DirectConnection);
 
     currentDocument = "";
 
@@ -928,9 +929,17 @@ void DMMainWindow::showTempFolder()
     QDesktopServices::openUrl(QDir::tempPath());
 }
 
+void DMMainWindow::showP8ToolFolder()
+{
+    QDesktopServices::openUrl(QDir::tempPath() + "/P8Tool");
+}
+
 void DMMainWindow::showSupport()
 {
-    QDesktopServices::openUrl(QUrl("/home/clemens/Downloads/2010 06 28 - MMS klausur.pdf"));
+    QLabel * label_img = new QLabel (this);
+    label_img->setWindowFlags(Qt::Window);
+    label_img->setPixmap(QPixmap(":/Icons/ressources/Support.png", 0, Qt::AutoColor));
+    label_img->show();
 }
 
 void DMMainWindow::showAbout()
@@ -938,7 +947,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 19.05.2014\n"
+               "Version: 6.6.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();

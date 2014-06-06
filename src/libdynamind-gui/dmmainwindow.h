@@ -135,6 +135,7 @@ public slots:
     void showHelp(std::string classname);
     void showTutorial();
     void showTempFolder();
+    void showP8ToolFolder();
     void showSupport();
     void showAbout();
 

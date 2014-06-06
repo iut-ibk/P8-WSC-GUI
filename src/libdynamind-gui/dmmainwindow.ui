@@ -172,8 +172,9 @@
     </property>
     <addaction name="actionGetting_started_Tutorial"/>
     <addaction name="actionShow_Temp_Folder"/>
-    <addaction name="actionSupport"/>
+    <addaction name="actionShow_Temporary_File_Folder"/>
     <addaction name="actionAbout"/>
+    <addaction name="actionSupport"/>
    </widget>
    <addaction name="menuSimulation"/>
    <addaction name="menuTools"/>
@@ -746,7 +747,7 @@
      <normaloff>:/Icons/ressources/stock_zoom-in.png</normaloff>:/Icons/ressources/stock_zoom-in.png</iconset>
    </property>
    <property name="text">
-    <string>zoomIn</string>
+    <string>Zoom In</string>
    </property>
    <property name="shortcut">
     <string>Ctrl++</string>
@@ -758,7 +759,7 @@
      <normaloff>:/Icons/ressources/stock_zoom-out.png</normaloff>:/Icons/ressources/stock_zoom-out.png</iconset>
    </property>
    <property name="text">
-    <string>zoomOut</string>
+    <string>Zoom Out</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
@@ -770,7 +771,7 @@
      <normaloff>:/Icons/ressources/stock_zoom-page.png</normaloff>:/Icons/ressources/stock_zoom-page.png</iconset>
    </property>
    <property name="text">
-    <string>zoomReset</string>
+    <string>Zoom Reset</string>
    </property>
   </action>
   <action name="actionImport">
@@ -803,7 +804,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>show all modules</string>
+    <string>Show All Modules</string>
    </property>
   </action>
   <action name="actionHelp">
@@ -818,7 +819,7 @@
   </action>
   <action name="actionShow_debug_window">
    <property name="text">
-    <string>show/hide debug window</string>
+    <string>Show/Hide Debug Window</string>
    </property>
   </action>
   <action name="actionGetting_started_Tutorial">
@@ -828,17 +829,22 @@
   </action>
   <action name="actionShow_Temp_Folder">
    <property name="text">
-    <string>show Temp Folder</string>
+    <string>Show Temporary Error Folder</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>about</string>
+    <string>About</string>
    </property>
   </action>
   <action name="actionSupport">
    <property name="text">
     <string>Support</string>
+   </property>
+  </action>
+  <action name="actionShow_Temporary_File_Folder">
+   <property name="text">
+    <string>Show Temporary File Folder</string>
    </property>
   </action>
  </widget>
