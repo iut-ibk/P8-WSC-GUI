@@ -2,6 +2,8 @@
 #include "ui_startupdialog.h"
 #include <QDesktopServices>
 #include <QUrl>
+#include <QLabel>
+
 
 StartupDialog::StartupDialog(QWidget *parent) :
     QDialog(parent),
@@ -34,7 +36,10 @@ void StartupDialog::on_pb_new_released()
 
 void StartupDialog::on_pb_bug_released()
 {
-    QDesktopServices::openUrl(QUrl("http://watersensitivecities.org.au/", QUrl::TolerantMode));
+    QLabel * label_img = new QLabel (this);
+    label_img->setWindowFlags(Qt::Window);
+    label_img->setPixmap(QPixmap(":/Icons/ressources/Support.png", 0, Qt::AutoColor));
+    label_img->show();
 }
 
 void StartupDialog::on_pb_web_released()
