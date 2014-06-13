@@ -320,10 +320,10 @@ void DMMainWindow::createModuleListView()
         }
         else
         {*/
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<
-                        "TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<"ImportRasterData"<<
-                        "Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<"GetPreviousBlocks"<<
-                        "GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC"<<"URBAN_FORM"<<"SCENARIO";
+        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<
+                    "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
+                    "ImportRasterData"<<"Microclimate"<<"Land Cover Map (Microclimate)"<<"Spatial Delineation of Building Blocks"<<"ExportToGISShapeFile"<<
+                    "GetPreviousBlocks"<<"GetSystems"<<"Decentralised Technology Design and Implementation"<<"Urban Planning Customization"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
             //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
         //}
 
@@ -337,10 +337,10 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"AnalyserModule"<<"Current_RealisationModule"<<"StreamHydrologyandWaterquality"<<
-                        "TreatmentPerformanceResultsModule"<<"RainModule"<<"ImportMSF"<<"StreamErosionIndex"<<
-                        "ImportRasterData"<<"Microclimate"<<"ImportRasterData2"<<"Delinblocks"<<"ExportToGISShapeFile"<<
-                        "GetPreviousBlocks"<<"GetSystems"<<"Techplacement"<<"Urbplanbb"<<"WriteResults2MUSIC"<<"URBAN_FORM"<<"SCENARIO";
+            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<
+                        "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
+                        "ImportRasterData"<<"Microclimate"<<"Land Cover Map (Microclimate)"<<"Spatial Delineation of Building Blocks"<<"ExportToGISShapeFile"<<
+                        "GetPreviousBlocks"<<"GetSystems"<<"Decentralised Technology Design and Implementation"<<"Urban Planning Customization"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
