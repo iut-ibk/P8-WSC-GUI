@@ -161,7 +161,7 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
         ExistingInPorts << QString::fromStdString(p->getName());
         GUIPort * gui_p = new  GUIPort(this, p->getInPort());
         this->ports.append(gui_p);
-        if (this->getName()== "SCENARIO")
+        if (this->getName()== "Scenario Setup")
         {
             gui_p->setPos(80,155);//15,105); coords für ecken
         }
@@ -188,11 +188,11 @@ void GroupNode::addTuplePort(DM::PortTuple * p) {
 
         GUIPort * gui_p = new  GUIPort(this,p->getOutPort());
         this->ports.append(gui_p);
-        if (this->getName() == "URBAN_FORM")
+        if (this->getName() == "Urban Form")
         {
             gui_p->setPos(325,45);//395,90); coords für ecken1
         }
-        else if(this->getName() == "SCENARIO")
+        else if(this->getName() == "Scenario Setup")
         {
             gui_p->setPos(230,155);//340,110);
         }
@@ -316,7 +316,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 
         }
-        if(this->getName()=="URBAN_FORM")
+        if(this->getName()=="Urban Form")
         {
             img = QImage(":/Icons/ressources/Urban-Form.png");
             h = img.height();
@@ -325,7 +325,7 @@ void GroupNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-50,h-10,QString("Urban Form"));
 
         }
-        if(this->getName()=="SCENARIO")
+        if(this->getName()=="Scenario Setup")
         {
             img = QImage(":/Icons/ressources/Scenario.png");
             h = img.height();

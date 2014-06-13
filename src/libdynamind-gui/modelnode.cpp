@@ -179,15 +179,15 @@ void ModelNode::addPort(DM::Port * p) {
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
     if  (p->getPortType() < DM::OUTPORTS) { //out
-        if(this->getName()=="Current_Realisation")
+        if(this->getName()=="Current Realisation")
         {
             gui_p->setPos(250,40);//335,110); coords für ecken
         }
-        if(this->getName()=="Current_RealisationModule")
+        if(this->getName()=="Current Realisation")
         {
             gui_p->setPos(250,40);
         }
-        else if(this->getName()=="RainModule")
+        else if(this->getName()=="Rainfall")
         {
             gui_p->setPos(185,40);
         }
@@ -195,7 +195,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(155,120);
         }
-        else if(this->getName()=="TreatmentPerformanceResultsModule")
+        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
         {
             gui_p->setPos(285,150);
         }
@@ -207,7 +207,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,160);
         }
-        else if(this->getName()=="StreamHydrologyandWaterquality")
+        else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             gui_p->setPos(298,175);
         }
@@ -219,7 +219,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(280,137);
         }
-        else if(this->getName()=="AnalyserModule")
+        else if(this->getName()=="Analyser")
         {
             gui_p->setPos(280,137);
         }
@@ -231,15 +231,19 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,152);
         }
-        else if(this->getName()=="ImportMSF")
+        else if(this->getName()=="Import MUSIC File (.msf)")
         {
             gui_p->setPos(200,100);
         }
-        else if(this->getName()=="StreamErosionIndex")
+        else if(this->getName()=="Stream Erosion and Minor Flooding")
         {
             gui_p->setPos(300,170);
         }
         else if(this->getName()=="ImportRasterData")
+        {
+            gui_p->setPos(275,155);
+        }
+        else if(this->getName()=="Land Cover Map (Microclimate)")
         {
             gui_p->setPos(275,155);
         }
@@ -251,7 +255,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
 
     }else {//in
-        if(this->getName()=="Current_Realisation")
+        if(this->getName()=="Current Realisation")
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
@@ -259,7 +263,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(75,160);//10,110); coords für ecken
         }
-        else if(this->getName()=="RainModule")
+        else if(this->getName()=="Rainfall")
         {
             gui_p->setPos(10,55);
         }
@@ -279,7 +283,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(35,120);
         }
-        else if(this->getName()=="TreatmentPerformanceResultsModule")
+        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
         {
             gui_p->setPos(15,145);
         }
@@ -287,7 +291,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(0,100);
         }
-        else if(this->getName()=="StreamHydrologyandWaterquality")
+        else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             gui_p->setPos(20,175);
         }
@@ -299,7 +303,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(20,152);
         }
-        else if(this->getName()=="StreamErosionIndex")
+        else if(this->getName()=="Stream Erosion and Minor Flooding")
         {
             gui_p->setPos(20,170);
         }
@@ -388,23 +392,26 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         //painter->setBrush(QBrush(QColor(220,220,180)));
         //painter->setPen(QPen(QColor(220,220,220),2));
-        if(this->getName()=="RainModule")
+        if(this->getName()=="Rainfall")
         {
             img = QImage(":/Icons/ressources/Rainfall.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-20,h-10,QString("Rain"));
+            painter->drawText(l/2,h-10,QString("Rainfall"));
         }
-        else if(this->getName()=="TreatmentPerformanceResultsModule")
+        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
         {
             img = QImage(":/Icons/ressources/TreatmentPerformance.png");//MircorClimateHeatIslandEffect.png");
             h = img.height();
             l = img.width();
+            painter->setFont( QFont("Helvetica", 14));
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-140,h-10,QString("Treatment Performance"));
+            painter->drawText(0,h-10,QString("Treatment and Harvesting Performance (MUSIC)"));
+            painter->setFont( QFont("Helvetica", 20));
+
         }
-        else if(this->getName()=="Current_Realisation")
+        else if(this->getName()=="Current Realisation")
         {
 
             img = QImage(":/Icons/ressources/Realisation.png");
@@ -480,7 +487,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
 
         }
-        else if(this->getName()=="StreamHydrologyandWaterquality")
+        else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             img = QImage(":/Icons/ressources/EnvironmentalBenefits.png");
             h = img.height();
@@ -491,22 +498,24 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->setFont( QFont("Helvetica", 20));
 
         }
-        else if(this->getName()=="ImportMSF")
+        else if(this->getName()=="Import MUSIC File (.msf)")
         {
             img = QImage(":/Icons/ressources/FileUpload.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-60,h-10,QString("ImportMSF"));
+            painter->drawText(0,h-10,QString("Import MUSIC File (.msf)"));
 
         }
-        else if(this->getName()=="StreamErosionIndex")
+        else if(this->getName()=="Stream Erosion and Minor Flooding")
         {
             img = QImage(":/Icons/ressources/StreamErosion.png");
             h = img.height();
             l = img.width();
+            painter->setFont( QFont("Helvetica", 14));
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-130,h-10,QString("Stream Erosion Index"));
+            painter->drawText(0,h-10,QString("Stream Erosion and Minor Flooding"));
+            painter->setFont( QFont("Helvetica", 20));
 
         }
         else if(this->getName()=="ImportRasterData")
@@ -516,6 +525,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-130,h-10,QString("Import Imperviousness"));
+
+        }
+        else if(this->getName()=="Land Cover Map (Microclimate)")
+        {
+            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(0,h-10,QString("Land Cover Map (Microclimate)"));
 
         }
         else
