@@ -231,6 +231,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,152);
         }
+        else if(this->getName()=="Microclimate Heat")
+        {
+            gui_p->setPos(285,152);
+        }
         else if(this->getName()=="Import MUSIC File (.msf)")
         {
             gui_p->setPos(200,100);
@@ -300,6 +304,10 @@ void ModelNode::addPort(DM::Port * p) {
             gui_p->setPos(13,110);
         }
         else if(this->getName()=="Microclimate")
+        {
+            gui_p->setPos(20,152);
+        }
+        else if(this->getName()=="Microclimate Heat")
         {
             gui_p->setPos(20,152);
         }
@@ -449,6 +457,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-120,h-10,QString("Microclimate Benefits"));
+
+        }
+        else if(this->getName()=="Microclimate Heat")
+        {
+            img = QImage(":/Icons/ressources/MicroClimateCool.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(l/2-120,h-10,QString("Microclimate - Extreme Heat"));
 
         }
         else if(this->getName()=="Analyser")
