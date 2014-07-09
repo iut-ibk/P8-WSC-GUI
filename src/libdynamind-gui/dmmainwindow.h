@@ -138,7 +138,7 @@ public slots:
     void showP8ToolFolder();
     void showSupport();
     void showAbout();
-
+    void closeEvent (QCloseEvent *event);
 
 private slots:
     void on_actionZoomReset_activated();
