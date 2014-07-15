@@ -138,6 +138,7 @@ public slots:
     void showP8ToolFolder();
     void showSupport();
     void showAbout();
+    void showError();
     void closeEvent (QCloseEvent *event);
 
 private slots:

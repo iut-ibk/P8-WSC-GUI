@@ -66,6 +66,7 @@
 #include <iostream>
 #include "checkboxlist/exportfiles.h"
 #include <QProgressDialog>
+#include "dmlogsink2.h"
 
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
@@ -202,6 +203,8 @@ DMMainWindow::DMMainWindow(QWidget * parent)
 
     outputFile = new ofstream(logfilepath.toStdString().c_str());
     DM::Log::addLogSink(new DM::OStreamLogSink(*outputFile));
+    DM::OStreamLogSink2 *logsink2 = new DM::OStreamLogSink2(*outputFile);
+    DM::Log::addLogSink(logsink2);
 
 
     DM::PythonEnv *env = DM::PythonEnv::getInstance();
@@ -236,6 +239,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionSupport, SIGNAL(activated()),this,SLOT(showSupport()),Qt::DirectConnection);
     connect(actionAbout, SIGNAL(activated()),this,SLOT(showAbout()),Qt::DirectConnection);
     connect(actionShow_Temporary_File_Folder,SIGNAL(activated()),this,SLOT(showP8ToolFolder()),Qt::DirectConnection);
+    connect(logsink2,SIGNAL(callError()),SLOT(showError()),Qt::QueuedConnection);
 
     currentDocument = "";
 
@@ -1011,4 +1015,8 @@ void DMMainWindow::closeEvent (QCloseEvent *event)
     else{
         event->ignore();
     }
+}
+void DMMainWindow::showError()
+{
+    QMessageBox::warning(NULL,"Error",QString("An Error Occured\n\nPlease Check The Log File Here " + workPath));
 }
