@@ -326,7 +326,7 @@ void DMMainWindow::createModuleListView()
         {*/
         successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                    "ImportRasterData"<<"Microclimate"<<"Land Cover Map (Microclimate)"<<"ExportToGISShapeFile"<<
+                    "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map"<<
                     "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
             //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
         //}
@@ -343,7 +343,7 @@ void DMMainWindow::createModuleListView()
         {
             successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                        "ImportRasterData"<<"Microclimate"<<"Land Cover Map (Microclimate)"<<"ExportToGISShapeFile"<<
+                        "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map" <<
                         "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
         }
     }

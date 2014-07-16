@@ -243,7 +243,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(300,170);
         }
-        else if(this->getName()=="ImportRasterData")
+        else if(this->getName()=="Import Map")
         {
             gui_p->setPos(275,155);
         }
@@ -521,7 +521,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(0,h-10,QString("Import MUSIC File (.msf)"));
+            painter->drawText(0,h-130,QString("Import MUSIC File (.msf)"));
 
         }
         else if(this->getName()=="Stream Erosion and Minor Flooding")
@@ -535,13 +535,13 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->setFont( QFont("Helvetica", 20));
 
         }
-        else if(this->getName()=="ImportRasterData")
+        else if(this->getName()=="Import Map")
         {
             img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-130,h-10,QString("Import Imperviousness"));
+            painter->drawText(l/2-60,h-10,QString("Import Map"));
 
         }
         else if(this->getName()=="Land Cover Map (Microclimate)")
