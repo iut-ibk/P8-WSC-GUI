@@ -324,7 +324,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {*/
-        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Heat" <<
+        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                     "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map"<<
                     "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
@@ -341,7 +341,7 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Heat" <<
+            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                         "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map" <<
                         "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
@@ -1003,7 +1003,7 @@ void DMMainWindow::on_l_simulation_linkActivated(const QString &link)
 void DMMainWindow::closeEvent (QCloseEvent *event)
 {
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "P8-WSC Modeller",
-                                                                tr("Do you want to save?\n"),
+                                                                tr("Would you like to save the project?\n"),
                                                                 QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
                                                                 QMessageBox::Yes);
     if (resBtn == QMessageBox::Yes) {

@@ -231,7 +231,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,152);
         }
-        else if(this->getName()=="Microclimate Heat")
+        else if(this->getName()=="Microclimate Extreme Heat")
         {
             gui_p->setPos(285,152);
         }
@@ -307,7 +307,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(20,152);
         }
-        else if(this->getName()=="Microclimate Heat")
+        else if(this->getName()=="Microclimate Extreme Heat")
         {
             gui_p->setPos(20,152);
         }
@@ -459,7 +459,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-120,h-10,QString("Microclimate Benefits"));
 
         }
-        else if(this->getName()=="Microclimate Heat")
+        else if(this->getName()=="Microclimate Extreme Heat")
         {
             img = QImage(":/Icons/ressources/MicroClimateCool.png");
             h = img.height();
