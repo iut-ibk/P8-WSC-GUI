@@ -171,6 +171,11 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
+    if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,9,30))) < 0)
+    {
+        QMessageBox::warning(this,"Time Expired","Free Time for this Version is Expired\nPlease buy it");
+        exit(0);
+    }
     setupUi(this);
     QPalette pal;
     pal.setColor(QPalette::Window, QColor(255,255,255));
@@ -324,11 +329,12 @@ void DMMainWindow::createModuleListView()
         }
         else
         {*/
+        //for normal version
         successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                     "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map"<<
                     "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
-            //successors<<"URBAN_FORM"<<"RealisationsSettings"<<"SCENARIO"<<"Rain"<<"Economic"<<"Enviromental_Benefits"<<"Microclimate"<<"Treatment_Performance"<<"ImportShapeFile"<<"Analyser"<<"Current_Realisation";
+        //successors << "Microclimate Extreme Heat" <<"Import Map";
         //}
 
     }
@@ -337,6 +343,7 @@ void DMMainWindow::createModuleListView()
         if (actionShow_all_modules->isChecked())
         {
             successors.empty();
+            //successors << "Microclimate Extreme Heat" <<"Import Map";
             //exit(1);
         }
         else
@@ -345,6 +352,8 @@ void DMMainWindow::createModuleListView()
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                         "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map" <<
                         "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
+            //successors << "Microclimate Extreme Heat" <<"Import Map";
+
         }
     }
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
@@ -951,7 +960,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 23.7.2014\n"
+               "Version: 14.8.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
