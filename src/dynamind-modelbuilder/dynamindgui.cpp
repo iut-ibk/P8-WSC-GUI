@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     //Q_INIT_RESOURCE(icons);
     Q_INIT_RESOURCE(splash);
 
-    QPixmap pixmap(":/Splash/ressources/logo.png");
+    QPixmap pixmap(":/Splash/ressources/Loading-Screen 25-08-2014.jpg");
     QSplashScreen *splash1 = new QSplashScreen(pixmap);
 
     splash1->show();
