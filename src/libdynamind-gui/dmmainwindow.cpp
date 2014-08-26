@@ -330,11 +330,13 @@ void DMMainWindow::createModuleListView()
         else
         {*/
         //for normal version
+        /*
         successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                     "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map"<<
                     "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
-        //successors << "Microclimate Extreme Heat" <<"Import Map";
+                    */
+        successors << "Microclimate Extreme Heat" <<"Import Map";
         //}
 
     }
@@ -348,11 +350,11 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
+            /*successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                         "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map" <<
-                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
-            //successors << "Microclimate Extreme Heat" <<"Import Map";
+                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";*/
+            successors << "Microclimate Extreme Heat" <<"Import Map";
 
         }
     }
@@ -960,7 +962,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 19.8.2014\n"
+               "Version: 26.8.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
