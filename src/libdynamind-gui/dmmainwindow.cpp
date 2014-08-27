@@ -171,9 +171,9 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
-    if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,9,30))) < 0)
+    if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,10,31))) < 0)
     {
-        QMessageBox::warning(this,"Time Expired","Free Time for this Version is Expired\nPlease buy it");
+        QMessageBox::warning(this,"Time Expired","Free Time for this Version is Expired");
         exit(0);
     }
     setupUi(this);
@@ -334,7 +334,7 @@ void DMMainWindow::createModuleListView()
 
         successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                    "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map"<<
+                    "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map"<<
                     "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
 
         //successors << "Microclimate Extreme Heat" <<"Import Map";
@@ -353,7 +353,7 @@ void DMMainWindow::createModuleListView()
         {
             successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                        "ImportRasterData"<<"Microclimate"<<"ExportToGISShapeFile"<<"Import Map" <<
+                        "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map" <<
                         "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
             //successors << "Microclimate Extreme Heat" <<"Import Map";
 
@@ -938,7 +938,7 @@ void DMMainWindow::showHelp(string classname) {
 
 void DMMainWindow::showTutorial()
 {
-    QDesktopServices::openUrl(QUrl("/home/clemens/Downloads/2010 06 28 - MMS klausur.pdf"));
+    QDesktopServices::openUrl(QUrl("https://www.dropbox.com/sh/lsw36sc1lkxtpnd/AABL4_L7DguoQ-QQb2dfo9DMa?dl=0"));
 }
 void DMMainWindow::showTempFolder()
 {
@@ -963,7 +963,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 26.8.2014\n"
+               "Version: 27.8.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
