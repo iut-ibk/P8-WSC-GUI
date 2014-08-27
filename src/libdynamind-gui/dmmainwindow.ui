@@ -824,7 +824,7 @@
   </action>
   <action name="actionGetting_started_Tutorial">
    <property name="text">
-    <string>Getting started Tutorial</string>
+    <string>Getting Started Tutorial</string>
    </property>
   </action>
   <action name="actionShow_Temp_Folder">
