@@ -208,6 +208,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
 
     outputFile = new ofstream(logfilepath.toStdString().c_str());
     DM::Log::addLogSink(new DM::OStreamLogSink(*outputFile));
+
     DM::OStreamLogSink2 *logsink2 = new DM::OStreamLogSink2(*outputFile);
     DM::Log::addLogSink(logsink2);
 

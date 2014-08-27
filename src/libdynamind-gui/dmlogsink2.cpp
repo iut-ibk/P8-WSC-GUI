@@ -30,16 +30,16 @@
 using namespace DM;
 
 OStreamLogSink2::OStreamLogSink2(std::ostream &ostream) : out(ostream) {
-	mutex = new QMutex(QMutex::Recursive);
+    mutex = new QMutex(QMutex::Recursive);
     printerror = false;
 }
 
 OStreamLogSink2::~OStreamLogSink2()
 {
-	delete mutex;
+    delete mutex;
 }
 
-LogSink2 &OStreamLogSink2::operator<<(const std::string &string) {
+LogSink &OStreamLogSink2::operator<<(const std::string &string) {
     QMutexLocker locker(mutex);
     if(string.find("ERROR") == std::string::npos)
     {
@@ -49,26 +49,26 @@ LogSink2 &OStreamLogSink2::operator<<(const std::string &string) {
     if(!printerror)
         emit this->callError();
     printerror = true;
-	return *this;
+    return *this;
 }
 
-LogSink2 &OStreamLogSink2::operator<<(const char *string) {
-	QMutexLocker locker(mutex);
-	return *this;
+LogSink &OStreamLogSink2::operator<<(const char *string) {
+    QMutexLocker locker(mutex);
+    return *this;
 }
 
-LogSink2 &OStreamLogSink2::operator<<(int i) {
-	QMutexLocker locker(mutex);
-	return *this;
+LogSink &OStreamLogSink2::operator<<(int i) {
+    QMutexLocker locker(mutex);
+    return *this;
 }
 
 
-LogSink2 &OStreamLogSink2::operator<<(double f) {
-	QMutexLocker locker(mutex);
-	return *this;
+LogSink &OStreamLogSink2::operator<<(double f) {
+    QMutexLocker locker(mutex);
+    return *this;
 }
-LogSink2 &OStreamLogSink2::operator<<(LSEndl e) {
-	QMutexLocker locker(mutex);
+LogSink &OStreamLogSink2::operator<<(LSEndl e) {
+    QMutexLocker locker(mutex);
     return *this;
 }
 
