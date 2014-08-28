@@ -227,7 +227,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(285,137);
         }
-        else if(this->getName()=="Microclimate")
+        else if(this->getName()=="Microclimate Average Summer Heat")
         {
             gui_p->setPos(285,152);
         }
@@ -303,7 +303,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(13,110);
         }
-        else if(this->getName()=="Microclimate")
+        else if(this->getName()=="Microclimate Average Summer Heat")
         {
             gui_p->setPos(20,152);
         }
@@ -450,13 +450,13 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-30,h-10,QString("Economic"));
 
         }
-        else if(this->getName()=="Microclimate")
+        else if(this->getName()=="Microclimate Average Summer Heat")
         {
             img = QImage(":/Icons/ressources/MicroClimateCool.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2-120,h-10,QString("Microclimate Benefits"));
+            painter->drawText(l/2-120,h-10,QString("Microclimate Average Summer Heat"));
 
         }
         else if(this->getName()=="Microclimate Extreme Heat")
