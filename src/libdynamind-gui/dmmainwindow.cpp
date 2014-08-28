@@ -333,12 +333,12 @@ void DMMainWindow::createModuleListView()
         {*/
         //for normal version
 
-        /*successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
+        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                     "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map"<<
-                    "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";*/
+                    "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
 
-        successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
+        //successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
         //}
 
     }
@@ -352,11 +352,11 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            /*successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
+            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                         "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map" <<
-                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";*/
-            successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
+                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
+            //successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
 
         }
     }
