@@ -140,6 +140,8 @@ public slots:
     void showAbout();
     void showError();
     void closeEvent (QCloseEvent *event);
+    void resetModel();
+    void deleteIfExists(QString filename);
 
 private slots:
     void on_actionZoomReset_activated();

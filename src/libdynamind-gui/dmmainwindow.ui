@@ -676,6 +676,7 @@
    </attribute>
    <addaction name="actionRun"/>
    <addaction name="actionUpdate"/>
+   <addaction name="actionResetModel"/>
   </widget>
   <action name="actionRun">
    <property name="icon">
@@ -845,6 +846,11 @@
   <action name="actionShow_Temporary_File_Folder">
    <property name="text">
     <string>Show Temporary File Folder</string>
+   </property>
+  </action>
+  <action name="actionResetModel">
+   <property name="text">
+    <string>ResetModel</string>
    </property>
   </action>
  </widget>
