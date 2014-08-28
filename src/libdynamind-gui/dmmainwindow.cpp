@@ -246,6 +246,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionAbout, SIGNAL(activated()),this,SLOT(showAbout()),Qt::DirectConnection);
     connect(actionShow_Temporary_File_Folder,SIGNAL(activated()),this,SLOT(showP8ToolFolder()),Qt::DirectConnection);
     connect(logsink2,SIGNAL(callError()),SLOT(showError()),Qt::QueuedConnection);
+    connect(actionResetModel,SIGNAL(activated()),SLOT(resetModel()),Qt::DirectConnection);
 
     currentDocument = "";
 
@@ -332,12 +333,12 @@ void DMMainWindow::createModuleListView()
         {*/
         //for normal version
 
-        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
+        /*successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
                     "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                     "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map"<<
-                    "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
+                    "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";*/
 
-        //successors << "Microclimate Extreme Heat" <<"Import Map";
+        successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
         //}
 
     }
@@ -351,11 +352,11 @@ void DMMainWindow::createModuleListView()
         }
         else
         {
-            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
+            /*successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
                         "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
                         "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map" <<
-                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
-            //successors << "Microclimate Extreme Heat" <<"Import Map";
+                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";*/
+            successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
 
         }
     }
@@ -938,7 +939,7 @@ void DMMainWindow::showHelp(string classname) {
 
 void DMMainWindow::showTutorial()
 {
-    QDesktopServices::openUrl(QUrl("https://www.dropbox.com/sh/lsw36sc1lkxtpnd/AABL4_L7DguoQ-QQb2dfo9DMa?dl=0"));
+    QDesktopServices::openUrl(QUrl("https://www.dropbox.com/sh/s2bfvnfxx9rji1m/AABaeG7HbMRWihf5M4x5J2BXa?dl=0"));
 }
 void DMMainWindow::showTempFolder()
 {
@@ -1027,6 +1028,22 @@ void DMMainWindow::closeEvent (QCloseEvent *event)
     else{
         event->ignore();
     }
+}
+
+void DMMainWindow::resetModel()
+{
+    //Microclimate files
+    deleteIfExists(workPath + "/LST after WSUD.mcd");
+    deleteIfExists(workPath + "/Reduction in LST.mcd");
+    deleteIfExists(workPath + "/LST before WSUD.mcd");
+    deleteIfExists(workPath + "/WSUDtech.mcd");
+
+}
+
+void DMMainWindow::deleteIfExists(QString filename)
+{
+    if(QFile::exists(filename))
+        QFile::remove(filename);
 }
 void DMMainWindow::showError()
 {
