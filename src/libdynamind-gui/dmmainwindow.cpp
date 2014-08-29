@@ -939,7 +939,7 @@ void DMMainWindow::showHelp(string classname) {
 
 void DMMainWindow::showTutorial()
 {
-    QDesktopServices::openUrl(QUrl("https://www.dropbox.com/sh/s2bfvnfxx9rji1m/AABaeG7HbMRWihf5M4x5J2BXa?dl=0"));
+    QDesktopServices::openUrl(QUrl("https://www.dropbox.com/sh/lsw36sc1lkxtpnd/AABL4_L7DguoQ-QQb2dfo9DMa?dl=0"));
 }
 void DMMainWindow::showTempFolder()
 {
