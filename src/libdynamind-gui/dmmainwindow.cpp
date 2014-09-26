@@ -171,11 +171,12 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
+    /*
     if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,10,31))) < 0)
     {
         QMessageBox::warning(this,"Time Expired","Free Time for this Version is Expired");
         exit(0);
-    }
+    }*/
     setupUi(this);
     QPalette pal;
     pal.setColor(QPalette::Window, QColor(255,255,255));
@@ -964,7 +965,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 27.8.2014\n"
+               "Version: 26.9.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
