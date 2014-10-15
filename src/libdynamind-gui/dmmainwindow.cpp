@@ -1038,6 +1038,17 @@ void DMMainWindow::resetModel()
     deleteIfExists(workPath + "/Reduction in LST.mcd");
     deleteIfExists(workPath + "/LST before WSUD.mcd");
     deleteIfExists(workPath + "/WSUDtech.mcd");
+    //EB files
+    deleteIfExists(workPath + "/PredevelopRunoffFrequency.TXT");
+    deleteIfExists(workPath + "/UntreatedRunoffFrequency.TXT");
+    deleteIfExists(workPath + "/TreatedRunoffFrequency.TXT");
+    deleteIfExists(workPath + "/ETandRe-useFluxes.TXT");
+    deleteIfExists(workPath + "/PredevelopTotalRunoff.TXT");
+    deleteIfExists(workPath + "/Exfiltration.TXT");
+    deleteIfExists(workPath + "/WQ.TXT");
+    deleteIfExists(workPath + "/PredevelopBaseflowFrequency.TXT");
+    deleteIfExists(workPath + "/Baseflow.TXT");
+    deleteIfExists(workPath + "/Pipe Flow.TXT");
 
 }
 
