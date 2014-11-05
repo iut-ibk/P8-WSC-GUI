@@ -521,7 +521,8 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(0,h-10,QString("Import MUSIC File (.msf)"));
+            QRectF *rect = new QRectF(0,h-40,400,70);
+            painter->drawText(*rect,QString("Import MUSIC File (.msf)\n") + this->getParameterAsString("Filename").c_str());
 
         }
         else if(this->getName()=="Stream Erosion and Minor Flooding")
