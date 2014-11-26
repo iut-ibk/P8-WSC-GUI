@@ -105,12 +105,13 @@ private:
     bool firstrun;
     QTreeWidgetItem * rootItemModelTree;
     void writeGUIInformation(QString FileName);
-    void loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation,  QVector<LoadModule> posmodules);
+    void loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation,  QVector<DMLoadModule> posmodules);
     void loadGUILinks(std::map<std::string, std::string> UUID_Translation);
     SimulationPopup* popup1;
     void save(QString projectname);
     QProgressDialog *pgDia;
     std::ofstream* outputFile;
+    bool showConsole;
 
 
 public slots:
@@ -142,6 +143,7 @@ public slots:
     void closeEvent (QCloseEvent *event);
     void resetModel();
     void deleteIfExists(QString filename);
+    void ShowHideConsole();
 
 private slots:
     void on_actionZoomReset_activated();

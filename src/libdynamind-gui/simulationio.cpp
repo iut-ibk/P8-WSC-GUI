@@ -97,7 +97,7 @@ bool SimulationIO::endElement(const QString & namespaceURI,
         DM::Module * DynaMindm;
         DynaMindm = sim->getModuleWithUUID(UUIDTransation[tmpUUID]);
         if (DynaMindm != 0) {
-            LoadModule lm;
+            DMLoadModule lm;
             lm.minimized = minimized;
             lm.tmpUUID = tmpUUID;
             lm.PosX = PosX;

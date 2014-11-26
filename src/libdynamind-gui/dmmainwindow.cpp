@@ -33,6 +33,16 @@
 //#include <boost/python.hpp>
 
 
+#ifdef WIN32
+//#if       _WIN32_WINNT < 0x0500
+//  #undef  _WIN32_WINNT
+//  #define _WIN32_WINNT   0x0500
+//#endif
+#include <windows.h>
+//#undef LoadModule
+
+#endif
+
 #include "QDir"
 #include "QThread"
 #include "QTreeWidgetItem"
@@ -67,6 +77,8 @@
 #include "checkboxlist/exportfiles.h"
 #include <QProgressDialog>
 #include "dmlogsink2.h"
+
+
 
 
 void outcallback( const char* ptr, std::streamsize count, void* pTextBox )
@@ -171,6 +183,8 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
+    this->showConsole = false;
+    ShowWindow( GetConsoleWindow(), SW_HIDE );
     /*
     if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,10,31))) < 0)
     {
@@ -248,6 +262,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionShow_Temporary_File_Folder,SIGNAL(activated()),this,SLOT(showP8ToolFolder()),Qt::DirectConnection);
     connect(logsink2,SIGNAL(callError()),SLOT(showError()),Qt::QueuedConnection);
     connect(actionResetModel,SIGNAL(activated()),SLOT(resetModel()),Qt::DirectConnection);
+    connect(actionShow_Hide_Console_Window,SIGNAL(activated()),SLOT(ShowHideConsole()),Qt::DirectConnection);
 
     currentDocument = "";
 
@@ -678,7 +693,7 @@ void DMMainWindow::exportFiles()
     exportfiles->show();
 }
 
-void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation, QVector<LoadModule> posmodules) {
+void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::string> UUID_Translation, QVector<DMLoadModule> posmodules) {
 
     std::map<std::string, std::string> reveredUUID_Translation;
     for (std::map<std::string, std::string>::const_iterator it = UUID_Translation.begin();
@@ -704,7 +719,7 @@ void DMMainWindow::loadGUIModules(DM::Group * g, std::map<std::string, std::stri
 
         //GetPos
         QPointF p;
-        foreach (LoadModule lm, posmodules) {
+        foreach (DMLoadModule lm, posmodules) {
             if (lm.tmpUUID.compare(reveredUUID_Translation[m->getUuid()]) == 0) {
                 p.setX(lm.PosX);
                 p.setY(lm.PosY);
@@ -965,7 +980,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 12.11.2014\n"
+               "Version: 26.11.2014\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
@@ -1057,6 +1072,19 @@ void DMMainWindow::deleteIfExists(QString filename)
     if(QFile::exists(filename))
         QFile::remove(filename);
 }
+
+void DMMainWindow::ShowHideConsole()
+{
+    if(this->showConsole){
+        ShowWindow( GetConsoleWindow(), SW_HIDE );
+        this->showConsole = false;
+    }
+    else{
+        ShowWindow( GetConsoleWindow(), SW_RESTORE );
+        this->showConsole = true;
+    }
+}
+
 void DMMainWindow::showError()
 {
     QMessageBox::warning(NULL,"Error",QString("An Error Occured\n\nPlease Check The Log File Here " + workPath));
