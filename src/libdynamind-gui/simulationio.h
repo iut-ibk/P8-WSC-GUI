@@ -43,7 +43,7 @@ struct  DM_HELPER_DLL_EXPORT LoadLink {
     bool Visibile;
 };
 
-struct DM_HELPER_DLL_EXPORT LoadModule {
+struct DM_HELPER_DLL_EXPORT DMLoadModule {
     std::string tmpUUID;
     double PosX;
     double PosY;
@@ -56,7 +56,7 @@ public:
     SimulationIO();
     void loadSimluation(QString FileName,  GUISimulation *simulation,  std::map<std::string, std::string> UUIDTranslation);
     QVector<LoadLink> getLinks(){return this->links;}
-    QVector<LoadModule> getPositionOfLoadedModules(){return this->modules;}
+    QVector<DMLoadModule> getPositionOfLoadedModules(){return this->modules;}
 
 private:
     //Groups * groups;
@@ -80,7 +80,7 @@ private:
     double PosY;
     bool minimized;
 
-    QVector<LoadModule> modules;
+    QVector<DMLoadModule> modules;
 };
 
 #endif // SIMULATIONIO_H

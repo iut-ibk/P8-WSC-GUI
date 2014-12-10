@@ -126,7 +126,7 @@
      <x>0</x>
      <y>0</y>
      <width>932</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -157,6 +157,7 @@
     <addaction name="actionZoomReset"/>
     <addaction name="actionShow_all_modules"/>
     <addaction name="actionShow_debug_window"/>
+    <addaction name="actionShow_Hide_Console_Window"/>
    </widget>
    <widget class="QMenu" name="menuModuleDevelopment">
     <property name="title">
@@ -851,6 +852,11 @@
   <action name="actionResetModel">
    <property name="text">
     <string>ResetModel</string>
+   </property>
+  </action>
+  <action name="actionShow_Hide_Console_Window">
+   <property name="text">
+    <string>Show/Hide Console Window</string>
    </property>
   </action>
  </widget>
