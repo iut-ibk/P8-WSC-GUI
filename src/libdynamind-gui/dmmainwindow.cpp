@@ -1038,6 +1038,7 @@ void DMMainWindow::resetModel()
     deleteIfExists(workPath + "/Reduction in LST.mcd");
     deleteIfExists(workPath + "/LST before WSUD.mcd");
     deleteIfExists(workPath + "/WSUDtech.mcd");
+
     //EB files
     deleteIfExists(workPath + "/PredevelopRunoffFrequency.TXT");
     deleteIfExists(workPath + "/UntreatedRunoffFrequency.TXT");
@@ -1049,6 +1050,12 @@ void DMMainWindow::resetModel()
     deleteIfExists(workPath + "/PredevelopBaseflowFrequency.TXT");
     deleteIfExists(workPath + "/Baseflow.TXT");
     deleteIfExists(workPath + "/Pipe Flow.TXT");
+
+    //SEI files
+    deleteIfExists(workPath + "/pretable.csv");
+    deleteIfExists(workPath + "/urbtable.csv");
+    deleteIfExists(workPath + "/wsudtable.csv");
+
 
 }
 
