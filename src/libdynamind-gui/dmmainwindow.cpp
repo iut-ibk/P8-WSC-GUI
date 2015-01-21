@@ -184,7 +184,10 @@ void DMMainWindow::renameGroupWindow(GroupNode * g) {
 DMMainWindow::DMMainWindow(QWidget * parent)
 {
     this->showConsole = false;
+    #ifdef WIN32
+
     ShowWindow( GetConsoleWindow(), SW_HIDE );
+    #endif
     /*
     if(QDateTime::currentDateTime().secsTo(QDateTime(QDate(2014,10,31))) < 0)
     {
@@ -262,8 +265,10 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     connect(actionShow_Temporary_File_Folder,SIGNAL(activated()),this,SLOT(showP8ToolFolder()),Qt::DirectConnection);
     connect(logsink2,SIGNAL(callError()),SLOT(showError()),Qt::QueuedConnection);
     connect(actionResetModel,SIGNAL(activated()),SLOT(resetModel()),Qt::DirectConnection);
-    connect(actionShow_Hide_Console_Window,SIGNAL(activated()),SLOT(ShowHideConsole()),Qt::DirectConnection);
+#ifdef WIN32
 
+    connect(actionShow_Hide_Console_Window,SIGNAL(activated()),SLOT(ShowHideConsole()),Qt::DirectConnection);
+#endif
     currentDocument = "";
 
     //QSettings settings;
@@ -980,7 +985,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 26.11.2014\n"
+               "Version: 21.1.2015\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
@@ -1065,6 +1070,11 @@ void DMMainWindow::resetModel()
     deleteIfExists(workPath + "/PredevelopBaseflowFrequency.TXT");
     deleteIfExists(workPath + "/Baseflow.TXT");
     deleteIfExists(workPath + "/Pipe Flow.TXT");
+    deleteIfExists(workPath + "/PostWSUD.csv");
+    deleteIfExists(workPath + "/UrbanisedCatchment.csv");
+    deleteIfExists(workPath + "/Pre-developedCatchment.csv");
+
+
 
     //SEI files
     deleteIfExists(workPath + "/pretable.csv");
@@ -1080,8 +1090,10 @@ void DMMainWindow::deleteIfExists(QString filename)
         QFile::remove(filename);
 }
 
+
 void DMMainWindow::ShowHideConsole()
 {
+    #ifdef WIN32
     if(this->showConsole){
         ShowWindow( GetConsoleWindow(), SW_HIDE );
         this->showConsole = false;
@@ -1090,8 +1102,9 @@ void DMMainWindow::ShowHideConsole()
         ShowWindow( GetConsoleWindow(), SW_RESTORE );
         this->showConsole = true;
     }
-}
+    #endif
 
+}
 void DMMainWindow::showError()
 {
     QMessageBox::warning(NULL,"Error",QString("An Error Occured\n\nPlease Check The Log File Here " + workPath));
