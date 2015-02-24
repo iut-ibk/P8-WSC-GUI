@@ -69,34 +69,6 @@
            </column>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="l_Scenario">
-           <property name="text">
-            <string>&lt;a href=&quot;http://www.qtcentre.org&quot;&gt;Scenario&lt;/a&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Scenario -</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="l_simulation">
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.qtcentre.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Realisation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="l_simulationno">
-           <property name="text">
-            <string>Realisation -</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -126,7 +98,7 @@
      <x>0</x>
      <y>0</y>
      <width>932</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">

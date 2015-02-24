@@ -151,10 +151,10 @@ private slots:
     void on_actionZoomIn_activated();
     void on_actionExit_triggered();
     void on_actionShow_all_modules_changed();
-    void on_l_Scenario_linkHovered(const QString &link);
-    void on_l_simulation_linkHovered(const QString &link);
+    //void on_l_Scenario_linkHovered(const QString &link);
+    //void on_l_simulation_linkHovered(const QString &link);
     void on_actionHelp_triggered();
-    void on_l_simulation_linkActivated(const QString &link);
+    //void on_l_simulation_linkActivated(const QString &link);
     void updateStatus(double status);
 
 signals:
@@ -238,7 +238,7 @@ protected slots:
                 int active=button->text().toInt();
                 parent->setMusicFile(active);
                 cout << "huhu: "<< active << endl;
-                label->setText(QString("Simulation %1").arg(active));
+                //label->setText(QString("Simulation %1").arg(active));
             }
         }
     }

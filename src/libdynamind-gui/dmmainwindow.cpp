@@ -202,7 +202,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     log_widget->setPalette(pal);
     //    l_Scenario->hide();
     //    l_simulationno->setText("Simulation -");
-    popup1 = new SimulationPopup(l_simulationno, this, Qt::Popup | Qt::Window );
+    //popup1 = new SimulationPopup(l_simulationno, this, Qt::Popup | Qt::Window );
     firstrun=true;
     log_updater = new GuiLogSink();
     DM::Log::init(log_updater,DM::Debug);
@@ -668,7 +668,7 @@ void DMMainWindow::clearSimulation() {
     QDir dir(workPath);
     foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
     {
-        QFile::remove(i.absoluteFilePath());
+        //QFile::remove(i.absoluteFilePath());
     }
     this->tabWidget_4->setTabText(0,"new project");
 }
@@ -1010,29 +1010,29 @@ void DMMainWindow::on_actionShow_all_modules_changed()
 }
 
 
-void DMMainWindow::on_l_Scenario_linkHovered(const QString &link)
-{
+//void DMMainWindow::on_l_Scenario_linkHovered(const QString &link)
+//{
 
-}
+//}
 
 
 
-void DMMainWindow::on_l_simulation_linkHovered(const QString &link)
-{
-    popup1->resize(10,10);
-    popup1->move(QWidget::mapToGlobal(l_simulation->pos())+QPoint(20,20));
-    popup1->show();
-}
+//void DMMainWindow::on_l_simulation_linkHovered(const QString &link)
+//{
+//    popup1->resize(10,10);
+//    popup1->move(QWidget::mapToGlobal(l_simulation->pos())+QPoint(20,20));
+//    popup1->show();
+//}
 
 void DMMainWindow::on_actionHelp_triggered()
 {
     QDesktopServices::openUrl(QUrl("file:///C:/test.html"));
 }
 
-void DMMainWindow::on_l_simulation_linkActivated(const QString &link)
-{
-    on_l_simulation_linkHovered(link)  ;
-}
+//void DMMainWindow::on_l_simulation_linkActivated(const QString &link)
+//{
+//    on_l_simulation_linkHovered(link)  ;
+//}
 
 void DMMainWindow::closeEvent (QCloseEvent *event)
 {
