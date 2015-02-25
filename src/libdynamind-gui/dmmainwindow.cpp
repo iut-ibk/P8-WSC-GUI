@@ -668,7 +668,7 @@ void DMMainWindow::clearSimulation() {
     QDir dir(workPath);
     foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
     {
-        //QFile::remove(i.absoluteFilePath());
+        QFile::remove(i.absoluteFilePath());
     }
     this->tabWidget_4->setTabText(0,"new project");
 }
@@ -985,7 +985,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 21.1.2015\n"
+               "Version: 25.2.2015\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
