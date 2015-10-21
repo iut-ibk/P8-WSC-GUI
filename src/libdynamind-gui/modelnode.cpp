@@ -179,39 +179,19 @@ void ModelNode::addPort(DM::Port * p) {
     GUIPort * gui_p = new  GUIPort(this, p);
     ports.append(gui_p);
     if  (p->getPortType() < DM::OUTPORTS) { //out
-        if(this->getName()=="Current Realisation")
-        {
-            gui_p->setPos(250,40);//335,110); coords für ecken
-        }
-        if(this->getName()=="Current Realisation")
-        {
-            gui_p->setPos(250,40);
-        }
-        else if(this->getName()=="Rainfall")
+        if(this->getName()=="Future Rainfall")
         {
             gui_p->setPos(185,40);
         }
-        else if(this->getName()=="TreatmentPerformanceResults")
-        {
-            gui_p->setPos(155,120);
-        }
-        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
+        else if(this->getName()=="Treatment and Harvesting Performance")
         {
             gui_p->setPos(285,150);
-        }
-        else if(this->getName()=="EnviromentalBenefitsResults")
-        {
-            gui_p->setPos(200,100);
-        }
-        else if(this->getName()=="EnviromentalBenefitsResults2")
-        {
-            gui_p->setPos(285,160);
         }
         else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             gui_p->setPos(298,175);
         }
-        else if(this->getName()=="Economic")
+        else if(this->getName()=="Benefits Assesment")
         {
             gui_p->setPos(230,110);
         }
@@ -219,23 +199,15 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(280,137);
         }
-        else if(this->getName()=="Analyser")
-        {
-            gui_p->setPos(280,137);
-        }
-        else if(this->getName()=="RealisationsSettings")
-        {
-            gui_p->setPos(285,137);
-        }
-        else if(this->getName()=="Microclimate Average Summer Heat")
+        else if(this->getName()=="Average Summer Heat")
         {
             gui_p->setPos(285,152);
         }
-        else if(this->getName()=="Microclimate Extreme Heat")
+        else if(this->getName()=="Extreme Heat")
         {
             gui_p->setPos(285,152);
         }
-        else if(this->getName()=="Import MUSIC File (.msf)")
+        else if(this->getName()=="Import WSUD Layout (.msf)")
         {
             gui_p->setPos(200,100);
         }
@@ -243,11 +215,7 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(300,170);
         }
-        else if(this->getName()=="Import Map")
-        {
-            gui_p->setPos(275,155);
-        }
-        else if(this->getName()=="Land Cover Map (Microclimate)")
+        else if(this->getName()=="Import Land Cover")
         {
             gui_p->setPos(275,155);
         }
@@ -259,55 +227,31 @@ void ModelNode::addPort(DM::Port * p) {
         }
 
     }else {//in
-        if(this->getName()=="Current Realisation")
-        {
-            gui_p->setPos(75,160);//10,110); coords für ecken
-        }
-        else if(this->getName()=="Current_RealisationModule")
-        {
-            gui_p->setPos(75,160);//10,110); coords für ecken
-        }
-        else if(this->getName()=="Rainfall")
+        if(this->getName()=="Future Rainfall")
         {
             gui_p->setPos(10,55);
-        }
-        else if(this->getName()=="RealisationsSettings")
-        {
-            gui_p->setPos(15,137);
         }
         else if(this->getName()=="Analyser")
         {
             gui_p->setPos(15,137);
         }
-        else if(this->getName()=="AnalyserModule")
-        {
-            gui_p->setPos(15,137);
-        }
-        else if(this->getName()=="TreatmentPerformanceResults")
-        {
-            gui_p->setPos(35,120);
-        }
-        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
+        else if(this->getName()=="Treatment and Harvesting Performance")
         {
             gui_p->setPos(15,145);
-        }
-        else if(this->getName()=="EnviromentalBenefitsResults")
-        {
-            gui_p->setPos(0,100);
         }
         else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             gui_p->setPos(20,175);
         }
-        else if(this->getName()=="Economic")
+        else if(this->getName()=="Benefits Assesment")
         {
             gui_p->setPos(13,110);
         }
-        else if(this->getName()=="Microclimate Average Summer Heat")
+        else if(this->getName()=="Average Summer Heat")
         {
             gui_p->setPos(20,152);
         }
-        else if(this->getName()=="Microclimate Extreme Heat")
+        else if(this->getName()=="Extreme Heat")
         {
             gui_p->setPos(20,152);
         }
@@ -400,7 +344,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         //painter->setBrush(QBrush(QColor(220,220,180)));
         //painter->setPen(QPen(QColor(220,220,220),2));
-        if(this->getName()=="Rainfall")
+        if(this->getName()=="Future Rainfall")
         {
             img = QImage(":/Icons/ressources/Rainfall.png");
             h = img.height();
@@ -408,7 +352,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawImage(0,0,img);
             painter->drawText(l/2,h-10,QString("Rainfall"));
         }
-        else if(this->getName()=="Treatment and Harvesting Performance (MUSIC)")
+        else if(this->getName()=="Treatment and Harvesting Performance")
         {
             img = QImage(":/Icons/ressources/TreatmentPerformance.png");//MircorClimateHeatIslandEffect.png");
             h = img.height();
@@ -417,17 +361,6 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawImage(0,0,img);
             painter->drawText(0,h-10,QString("Treatment and Harvesting Performance (MUSIC)"));
             painter->setFont( QFont("Helvetica", 20));
-
-        }
-        else if(this->getName()=="Current Realisation")
-        {
-
-            img = QImage(":/Icons/ressources/Realisation.png");
-            h = img.height();
-            l = img.width();
-            painter->drawImage(0,0,img);
-            QString zwei = QString::fromStdString(this->getDMModel()->getParameterAsString("RealisationNr"));
-            painter->drawText(l/2-120,h-10,QString("Current Realisation ") + zwei);
 
         }
         else if(this->getName()=="Current_RealisationModule")
@@ -441,7 +374,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-120,h-10,QString("Current Realisation ") + zwei);
 
         }
-        else if(this->getName()=="Economic")
+        else if(this->getName()=="Benefits Assesment")
         {
             img = QImage(":/Icons/ressources/EconomicValuation.png");
             h = img.height();
@@ -450,7 +383,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-30,h-10,QString("Economic"));
 
         }
-        else if(this->getName()=="Microclimate Average Summer Heat")
+        else if(this->getName()=="Average Summer Heat")
         {
             img = QImage(":/Icons/ressources/MicroClimateCool.png");
             h = img.height();
@@ -459,7 +392,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-120,h-10,QString("Microclimate Average Summer Heat"));
 
         }
-        else if(this->getName()=="Microclimate Extreme Heat")
+        else if(this->getName()=="Extreme Heat")
         {
             img = QImage(":/Icons/ressources/MicroClimateCool.png");
             h = img.height();
@@ -477,33 +410,6 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->drawText(l/2-40,h-10,QString("Analyser"));
 
         }
-        else if(this->getName()=="AnalyserModule")
-        {
-            img = QImage(":/Icons/ressources/Analyser.png");
-            h = img.height();
-            l = img.width();
-            painter->drawImage(0,0,img);
-            painter->drawText(l/2-40,h-10,QString("Analyser"));
-
-        }
-        else if(this->getName()=="RealisationsSettings")
-        {
-            img = QImage(":/Icons/ressources/RealisationsSettings.png");
-            h = img.height();
-            l = img.width();
-            painter->drawImage(0,0,img);
-            painter->drawText(l/2-130,h-10,QString("Number of realisations"));
-
-        }
-        else if(this->getName()=="EnviromentalBenefitsResults2")
-        {
-            img = QImage(":/Icons/ressources/EnviromentalBenefits.png");
-            h = img.height();
-            l = img.width();
-            painter->drawImage(0,0,img);
-            painter->drawText(l/2-130,h-10,QString("Enviromental Benefits"));
-
-        }
         else if(this->getName()=="Stream Hydrology and Water Quality")
         {
             img = QImage(":/Icons/ressources/EnvironmentalBenefits.png");
@@ -515,7 +421,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->setFont( QFont("Helvetica", 20));
 
         }
-        else if(this->getName()=="Import MUSIC File (.msf)")
+        else if(this->getName()=="Import WSUD Layout (.msf)")
         {
             img = QImage(":/Icons/ressources/FileUpload.png");
             h = img.height();
@@ -536,22 +442,13 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             painter->setFont( QFont("Helvetica", 20));
 
         }
-        else if(this->getName()=="Import Map")
+        else if(this->getName()=="Import Land Cover")
         {
             img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
             painter->drawText(l/2-60,h-10,QString("Import Map"));
-
-        }
-        else if(this->getName()=="Land Cover Map (Microclimate)")
-        {
-            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
-            h = img.height();
-            l = img.width();
-            painter->drawImage(0,0,img);
-            painter->drawText(0,h-10,QString("Land Cover Map (Microclimate)"));
 
         }
         else

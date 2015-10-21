@@ -165,7 +165,7 @@ void DMMainWindow::addNewGroupWindows(GroupNode * g) {
     }
     if (firstrun)
     {
-        this->groupscenes[this->tabWidget_4->addTab(gv,"new project")] = newgroup;
+        this->groupscenes[this->tabWidget_4->addTab(gv,"Model Builder - new Project")] = newgroup;
         firstrun=false;
     }
     tabmap[newgroup] = gv;
@@ -334,33 +334,12 @@ void DMMainWindow::createModuleListView()
     QStringList successors;
     if (selectedModule!=NULL)
     {
-        QString name=QString::fromStdString(selectedModule->getDMModel()->getClassName());
-        cout << "Selected: " << name.toStdString() << endl;
-        /*if (name=="URBAN_FORM") {
-            //successors<<"RealisationsSettings";
-        }
-        else if (name == "RealisationsSettings")
-        {
-            //successors<<"SCENARIO";
-        }
-        else if (name=="ImportShapeFile") {
-            //successors<<"ExportToShapeFile";
-        }
-        else if (name == "SCENARIO")
-        {
-            //successors<<"Current_Realisation";
-        }
-        else
-        {*/
-        //for normal version
 
-        successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<< "Microclimate Extreme Heat" <<
-                    "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                    "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map"<<
-                    "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
 
-        //successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
-        //}
+        successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
+                    "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Stream Erosion and Minor Flooding"<<
+                    "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
+
 
     }
     else
@@ -368,16 +347,13 @@ void DMMainWindow::createModuleListView()
         if (actionShow_all_modules->isChecked())
         {
             successors.empty();
-            //successors << "Microclimate Extreme Heat" <<"Import Map";
-            //exit(1);
+
         }
         else
         {
-            successors<<"Analyser"<<"Current Realisation"<<"Stream Hydrology and Water Quality"<<"Microclimate Extreme Heat" <<
-                        "Treatment and Harvesting Performance (MUSIC)"<<"Rainfall"<<"Import MUSIC File (.msf)"<<"Stream Erosion and Minor Flooding"<<
-                        "ImportRasterData"<<"Microclimate Average Summer Heat"<<"ExportToGISShapeFile"<<"Import Map" <<
-                        "GetPreviousBlocks"<<"GetSystems"<<"WriteResults2MUSIC"<<"Urban Form"<<"Scenario Setup";
-            //successors <<"Microclimate Average Summer Heat" << "Microclimate Extreme Heat" <<"Import Map";
+            successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
+                        "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Stream Erosion and Minor Flooding"<<
+                        "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
 
         }
     }
@@ -385,18 +361,20 @@ void DMMainWindow::createModuleListView()
     std::map<std::string, std::vector<std::string> > mMap (this->simulation->getModuleRegistry()->getModuleMap());
     this->treeWidget->setColumnCount(1);
     for (std::map<std::string, std::vector<std::string> >::iterator it = mMap.begin(); it != mMap.end(); ++it) {
+        // items is one headline
         QTreeWidgetItem * items = new QTreeWidgetItem(this->treeWidget);
         std::string name = it->first;
+        //cout << "it first " << name << endl;
         items->setText(0, QString::fromStdString(name));
         std::vector<std::string> names = it->second;
         std::sort(names.begin(), names.end());
         bool containsSuccessors=false;
         foreach(std::string name, names) {
+            // item is one module under headline
             QTreeWidgetItem * item;
-            //          cout << "it-name: ->" << name << "<-" << endl;
+            //cout << "it-name: ->" << name << "<-" << endl;
             if (successors.contains(QString::fromStdString(name))||successors.isEmpty())
             {
-                cout << "OK"<<endl;
                 item = new QTreeWidgetItem(items);
                 item->setText(0,QString::fromStdString(name));
                 item->setText(1,"Module");
@@ -670,7 +648,7 @@ void DMMainWindow::clearSimulation() {
     {
         QFile::remove(i.absoluteFilePath());
     }
-    this->tabWidget_4->setTabText(0,"new project");
+    this->tabWidget_4->setTabText(0,"Model Builder - new Project");
 }
 
 void DMMainWindow::importSimulation(QString fileName, QPointF offset) {
@@ -822,7 +800,7 @@ void DMMainWindow::loadSimulation(int id)
     UUID_Translation[this->simulation->getRootGroup()->getUuid()] = this->simulation->getRootGroup()->getUuid();
     this->loadGUIModules((DM::Group*)this->simulation->getRootGroup(),  UUID_Translation, simio.getPositionOfLoadedModules());
     this->loadGUILinks(UUID_Translation);
-    this->tabWidget_4->setTabText(0,fileinfo.fileName());
+    this->tabWidget_4->setTabText(0,"Model Builder - " + fileinfo.fileName());
 }
 
 
