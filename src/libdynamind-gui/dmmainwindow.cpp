@@ -963,7 +963,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 5.10.2015\n"
+               "Version: 21.10.2015\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
