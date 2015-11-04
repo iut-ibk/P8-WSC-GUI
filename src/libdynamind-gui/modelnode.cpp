@@ -183,6 +183,10 @@ void ModelNode::addPort(DM::Port * p) {
         {
             gui_p->setPos(185,40);
         }
+        else if(this->getName()=="Future Rainfall (Test Version)")
+        {
+            gui_p->setPos(185,40);
+        }
         else if(this->getName()=="Treatment and Harvesting Performance")
         {
             gui_p->setPos(285,150);
@@ -228,6 +232,10 @@ void ModelNode::addPort(DM::Port * p) {
 
     }else {//in
         if(this->getName()=="Future Rainfall")
+        {
+            gui_p->setPos(10,55);
+        }
+        else if(this->getName()=="Future Rainfall (Test Version)")
         {
             gui_p->setPos(10,55);
         }
@@ -350,7 +358,15 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
-            painter->drawText(l/2,h-10,QString("Rainfall"));
+            painter->drawText(5,h-10,QString("Future Rainfall"));
+        }
+        else if(this->getName()=="Future Rainfall (Test Version)")
+        {
+            img = QImage(":/Icons/ressources/Rainfall.png");
+            h = img.height();
+            l = img.width();
+            painter->drawImage(0,0,img);
+            painter->drawText(5,h-10,QString("Future Rainfall (Test Version)"));
         }
         else if(this->getName()=="Treatment and Harvesting Performance")
         {
