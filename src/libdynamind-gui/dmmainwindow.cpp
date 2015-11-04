@@ -337,7 +337,7 @@ void DMMainWindow::createModuleListView()
 
 
         successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
-                    "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Stream Erosion and Minor Flooding"<<
+                    "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
                     "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
 
 
@@ -352,7 +352,7 @@ void DMMainWindow::createModuleListView()
         else
         {
             successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
-                        "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Stream Erosion and Minor Flooding"<<
+                        "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
                         "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
 
         }
@@ -963,7 +963,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 21.10.2015\n"
+               "Version: 04.11.2015\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
