@@ -3,8 +3,8 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 
 
-FILE(GLOB CPP_GUI_FILES *.cpp viewer/*.cpp viewer/*.h checkboxlist/*.cpp checkboxlist/*.h)
-FILE(GLOB UI_FILES *.ui viewer/*.ui checkboxlist/*.ui)
+FILE(GLOB CPP_GUI_FILES *.cpp viewer/*.cpp viewer/*.h checkboxlist/*.cpp checkboxlist/*.h wizard/*.h wizard/*.cpp)
+FILE(GLOB UI_FILES *.ui viewer/*.ui checkboxlist/*.ui wizard/*.ui)
 
 QT4_WRAP_UI(CPP_GUI_FILES ${UI_FILES})
 
