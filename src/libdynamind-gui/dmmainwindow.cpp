@@ -77,6 +77,7 @@
 #include "checkboxlist/exportfiles.h"
 #include <QProgressDialog>
 #include "dmlogsink2.h"
+#include "wizard/wizard.h"
 
 
 
@@ -248,6 +249,8 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     log_widget->connect(log_updater, SIGNAL(newLogLine(QString)), SLOT(appendPlainText(QString)), Qt::QueuedConnection);
     connect( actionRun, SIGNAL( activated() ), this, SLOT( runSimulation() ), Qt::DirectConnection );
     connect( actionPreferences, SIGNAL ( activated() ), this, SLOT(preferences() ), Qt::DirectConnection );
+    connect(actionWizard,SIGNAL(activated()),this,SLOT(showWizard()),Qt::DirectConnection);
+    connect(actionAdvanced_Mode, SIGNAL(activated() ), this, SLOT(AdvancedMode()), Qt::DirectConnection);
     connect(actionSave, SIGNAL(activated()), this , SLOT(saveSimulation()), Qt::DirectConnection);
     connect(actionSaveAs, SIGNAL(activated()), this , SLOT(saveAsSimulation()), Qt::DirectConnection);
     connect(actionOpen, SIGNAL(activated()), this , SLOT(loadSimulation()), Qt::DirectConnection);
@@ -338,7 +341,7 @@ void DMMainWindow::createModuleListView()
 
         successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
                     "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
-                    "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
+                    "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment"<<"Analyser";
 
 
     }
@@ -353,17 +356,28 @@ void DMMainWindow::createModuleListView()
         {
             successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
                         "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
-                        "Import Land Cover"<<"Average Summer Heat"<<"Benefits Assesment";
+                        "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment"<<"Analyser";
 
         }
     }
+    QStringList modulegrouporder = QStringList();
+    modulegrouporder.append("Scenario Definition");
+    modulegrouporder.append("Microclimate");
+    modulegrouporder.append("Stormwater");
+    modulegrouporder.append("Economics");
+    int modulecounter = 0;
+
     std::list<std::string> mlist = (this->simulation->getModuleRegistry()->getRegisteredModules());
     std::map<std::string, std::vector<std::string> > mMap (this->simulation->getModuleRegistry()->getModuleMap());
     this->treeWidget->setColumnCount(1);
     for (std::map<std::string, std::vector<std::string> >::iterator it = mMap.begin(); it != mMap.end(); ++it) {
+        std::string name = it->first;
+
+        if(!(name == modulegrouporder.at(modulecounter).toStdString())){
+            continue;
+        }
         // items is one headline
         QTreeWidgetItem * items = new QTreeWidgetItem(this->treeWidget);
-        std::string name = it->first;
         //cout << "it first " << name << endl;
         items->setText(0, QString::fromStdString(name));
         std::vector<std::string> names = it->second;
@@ -388,6 +402,10 @@ void DMMainWindow::createModuleListView()
         }
         else
             items->setDisabled(true);
+        if(modulecounter < 3){
+            it = mMap.begin();
+            modulecounter++;
+        }
     }
 
     //Add VIBe Modules
@@ -1080,10 +1098,38 @@ void DMMainWindow::ShowHideConsole()
         ShowWindow( GetConsoleWindow(), SW_RESTORE );
         this->showConsole = true;
     }
-    #endif
+#endif
 
 }
+
+void DMMainWindow::AdvancedMode()
+{
+    this->treeWidget->setVisible(!this->treeWidget->isVisible());
+}
+
+void DMMainWindow::showWizard()
+{    
+    wizard *w = new wizard;
+    w->setSimulation(this->simulation);
+    w->show();
+}
+
 void DMMainWindow::showError()
 {
     QMessageBox::warning(NULL,"Error",QString("An Error Occured\n\nPlease Check The Log File Here " + workPath));
+}
+
+void DMMainWindow::on_pb_Run_released()
+{
+    runSimulation();
+}
+
+void DMMainWindow::on_pb_Export_released()
+{
+    exportFiles();
+}
+
+void DMMainWindow::on_pb_Results_released()
+{
+    this->ReloadSimulation();
 }

@@ -144,6 +144,8 @@ public slots:
     void resetModel();
     void deleteIfExists(QString filename);
     void ShowHideConsole();
+    void AdvancedMode();
+    void showWizard();
 
 private slots:
     void on_actionZoomReset_activated();
@@ -156,6 +158,12 @@ private slots:
     void on_actionHelp_triggered();
     //void on_l_simulation_linkActivated(const QString &link);
     void updateStatus(double status);
+
+    void on_pb_Run_released();
+
+    void on_pb_Export_released();
+
+    void on_pb_Results_released();
 
 signals:
     void updateSplashMessage(QString);
