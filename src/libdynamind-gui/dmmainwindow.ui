@@ -87,6 +87,61 @@
          </property>
         </widget>
        </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QPushButton" name="pb_Run">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../dynamind-modelbuilder/icons.qrc">
+             <normaloff>:/Icons/ressources/TempRunIcon.png</normaloff>:/Icons/ressources/TempRunIcon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>70</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_Results">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../dynamind-modelbuilder/icons.qrc">
+             <normaloff>:/Icons/ressources/TempResultsIcon.png</normaloff>:/Icons/ressources/TempResultsIcon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>70</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_Export">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../dynamind-modelbuilder/icons.qrc">
+             <normaloff>:/Icons/ressources/TempExportIcon.png</normaloff>:/Icons/ressources/TempExportIcon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>70</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </item>
@@ -119,6 +174,8 @@
     <addaction name="actionImport"/>
     <addaction name="actionExport_Files"/>
     <addaction name="actionPreferences"/>
+    <addaction name="actionAdvanced_Mode"/>
+    <addaction name="actionWizard"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -130,14 +187,6 @@
     <addaction name="actionShow_all_modules"/>
     <addaction name="actionShow_debug_window"/>
     <addaction name="actionShow_Hide_Console_Window"/>
-   </widget>
-   <widget class="QMenu" name="menuModuleDevelopment">
-    <property name="title">
-     <string>Module Development</string>
-    </property>
-    <addaction name="actionEditor"/>
-    <addaction name="separator"/>
-    <addaction name="actionReload_Modules"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -152,7 +201,6 @@
    <addaction name="menuSimulation"/>
    <addaction name="menuTools"/>
    <addaction name="menuView"/>
-   <addaction name="menuModuleDevelopment"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -829,6 +877,16 @@
   <action name="actionShow_Hide_Console_Window">
    <property name="text">
     <string>Show/Hide Console Window</string>
+   </property>
+  </action>
+  <action name="actionAdvanced_Mode">
+   <property name="text">
+    <string>Advanced Mode</string>
+   </property>
+  </action>
+  <action name="actionWizard">
+   <property name="text">
+    <string>Wizard</string>
    </property>
   </action>
  </widget>
