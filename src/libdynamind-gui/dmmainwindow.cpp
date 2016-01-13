@@ -78,6 +78,7 @@
 #include <QProgressDialog>
 #include "dmlogsink2.h"
 #include "wizard/wizard.h"
+#include "wizard/wizardq.h"
 
 
 
@@ -981,7 +982,7 @@ void DMMainWindow::showAbout()
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
     msgBox.setText(QString("<h4>WSC Modelling Toolkit</h4>\n\n"
-               "Version: 02.12.2015\n"
+               "Version: 13.01.2015\n"
                /*"<a href=\"http://www.such-and-such.com\">http://www.such-and-such.com</a>"*/));
     msgBox.setIconPixmap(QPixmap(":/Icons/ressources/P8-Tool-Logo_small.png"));
     msgBox.exec();
@@ -1109,8 +1110,10 @@ void DMMainWindow::AdvancedMode()
 
 void DMMainWindow::showWizard()
 {    
-    wizard *w = new wizard;
-    w->setSimulation(this->simulation);
+//    wizard *w = new wizard;
+//    w->setSimulation(this->simulation);
+//    w->show();
+    Wizardq *w = new Wizardq;
     w->show();
 }
 
