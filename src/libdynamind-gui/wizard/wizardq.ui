@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Wizardq</class>
+ <widget class="QWizard" name="Wizardq">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>285</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Wizard</string>
+  </property>
+  <widget class="QWizardPage" name="page1"/>
+  <widget class="QWizardPage" name="wizardPage2"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

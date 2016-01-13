@@ -30,22 +30,27 @@ DM::Module *wizard::createModule(QString name, QPointF pos)
 
 
 void wizard::on_pushButton_released()
-{   DM::Module *micro, *import;
+{
+    DM::Module *micro, *import;
     micro = createModule("Average Summer Heat", QPointF(0,-100));
     import = createModule("Import Land Cover Map", QPointF(-400,0));
+    //this->sim->addLink( import->getOutPort("City"),micro->getInPort("City"));
+
     GUILink * tmp_link = new GUILink();
+
     ModelNode * mmicro = new ModelNode(micro, this->sim);
     ModelNode * mimport = new ModelNode(import, this->sim);
 
     tmp_link->setInPort(mimport->getGUIPort(new DM::Port(import,import->getOutPort("City")->getPortType(),import->getOutPort("City")->getLinkedDataName())));//new GUIPort(mimport,new DM::Port(import,import->getOutPort("City")->getPortType(),import->getOutPort("City")->getLinkedDataName())));
     tmp_link->setOutPort(mmicro->getGUIPort(new DM::Port(micro,micro->getInPort("City")->getPortType(),micro->getInPort("City")->getLinkedDataName())));//new GUIPort(mmicro,new DM::Port(micro,micro->getInPort("City")->getPortType(),micro->getInPort("City")->getLinkedDataName())));
-    tmp_link->setVIBeLink(this->sim->addLink(import->getOutPort("City"),micro->getInPort("City")));
+
+    //Create Link
+    tmp_link->setVIBeLink(this->sim->addLink( import->getOutPort("City"),micro->getInPort("City")));
     tmp_link->setSimulation(this->sim);
-    tmp_link = 0;
-    //tmp_link->setVIBeLink(l);//this->sim->addLink(import->getOutPort("City"),micro->getInPort("City")));
-    //tmp_link->setSimulation(this->sim);
-    //tmp_link = 0;
-    //this->sim->updateSimulation();
+
+    //Run Simulation
+    this->sim->updateSimulation();
+
 
 }
 
