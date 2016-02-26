@@ -1110,13 +1110,13 @@ void DMMainWindow::AdvancedMode()
 
 void DMMainWindow::showWizard()
 {    
-//    wizard *w = new wizard;
-//    w->setSimulation(this->simulation);
-//    w->setScene(this->groupscenes[0]);
-//    w->show();
-    Wizardq *w = new Wizardq;
+    wizard *w = new wizard;
     w->setSimulation(this->simulation);
+    w->setScene(this->groupscenes[0]);
     w->show();
+//    Wizardq *w = new Wizardq;
+//    w->setSimulation(this->simulation);
+//    w->show();
 }
 
 void DMMainWindow::showError()
