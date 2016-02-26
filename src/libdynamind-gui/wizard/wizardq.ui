@@ -6,15 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>285</width>
-    <height>320</height>
+    <width>600</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Wizard</string>
   </property>
-  <widget class="QWizardPage" name="page1"/>
-  <widget class="QWizardPage" name="wizardPage2"/>
+  <widget class="QWizardPage" name="wizardPage"/>
  </widget>
  <resources/>
  <connections/>

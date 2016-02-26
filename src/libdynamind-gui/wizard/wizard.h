@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <guisimulation.h>
+#include <projectviewer.h>
 namespace Ui {
 class wizard;
 }
@@ -16,6 +17,7 @@ public:
     ~wizard();
     
     void setSimulation(GUISimulation *sim);
+    void setScene(ProjectViewer *pv);
 
 private slots:
     void on_pushButton_released();
@@ -23,6 +25,7 @@ private slots:
 private:
     Ui::wizard *ui;
     GUISimulation *sim;
+    ProjectViewer *pv;
     DM::Module *createModule(QString name, QPointF pos);
 
 };

@@ -24,6 +24,8 @@ DM::Module *wizard::createModule(QString name, QPointF pos)
 {
     DM::Module *m;
     m = this->sim->addModule(name.toStdString());
+    m->init();
+    m->setName(name.toStdString());
     this->sim->GUIaddModule(m,pos);
     return m;
 }
@@ -40,21 +42,39 @@ void wizard::on_pushButton_released()
 
     ModelNode * mmicro = new ModelNode(micro, this->sim);
     ModelNode * mimport = new ModelNode(import, this->sim);
+    DM::ModuleLink *l = this->sim->addLink( import->getOutPort("Data"),micro->getInPort("City"));
 
-    tmp_link->setInPort(mimport->getGUIPort(new DM::Port(import,import->getOutPort("City")->getPortType(),import->getOutPort("City")->getLinkedDataName())));//new GUIPort(mimport,new DM::Port(import,import->getOutPort("City")->getPortType(),import->getOutPort("City")->getLinkedDataName())));
-    tmp_link->setOutPort(mmicro->getGUIPort(new DM::Port(micro,micro->getInPort("City")->getPortType(),micro->getInPort("City")->getLinkedDataName())));//new GUIPort(mmicro,new DM::Port(micro,micro->getInPort("City")->getPortType(),micro->getInPort("City")->getLinkedDataName())));
+
+    tmp_link->setOutPort(mimport->getGUIPort(import->getOutPort("Data")));
+    tmp_link->setInPort(mmicro->getGUIPort(micro->getInPort("City")));
+
 
     //Create Link
-    tmp_link->setVIBeLink(this->sim->addLink( import->getOutPort("City"),micro->getInPort("City")));
+    tmp_link->setVIBeLink(l);
     tmp_link->setSimulation(this->sim);
 
+    this->pv->addItem(tmp_link);
+    this->pv->update();
     //Run Simulation
-    this->sim->updateSimulation();
+    //this->sim->updateSimulation();
 
+//    todo with link copied from dmmainwindow.cpp
+//    gui_link->setOutPort(outmodule->getGUIPort(l->getOutPort()));
+//    gui_link->setInPort(inmodule->getGUIPort(l->getInPort()));
+//    gui_link->setVIBeLink(l);
+//    gui_link->setSimulation(this->simulation);
+
+//    currentView->addItem(gui_link);
+//    currentView->update();
 
 }
 
 void wizard::setSimulation(GUISimulation *sim)
 {
     this->sim = sim;
+}
+
+void wizard::setScene(ProjectViewer *pv)
+{
+    this->pv = pv;
 }

@@ -95,6 +95,8 @@ void GUILink::setOutPort(GUIPort * outPort)
     outPort->setLink(this);
     source = outPort->getConnectionNode();
     sink = outPort->getConnectionNode();
+    std::cout << source.x() << " ," << source.y();
+    std::cout << sink.x() << " ," << sink.y();
     prepareGeometryChange();
     updatePaths();
     this->update(this->boundingRect());
