@@ -26,8 +26,8 @@ private:
     Ui::wizard *ui;
     GUISimulation *sim;
     ProjectViewer *pv;
-    DM::Module *createModule(QString name, QPointF pos);
-
+    DM::Module * createModule(QString name, QPointF pos);
+    bool createLink( DM::Port *OutPort, DM::Port *InPort);
 };
 
 #endif // WIZARD_H
