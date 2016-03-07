@@ -16,5 +16,6 @@
         <file>ressources/TempExportIcon.png</file>
         <file>ressources/TempResultsIcon.png</file>
         <file>ressources/TempRunIcon.png</file>
+        <file>ressources/checkmark.png</file>
     </qresource>
 </RCC>
