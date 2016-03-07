@@ -13,7 +13,7 @@ Wizardq::Wizardq(QWidget *parent) :
     QWizard(parent),
     ui(new Ui::Wizardq)
 {
-    setWizardStyle(QWizard::ClassicStyle);
+    setWizardStyle(QWizard::ModernStyle);
     setPage(0,new IntroPage(this));
     setPage(1,new MicroclimatePage(this));
     setPage(2,new StormwaterPage(this));
