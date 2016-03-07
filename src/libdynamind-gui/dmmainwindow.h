@@ -165,6 +165,8 @@ private slots:
 
     void on_pb_Results_released();
 
+    void on_pb_TempFold_released();
+
 signals:
     void updateSplashMessage(QString);
     void statusChanged(double percent);

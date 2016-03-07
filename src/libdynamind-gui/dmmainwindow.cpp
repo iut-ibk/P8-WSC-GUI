@@ -1110,13 +1110,14 @@ void DMMainWindow::AdvancedMode()
 
 void DMMainWindow::showWizard()
 {    
-    wizard *w = new wizard;
+//    wizard *w = new wizard;
+//    w->setSimulation(this->simulation);
+//    w->setScene(this->groupscenes[0]);
+//    w->show();
+    Wizardq *w = new Wizardq;
     w->setSimulation(this->simulation);
     w->setScene(this->groupscenes[0]);
     w->show();
-//    Wizardq *w = new Wizardq;
-//    w->setSimulation(this->simulation);
-//    w->show();
 }
 
 void DMMainWindow::showError()
@@ -1136,5 +1137,13 @@ void DMMainWindow::on_pb_Export_released()
 
 void DMMainWindow::on_pb_Results_released()
 {
-    this->ReloadSimulation();
+    DM::Module *analyser = this->getSimulation()->getModuleByName("Analyser");
+    if(analyser != 0){
+        analyser->createInputDialog();
+    }
+}
+
+void DMMainWindow::on_pb_TempFold_released()
+{
+    showP8ToolFolder();
 }

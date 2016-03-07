@@ -140,6 +140,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="pb_TempFold">
+           <property name="text">
+            <string>Project Folder</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
