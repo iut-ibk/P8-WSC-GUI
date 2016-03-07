@@ -348,6 +348,9 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     else {
         Color = COLOR_MODULE;
     }
+    if(this->getName() == "Analyser"){
+        this->setVisible(false);
+    }
     if(this->visible){
         QPen pen(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         //painter->setBrush(QBrush(QColor(220,220,180)));
