@@ -18,6 +18,7 @@ IntroPage::~IntroPage()
 
 int IntroPage::nextId() const
 {
+    this->w->unsetAll();
     if(ui->rbMicro->isChecked()){
         this->w->setImportLandcover();
         return 1;
@@ -31,6 +32,7 @@ int IntroPage::nextId() const
         return 3;
     }
     if(ui->rbBlank->isChecked()){
+        this->w->unsetAll();
         return 3;
     }
 }

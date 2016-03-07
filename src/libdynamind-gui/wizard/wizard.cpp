@@ -75,7 +75,7 @@ void wizard::on_pushButton_released()
     import = createModule("Import Land Cover Map", QPointF(-400,0));
 
     if(!createLink(import->getOutPort("Data"),micro->getInPort("City")))
-        std::cout << "Place error message here" << std::endl;
+        std::cout << "couldnt create link between " << micro->getName() << " " << import->getName() << std::endl;
 }
 
 void wizard::setSimulation(GUISimulation *sim)

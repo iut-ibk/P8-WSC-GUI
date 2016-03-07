@@ -26,7 +26,23 @@ bool StormwaterPage::isComplete() const
 
 int StormwaterPage::nextId() const
 {
-    return -1;
+    this->w->unsetRain();
+    this->w->unsetStreamErosion();
+    this->w->unsetStreamHydrology();
+    this->w->unsetTreatment();
+    if(ui->chbRain->isChecked()){
+        this->w->setRain();
+    }
+    if(ui->chbHydrology->isChecked()){
+        this->w->setStreamHydrology();
+    }
+    if(ui->chbTreatment->isChecked()){
+        this->w->setTreatment();
+    }
+    if(ui->chbSEI->isChecked()){
+        this->w->setStreamErosion();
+    }
+    return 3;
 }
 
 void StormwaterPage::on_chbSEI_released()

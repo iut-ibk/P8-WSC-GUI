@@ -19,6 +19,8 @@ MicroclimatePage::~MicroclimatePage()
 
 int MicroclimatePage::nextId() const
 {
+    this->w->unsetMcAverage();
+    this->w->unsetMcExtreme();
     if(ui->chbAverage->isChecked()){
         this->w->setMcAverage();
     }
@@ -35,6 +37,7 @@ bool MicroclimatePage::isComplete() const
     else
         return false;
 }
+
 
 void MicroclimatePage::on_chbAverage_released()
 {
