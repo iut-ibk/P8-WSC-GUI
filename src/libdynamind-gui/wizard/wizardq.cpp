@@ -226,6 +226,8 @@ void Wizardq::buildSimulation()
                 std::cout << "couldnt create link between " << Treat->getName() << " " << Analyser->getName() << std::endl;
         }
     }
+    QGraphicsView * view = pv->views()[0];
+    view->fitInView(view->sceneRect(), Qt::KeepAspectRatio);
 }
 
 DM::Module *Wizardq::createModule(QString name, QPointF pos)
