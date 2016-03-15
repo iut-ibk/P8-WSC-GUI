@@ -17,5 +17,18 @@
         <file>ressources/TempResultsIcon.png</file>
         <file>ressources/TempRunIcon.png</file>
         <file>ressources/checkmark.png</file>
+        <file>ressources/WSC-GUI-Export-Results.png</file>
+        <file>ressources/WSC-GUI-ImportMap.png</file>
+        <file>ressources/WSC-GUI-ImportMSF.png</file>
+        <file>ressources/WSC-GUI-Open.png</file>
+        <file>ressources/WSC-GUI-ProjectFolder.png</file>
+        <file>ressources/WSC-GUI-Reset.png</file>
+        <file>ressources/WSC-GUI-ResultsAnalyser.png</file>
+        <file>ressources/WSC-GUI-Run.png</file>
+        <file>ressources/WSC-GUI-Save.png</file>
+        <file>ressources/WSC-GUI-Stop.png</file>
+        <file>ressources/WSC-GUI-Zoom-in.png</file>
+        <file>ressources/WSC-GUI-Zoom-out.png</file>
+        <file>ressources/WSC-GUI-ZoomToView.png</file>
     </qresource>
 </RCC>
