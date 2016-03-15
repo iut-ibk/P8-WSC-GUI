@@ -19,17 +19,10 @@
      <x>10</x>
      <y>10</y>
      <width>581</width>
-     <height>351</height>
+     <height>358</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="7" column="1">
-     <widget class="QCheckBox" name="chbRain">
-      <property name="text">
-       <string>use Rainfall</string>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="font">
@@ -61,6 +54,13 @@
      <widget class="QCheckBox" name="chbSEI">
       <property name="text">
        <string>Stream Erosion and Minor Flooding</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QCheckBox" name="chbRain">
+      <property name="text">
+       <string>use Rainfall</string>
       </property>
      </widget>
     </item>
@@ -102,6 +102,19 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Customize:</string>
+      </property>
+     </widget>
+    </item>
     <item row="5" column="2">
      <widget class="QLabel" name="label_5">
       <property name="maximumSize">
@@ -121,18 +134,18 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
+    <item row="3" column="3">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-      <property name="text">
-       <string>Customize:</string>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
       </property>
-     </widget>
+     </spacer>
     </item>
    </layout>
   </widget>

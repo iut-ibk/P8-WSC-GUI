@@ -16,13 +16,20 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>571</width>
+     <x>70</x>
+     <y>30</y>
+     <width>451</width>
      <height>371</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="1">
+     <widget class="QRadioButton" name="rbStorm">
+      <property name="text">
+       <string>Stormwatermanagements benefits</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="1">
      <widget class="QRadioButton" name="rbComp">
       <property name="text">
@@ -30,22 +37,42 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QLabel" name="label_3">
+    <item row="3" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="label_4">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>90</width>
-        <height>90</height>
+        <width>70</width>
+        <height>70</height>
        </size>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../dynamind-modelbuilder/icons.qrc">:/Icons/ressources/Urban-Form.png</pixmap>
+       <pixmap resource="../../dynamind-modelbuilder/icons.qrc">:/Icons/ressources/default.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QRadioButton" name="rbBlank">
+      <property name="text">
+       <string>Blank Workspace</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QRadioButton" name="rbMicro">
+      <property name="text">
+       <string>Microclimate benefits</string>
       </property>
      </widget>
     </item>
@@ -53,8 +80,8 @@
      <widget class="QLabel" name="label_2">
       <property name="maximumSize">
        <size>
-        <width>90</width>
-        <height>90</height>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
       <property name="text">
@@ -68,12 +95,57 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="maximumSize">
+       <size>
+        <width>85</width>
+        <height>75</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../dynamind-modelbuilder/icons.qrc">:/Icons/ressources/Urban-Form.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="0" column="2">
      <widget class="QLabel" name="label">
       <property name="maximumSize">
        <size>
-        <width>90</width>
-        <height>90</height>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
       <property name="text">
@@ -87,61 +159,40 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QRadioButton" name="rbMicro">
-      <property name="text">
-       <string>Microclimate</string>
+    <item row="4" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QRadioButton" name="rbStorm">
-      <property name="text">
-       <string>Stormwater</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QLabel" name="label_4">
-      <property name="maximumSize">
+      <property name="sizeHint" stdset="0">
        <size>
-        <width>90</width>
-        <height>90</height>
+        <width>20</width>
+        <height>40</height>
        </size>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../dynamind-modelbuilder/icons.qrc">:/Icons/ressources/default.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QRadioButton" name="rbBlank">
-      <property name="text">
-       <string>Blank Workspace</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Select Simulation Type:</string>
-      </property>
-     </widget>
+     </spacer>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>-20</y>
+     <width>244</width>
+     <height>88</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Select Simulation Type:</string>
+   </property>
   </widget>
  </widget>
  <resources>
