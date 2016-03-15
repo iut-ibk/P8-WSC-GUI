@@ -309,7 +309,13 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     if (startmode==1)
         loadSimulation();
     if (startmode==2)
+    {
         clearSimulation();
+        Wizardq *w = new Wizardq;
+        w->setSimulation(this->simulation);
+        w->setScene(this->groupscenes[0]);
+        w->show();
+    }
     this->pgDia = new QProgressDialog(this);
     pgDia->setWindowTitle("Simulation running");
     pgDia->setMinimum(0);

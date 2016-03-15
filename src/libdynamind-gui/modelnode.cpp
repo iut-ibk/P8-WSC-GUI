@@ -213,7 +213,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="Import WSUD Layout (.msf)")
         {
-            gui_p->setPos(200,100);
+            gui_p->setPos(250,125);
         }
         else if(this->getName()=="Stream Erosion and Minor Flooding")
         {
@@ -221,7 +221,7 @@ void ModelNode::addPort(DM::Port * p) {
         }
         else if(this->getName()=="Import Land Cover Map")
         {
-            gui_p->setPos(275,155);
+            gui_p->setPos(250,125);
         }
         else
         {
@@ -442,7 +442,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         else if(this->getName()=="Import WSUD Layout (.msf)")
         {
-            img = QImage(":/Icons/ressources/FileUpload.png");
+            img = QImage(":/Icons/ressources/WSC-GUI-ImportMSF.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);
@@ -463,7 +463,7 @@ void ModelNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         }
         else if(this->getName()=="Import Land Cover Map")
         {
-            img = QImage(":/Icons/ressources/7-MircorClimate---HeatIslandEffect.png");
+            img = QImage(":/Icons/ressources/WSC-GUI-ImportMap.png");
             h = img.height();
             l = img.width();
             painter->drawImage(0,0,img);

@@ -91,12 +91,15 @@
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
           <widget class="QPushButton" name="pb_Run">
+           <property name="toolTip">
+            <string>Run</string>
+           </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
             <iconset resource="../dynamind-modelbuilder/icons.qrc">
-             <normaloff>:/Icons/ressources/TempRunIcon.png</normaloff>:/Icons/ressources/TempRunIcon.png</iconset>
+             <normaloff>:/Icons/ressources/WSC-GUI-Run.png</normaloff>:/Icons/ressources/WSC-GUI-Run.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -108,12 +111,15 @@
          </item>
          <item>
           <widget class="QPushButton" name="pb_Results">
+           <property name="toolTip">
+            <string>Results</string>
+           </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
             <iconset resource="../dynamind-modelbuilder/icons.qrc">
-             <normaloff>:/Icons/ressources/TempResultsIcon.png</normaloff>:/Icons/ressources/TempResultsIcon.png</iconset>
+             <normaloff>:/Icons/ressources/WSC-GUI-ResultsAnalyser.png</normaloff>:/Icons/ressources/WSC-GUI-ResultsAnalyser.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -125,12 +131,15 @@
          </item>
          <item>
           <widget class="QPushButton" name="pb_Export">
+           <property name="toolTip">
+            <string>Export</string>
+           </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
             <iconset resource="../dynamind-modelbuilder/icons.qrc">
-             <normaloff>:/Icons/ressources/TempExportIcon.png</normaloff>:/Icons/ressources/TempExportIcon.png</iconset>
+             <normaloff>:/Icons/ressources/WSC-GUI-Export-Results.png</normaloff>:/Icons/ressources/WSC-GUI-Export-Results.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -142,8 +151,21 @@
          </item>
          <item>
           <widget class="QPushButton" name="pb_TempFold">
-           <property name="text">
+           <property name="toolTip">
             <string>Project Folder</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../dynamind-modelbuilder/icons.qrc">
+             <normaloff>:/Icons/ressources/WSC-GUI-ProjectFolder.png</normaloff>:/Icons/ressources/WSC-GUI-ProjectFolder.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>70</width>
+             <height>70</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -703,13 +725,13 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionRun"/>
-   <addaction name="actionUpdate"/>
    <addaction name="actionResetModel"/>
+   <addaction name="actionUpdate"/>
   </widget>
   <action name="actionRun">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/player_play.png</normaloff>:/Icons/ressources/player_play.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-Run.png</normaloff>:/Icons/ressources/WSC-GUI-Run.png</iconset>
    </property>
    <property name="text">
     <string>Run</string>
@@ -737,7 +759,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/document-open.png</normaloff>:/Icons/ressources/document-open.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-Open.png</normaloff>:/Icons/ressources/WSC-GUI-Open.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open</string>
@@ -749,7 +771,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/document-save.png</normaloff>:/Icons/ressources/document-save.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-Save.png</normaloff>:/Icons/ressources/WSC-GUI-Save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -773,7 +795,7 @@
   <action name="actionZoomIn">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/stock_zoom-in.png</normaloff>:/Icons/ressources/stock_zoom-in.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-Zoom-in.png</normaloff>:/Icons/ressources/WSC-GUI-Zoom-in.png</iconset>
    </property>
    <property name="text">
     <string>Zoom In</string>
@@ -785,7 +807,7 @@
   <action name="actionZoomOut">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/stock_zoom-out.png</normaloff>:/Icons/ressources/stock_zoom-out.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-Zoom-out.png</normaloff>:/Icons/ressources/WSC-GUI-Zoom-out.png</iconset>
    </property>
    <property name="text">
     <string>Zoom Out</string>
@@ -797,7 +819,7 @@
   <action name="actionZoomReset">
    <property name="icon">
     <iconset resource="../dynamind-modelbuilder/icons.qrc">
-     <normaloff>:/Icons/ressources/stock_zoom-page.png</normaloff>:/Icons/ressources/stock_zoom-page.png</iconset>
+     <normaloff>:/Icons/ressources/WSC-GUI-ZoomToView.png</normaloff>:/Icons/ressources/WSC-GUI-ZoomToView.png</iconset>
    </property>
    <property name="text">
     <string>Zoom Reset</string>
@@ -819,8 +841,14 @@
    </property>
   </action>
   <action name="actionUpdate">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Update</string>
+    <string/>
+   </property>
+   <property name="iconText">
+    <string/>
    </property>
   </action>
   <action name="actionExit">
@@ -877,8 +905,15 @@
    </property>
   </action>
   <action name="actionResetModel">
+   <property name="icon">
+    <iconset resource="../dynamind-modelbuilder/icons.qrc">
+     <normaloff>:/Icons/ressources/WSC-GUI-Reset.png</normaloff>:/Icons/ressources/WSC-GUI-Reset.png</iconset>
+   </property>
    <property name="text">
-    <string>ResetModel</string>
+    <string>Reset</string>
+   </property>
+   <property name="iconText">
+    <string>Reset</string>
    </property>
   </action>
   <action name="actionShow_Hide_Console_Window">

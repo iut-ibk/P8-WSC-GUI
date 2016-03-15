@@ -184,7 +184,7 @@
          </property>
          <property name="icon">
           <iconset resource="../dynamind-modelbuilder/icons.qrc">
-           <normaloff>:/Icons/ressources/document-open.png</normaloff>:/Icons/ressources/document-open.png</iconset>
+           <normaloff>:/Icons/ressources/WSC-GUI-Open.png</normaloff>:/Icons/ressources/WSC-GUI-Open.png</iconset>
          </property>
          <property name="flat">
           <bool>true</bool>
