@@ -121,8 +121,8 @@ void Wizardq::setAll()
     setStreamErosion();
     setStreamHydrology();
     setTreatment();
-    setRain();
-    setEco();
+    //setRain();    //disabled these two modules because not yet fully finished
+    //setEco();
 }
 
 void Wizardq::unsetAll()
