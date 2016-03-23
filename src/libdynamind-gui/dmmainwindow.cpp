@@ -348,7 +348,7 @@ void DMMainWindow::createModuleListView()
 
         successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
                     "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
-                    "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment"<<"Analyser";
+                    "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment";//<<"Analyser";
 
 
     }
@@ -363,7 +363,7 @@ void DMMainWindow::createModuleListView()
         {
             successors<<"Import WSUD Layout (.msf)"<<"Stream Hydrology and Water Quality"<< "Extreme Heat" <<
                         "Treatment and Harvesting Performance"<<"Future Rainfall"<<"Future Rainfall (Test Version)"<<"Stream Erosion and Minor Flooding"<<
-                        "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment"<<"Analyser";
+                        "Import Land Cover Map"<<"Average Summer Heat"<<"Benefits Assesment";//<<"Analyser";
 
         }
     }
