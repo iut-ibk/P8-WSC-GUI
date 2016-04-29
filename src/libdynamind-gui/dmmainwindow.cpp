@@ -211,15 +211,14 @@ DMMainWindow::DMMainWindow(QWidget * parent)
     running =  false;
     this->setParent(parent);
 
-    workPath=QDir::tempPath()+"/P8Tool";
+    workPath=QDir::tempPath()+"/P8Tool/"+QString::number(QApplication::applicationPid());
     if (!QFile::exists(workPath))
     {
         QDir dir;
         dir.mkpath(workPath);
+    }else{
+        removeDir(workPath);
     }
-    QSettings settings;
-    settings.setValue("workPath",workPath);
-    // std::cout<<workPath.toStdString()+"\n"<<settings.applicationName().toStdString()<<settings.organizationName().toStdString();
 
     // add log export to file
     QString logfilepath = QDir::temp().tempPath() + "/WSC-Modelling-Toolkit" + QDateTime::currentDateTime().toString("_yyMMdd_hhmmss_zzz")+".log";
@@ -275,7 +274,7 @@ DMMainWindow::DMMainWindow(QWidget * parent)
 #endif
     currentDocument = "";
 
-    //QSettings settings;
+    QSettings settings;
     if(settings.value("pythonModules").toString().isEmpty()) {
         counter++;
         this->preferences();
@@ -542,13 +541,13 @@ void DMMainWindow::saveSimulation()
 
 void DMMainWindow::save(QString projectname)
 {
-    QSettings settings;
-    QString fileName=settings.value("workPath").toString()+"/simulation.dyn";
+
+    QString fileName=this->workPath+"/simulation.dyn";
     this->simulation->writeSimulation(fileName.toStdString());
     this->writeGUIInformation(fileName);
     this->currentDocument = projectname;
 
-    QString foldername=settings.value("workPath").toString();
+    QString foldername=this->workPath;
     QDir dir(foldername);
 
     dir.setFilter(QDir::Dirs|QDir::NoDotAndDotDot);
@@ -666,9 +665,8 @@ void DMMainWindow::clearSimulation() {
     this->simulation->clearSimulation();
     this->currentDocument = "";
 
-    QSettings settings;
-    workPath=settings.value("workPath").toString();
-    QDir dir(workPath);
+
+    QDir dir(this->workPath);
     foreach (QFileInfo i,dir.entryInfoList(QDir::Files))
     {
         QFile::remove(i.absoluteFilePath());
@@ -758,7 +756,7 @@ void DMMainWindow::loadSimulation(int id)
     this->clearSimulation();
     this->currentDocument = filename;
 
-    QString foldername=settings.value("workPath").toString();
+    QString foldername=this->workPath;
     QDir dir(foldername);
 
     QFile projectfile(filename);
@@ -1124,6 +1122,30 @@ void DMMainWindow::showWizard()
     w->setSimulation(this->simulation);
     w->setScene(this->groupscenes[0]);
     w->show();
+}
+
+bool DMMainWindow::removeDir(const QString &dirName)
+{
+    bool result = true;
+    QDir dir(dirName);
+
+    if (dir.exists(dirName)) {
+        Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+            if (info.isDir()) {
+                result = removeDir(info.absoluteFilePath());
+            }
+            else {
+                result = QFile::remove(info.absoluteFilePath());
+            }
+
+            if (!result) {
+                return result;
+            }
+        }
+        result = dir.rmdir(dirName);
+    }
+    return result;
+
 }
 
 void DMMainWindow::showError()

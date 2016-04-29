@@ -114,6 +114,7 @@ private:
     bool showConsole;
 
 
+
 public slots:
     void runSimulation();
     void sceneChanged();
@@ -146,6 +147,7 @@ public slots:
     void ShowHideConsole();
     void AdvancedMode();
     void showWizard();
+    bool removeDir(const QString & dirName);
 
 private slots:
     void on_actionZoomReset_activated();

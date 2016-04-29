@@ -1,6 +1,5 @@
 #include "exportfiles.h"
 #include "ui_exportfiles.h"
-#include "QSettings"
 #include <iostream>
 
 using namespace std;
@@ -13,7 +12,8 @@ ExportFiles::ExportFiles(QWidget *parent) :
     cout << "hh"<<endl;
     QSettings settings;
     ui->le_folder->setText(settings.value("dataPath").toString());
-    workfolder=settings.value("workPath").toString();
+    workfolder= QDir::tempPath()+"/P8Tool/"+QString::number(QApplication::applicationPid());
+
     checkboxlist.load(settings.value("installPath").toString()+ "/files.txt",workfolder+"/states.txt",workfolder);
     ui->lv_list->setModel(&checkboxlist);
 }
@@ -38,8 +38,7 @@ void ExportFiles::on_pb_folder_clicked()
 
 void ExportFiles::on_pb_export_clicked()
 {
-    QSettings settings;
-    workfolder = settings.value("workPath").toString();
+    workfolder= QDir::tempPath()+"/P8Tool/"+QString::number(QApplication::applicationPid());
     QStringList files=checkboxlist.getFiles();
 
     QString exportfolder=ui->le_folder->text()+"/"+ui->le_szenario->text();
