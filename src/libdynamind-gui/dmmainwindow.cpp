@@ -970,7 +970,7 @@ void DMMainWindow::showTempFolder()
 
 void DMMainWindow::showP8ToolFolder()
 {
-    QDesktopServices::openUrl(QDir::tempPath() + "/P8Tool");
+    QDesktopServices::openUrl(workPath);
 }
 
 void DMMainWindow::showSupport()
