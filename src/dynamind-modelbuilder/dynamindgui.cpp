@@ -33,6 +33,8 @@
 #include <QThreadPool>
 #include <dynamindmainwindow.h>
 #include <QGLFormat>
+#include <QTime>
+
 int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
@@ -46,8 +48,11 @@ int main(int argc, char *argv[]) {
     QGLFormat::setDefaultFormat(glf);
     //Q_INIT_RESOURCE(icons);
     Q_INIT_RESOURCE(splash);
-
-    QPixmap pixmap(":/Splash/ressources/Loading-Screen 25-08-2014.jpg");
+    QTime time;
+    qsrand(time.currentTime().second());
+    int random = (qrand() % 4) +1;
+    QString path = QString(":/Splash/ressources/WSC-GUI-Loading-screen0"+QString::number(random)+".png");
+    QPixmap pixmap(path);
     QSplashScreen *splash1 = new QSplashScreen(pixmap);
 
     splash1->show();

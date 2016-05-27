@@ -45,5 +45,9 @@
         <file>ressources/WSC-GUI-Zoom-out.png</file>
         <file>ressources/WSC-GUI-ZoomToView.png</file>
         <file>ressources/WSC-GUI-ImportMSF.png</file>
+        <file>ressources/WSC-GUI-Loading-screen01.png</file>
+        <file>ressources/WSC-GUI-Loading-screen02.png</file>
+        <file>ressources/WSC-GUI-Loading-screen03.png</file>
+        <file>ressources/WSC-GUI-Loading-screen04.png</file>
     </qresource>
 </RCC>

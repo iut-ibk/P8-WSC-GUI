@@ -2,5 +2,9 @@
     <qresource prefix="/Splash">
         <file>ressources/logo.png</file>
         <file>ressources/Loading-Screen 25-08-2014.jpg</file>
+        <file>ressources/WSC-GUI-Loading-screen01.png</file>
+        <file>ressources/WSC-GUI-Loading-screen02.png</file>
+        <file>ressources/WSC-GUI-Loading-screen03.png</file>
+        <file>ressources/WSC-GUI-Loading-screen04.png</file>
     </qresource>
 </RCC>
